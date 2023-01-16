@@ -20,7 +20,6 @@ public class Database {
 			System.out.println("ERROR: \tFailed to make connection!");
 			System.exit(1);
 		}
-		// Now we're ready to use the DB. You may add your code below this line.
 		
 	}
 	
@@ -72,44 +71,14 @@ public class Database {
 		}
 	}
 	
-	public static void outputQuery(int number, String sql, Statement statement) throws SQLException {
-		switch (number % 10) {
-		case 1:
-			System.out.println("################## 1st Query ###############");
-			break;
-		case 2:
-			System.out.println("################## 2nd Query ###############");
-			break;
-		case 3:
-			System.out.println("################## 3rd Query ###############");
-			break;
-		default:
-			System.out.println("################## "+ number +"th Query ###############");
-			break;
-		}
-		
-		ResultSet rs = statement.executeQuery(sql);
-		
-		while (rs.next()) {
-			  String output1 = rs.getString(1);
-              String output2 = rs.getString(2);
-              
-              
-              System.out.println(output1 + " " + output2);
-		}
-		
-	}
-	// You can write your new methods here.
-	
-	// ADVANCED: This method is for advanced users only. You should not need to change this!
 	
 	public static Connection connectToDatabase() {
 		System.out.println("------ Testing PostgreSQL JDBC Connection ------");
 		Connection connection = null;
 		try {
-			String user = "postgres";
-			String password = "Vietnam1";
-			String fullURL = "jdbc:postgresql://localhost/postgresql";
+			String user = "zkac263";
+			String password = "ooquie";
+			String fullURL = "jdbc:postgresql://localhost/CS2855/zkac263";
 			connection = DriverManager.getConnection(fullURL, user, password);
 			return connection;
 		} catch (SQLException e) {
