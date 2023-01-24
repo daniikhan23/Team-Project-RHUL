@@ -1,4 +1,3 @@
-package java;
 
 import java.sql.*;
 
@@ -30,4 +29,5 @@ public class Customer {
 		ALL ITEMS ADD TO DATABASE AS ORDER ID
 	}
 	*/
+	
 }

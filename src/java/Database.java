@@ -1,4 +1,4 @@
-package java;
+
 
 import java.io.*;
 import java.sql.*;
@@ -9,9 +9,6 @@ public class Database {
 	// NOTE: You will need to change some variables from START to END.
 	public static void main(String[] argv) throws SQLException {
 
-
-		// END
-		
 		Connection connection = connectToDatabase();
 		if (connection != null) {
 			System.out.println("SUCCESS: You made it!"
@@ -20,6 +17,8 @@ public class Database {
 			System.out.println("ERROR: \tFailed to make connection!");
 			System.exit(1);
 		}
+		// Now we're ready to use the DB. You may add your code below this line.
+		
 		
 	}
 	
@@ -74,11 +73,14 @@ public class Database {
 	
 	public static Connection connectToDatabase() {
 		System.out.println("------ Testing PostgreSQL JDBC Connection ------");
+		String user = "postgres";
+		String password = "Vietnam1";
+		String database = "localhost";
 		Connection connection = null;
 		try {
-			String user = "zkac263";
-			String password = "ooquie";
-			String fullURL = "jdbc:postgresql://localhost/CS2855/zkac263";
+			String protocol = "jdbc:postgresql://";
+			String dbName = "/postgres";    
+			String fullURL = protocol + database + dbName;
 			connection = DriverManager.getConnection(fullURL, user, password);
 			return connection;
 		} catch (SQLException e) {
@@ -94,6 +96,5 @@ public class Database {
 		}
 		return null;
 	}
-
 
 }
