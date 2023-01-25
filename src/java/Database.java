@@ -43,6 +43,9 @@ public class Database {
 				)
 				""";
 		statement.executeUpdate(MenuTable);
+		statement.executeUpdate(StaffTable);
+
+		
 	}
 	
 	
