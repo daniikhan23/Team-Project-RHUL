@@ -59,6 +59,10 @@ footer {
   .header-right {
     float: none;
   }
+
+  .image {
+    display: none;
+  }
 }
 
 .container {
