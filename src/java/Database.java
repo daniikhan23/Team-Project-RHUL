@@ -19,7 +19,30 @@ public class Database {
 		}
 		// Now we're ready to use the DB. You may add your code below this line.
 		
-		
+		Statement statement = connection.createStatement();
+
+		st.execute("DROP TABLE IF EXIST Menu;");
+
+		String MenuTable = """
+				CREATE TABLE Menu(
+					ItemCode INTEGER NOT NULL,
+					Name VARCHAR(255) NOT NULL,
+					Cost INTEGER NOT NULL,
+					Category VARCHAR(255) NOT NULL,
+					PRIMARY KEY (ItemCode);
+				)
+				""";
+
+
+		String StaffTable = """
+				CREATE TABLE Staff(
+					StaffID INTEGER NOT NULL,
+					username VARCHAR(255) NOT NULL,
+					password VARCHAR(255) NOT NULL,
+					PRIMARY KEY (StaffID);
+				)
+				""";
+		statement.executeUpdate(MenuTable);
 	}
 	
 	
@@ -73,13 +96,17 @@ public class Database {
 	
 	public static Connection connectToDatabase() {
 		System.out.println("------ Testing PostgreSQL JDBC Connection ------");
-		String user = "postgres";
-		String password = "Vietnam1";
+		//String user = "postgres"; for offline postres
+		//String password = "Vietnam1";  for offline postres
+
+		String user = "group35";
+		String password = "eibahv";
 		String database = "localhost";
 		Connection connection = null;
 		try {
 			String protocol = "jdbc:postgresql://";
-			String dbName = "/postgres";    
+			//String dbName = "/postgres";    offline postres
+			String dbName = "CS2810%2fgroup35";
 			String fullURL = protocol + database + dbName;
 			connection = DriverManager.getConnection(fullURL, user, password);
 			return connection;
