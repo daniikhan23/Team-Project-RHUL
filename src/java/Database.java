@@ -42,7 +42,7 @@ public class Database {
 					StaffID INTEGER NOT NULL,
 					username VARCHAR(255) NOT NULL,
 					password_hash VARCHAR(255) NOT NULL,
-					salt VARCHAR(255) NOT NULL,
+					salt BINARY(32) NOT NULL,
 					PRIMARY KEY (StaffID)
 				);
 				""";
