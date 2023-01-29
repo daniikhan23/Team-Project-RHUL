@@ -21,31 +21,30 @@ public class Database {
 		
 		Statement statement = connection.createStatement();
 
-		st.execute("DROP TABLE IF EXIST Menu;");
+		statement.execute("DROP TABLE IF EXISTS Menu;");
+		statement.execute("DROP TABLE IF EXISTS Staff;");
 
 		String MenuTable = """
-				CREATE TABLE Menu(
+				CREATE TABLE Menu (
 					ItemCode INTEGER NOT NULL,
 					Name VARCHAR(255) NOT NULL,
 					Cost INTEGER NOT NULL,
 					Category VARCHAR(255) NOT NULL,
-					PRIMARY KEY (ItemCode);
-				)
+					PRIMARY KEY (ItemCode)
+				);
 				""";
 
 
 		String StaffTable = """
-				CREATE TABLE Staff(
+				CREATE TABLE Staff (
 					StaffID INTEGER NOT NULL,
 					username VARCHAR(255) NOT NULL,
 					password VARCHAR(255) NOT NULL,
-					PRIMARY KEY (StaffID);
-				)
+					PRIMARY KEY (StaffID)
+				);
 				""";
 		statement.executeUpdate(MenuTable);
 		statement.executeUpdate(StaffTable);
-
-		
 	}
 	
 	
@@ -109,7 +108,7 @@ public class Database {
 		try {
 			String protocol = "jdbc:postgresql://";
 			//String dbName = "/postgres";    offline postres
-			String dbName = "CS2810%2fgroup35";
+			String dbName = "/CS2810/group35";
 			String fullURL = protocol + database + dbName;
 			connection = DriverManager.getConnection(fullURL, user, password);
 			return connection;
