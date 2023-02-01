@@ -21,10 +21,10 @@ public class Database {
 		
 		Statement statement = connection.createStatement();
 
-		st.execute("DROP TABLE IF EXIST Menu;");
+		statement.execute("DROP TABLE IF EXIST Menu;");
 
 		String MenuTable = """
-				CREATE TABLE Menu(
+				CREATE TABLE MenuTable(
 					ItemCode INTEGER NOT NULL,
 					Name VARCHAR(255) NOT NULL,
 					Cost INTEGER NOT NULL,
@@ -35,7 +35,7 @@ public class Database {
 
 
 		String StaffTable = """
-				CREATE TABLE Staff(
+				CREATE TABLE StaffTable(
 					StaffID INTEGER NOT NULL,
 					username VARCHAR(255) NOT NULL,
 					password VARCHAR(255) NOT NULL,
@@ -51,7 +51,7 @@ public class Database {
 	
 	public static void initialiseTable(String tableName, Statement statement) throws SQLException {
 	    try{
-	        FileInputStream fis = new FileInputStream(tableName);
+	        FileInputStream fis = new FileInputStream(tableName+".txt");
 	        Scanner sc = new Scanner(fis);
 	        String[] arrOfStr = sc.nextLine().split(",");
 

@@ -1,0 +1,8 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "servlet.jar",
+        "c:\\Users\\Mr_Le\\Downloads\\servlet.jar\\servlet.jar",
+        "c:\\Users\\Mr_Le\\Downloads\\postgresql.jar"
+    ]
+}
