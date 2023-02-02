@@ -5,7 +5,7 @@ import java.sql.*;
 import java.util.*;
 
 public class Database {
-	static Connection connection;
+	static Connection connection = null;
 	
 	public static void main(String[] argv) throws SQLException {
 		connection = connectToDatabase();
@@ -18,6 +18,15 @@ public class Database {
 		}
 
 		initialiseTables();
+	}
+	
+	public static Connection getConnection() throws SQLException {
+		if (connection == null) {
+			connection = connectToDatabase();
+			initialiseTables();
+		}
+		
+		return connection;
 	}
 
 	public static void initialiseTables() throws SQLException {
@@ -41,7 +50,7 @@ public class Database {
 				CREATE TABLE Staff (
 					StaffID INTEGER NOT NULL,
 					username VARCHAR(255) NOT NULL,
-					password_hash VARCHAR(255) NOT NULL,
+					password_hash BINARY(64) NOT NULL,
 					salt BINARY(32) NOT NULL,
 					PRIMARY KEY (StaffID)
 				);
