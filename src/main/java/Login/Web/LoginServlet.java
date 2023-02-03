@@ -3,18 +3,13 @@ package Login.Web;
 import java.io.IOException;
 
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
 
 import Login.Database.LoginDatabase;
 import Login.Bean.LoginBean;
 
 
-@WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = -5947371781560086598L;
 	private LoginDatabase LoginDatabase;
@@ -31,7 +26,8 @@ public class LoginServlet extends HttpServlet {
         LoginBean loginBean = new LoginBean();
         loginBean.setUsername(username);
         loginBean.setPassword(password);
-
+        response.sendRedirect("loginsuccess.jsp");
+        /*
         try {
             if ( LoginDatabase.validate(loginBean)) {
                 //HttpSession session = request.getSession();
@@ -44,6 +40,6 @@ public class LoginServlet extends HttpServlet {
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 }

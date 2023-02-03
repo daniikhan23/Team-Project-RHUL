@@ -11,7 +11,7 @@
  <main id="main-holder">
   <h1 id="login-header">Login</h1>
   
-  <form action="<%=request.getContextPath()%>/login" method="post">
+  <form action="<%=request.getContextPath()%>/Login" method="post">
    <table style="with: 100%">
     <tr>
      <td><input type="text" name="username" id="username-field" placeholder="Username" class="login-field"/></td>
