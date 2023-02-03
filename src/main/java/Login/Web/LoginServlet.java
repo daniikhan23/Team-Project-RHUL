@@ -26,8 +26,9 @@ public class LoginServlet extends HttpServlet {
         LoginBean loginBean = new LoginBean();
         loginBean.setUsername(username);
         loginBean.setPassword(password);
-        response.sendRedirect("loginsuccess.jsp");
-        /*
+        System.out.println(username);
+        System.out.println(password);
+        
         try {
             if ( LoginDatabase.validate(loginBean)) {
                 //HttpSession session = request.getSession();
@@ -36,10 +37,10 @@ public class LoginServlet extends HttpServlet {
             } else {
                 HttpSession session = request.getSession();
                 //session.setAttribute("user", username);
-                //response.sendRedirect("login.jsp");
+                response.sendRedirect("login.jsp");
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-        }*/
+        }
     }
 }

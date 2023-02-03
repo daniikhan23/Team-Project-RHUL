@@ -11,49 +11,35 @@ import Login.Bean.LoginBean;
 
 public class LoginDatabase {
 	
-	public static Connection connectToDatabase() {
-		System.out.println("------ Testing PostgreSQL JDBC Connection ------");
-		String user = "postgres"; //for offline postres
-		String password = "Vietnam1";  //for offline postres
 
-		//String user = "group35";
-		//String password = "eibahv";
-		String database = "localhost";
-		Connection connection = null;
-		try {
-			String protocol = "jdbc:postgresql://";
-			String dbName = "/postgres";    //offline postres
-			//String dbName = "CS2810%2fgroup35";
-			String fullURL = protocol + database + dbName;
-			connection = DriverManager.getConnection(fullURL, user, password);
-			return connection;
-		} catch (SQLException e) {
-			String errorMsg = e.getMessage();
-			if (errorMsg.contains("authentication failed")) {
-				System.out.println("ERROR: \tDatabase password is incorrect. Have you changed the password string above?");
-				System.out.println("\n\tMake sure you are NOT using your university password.\n"
-						+ "\tYou need to use the password that was emailed to you!");
-			} else {
-				System.out.println("Connection failed! Check output console.");
-				e.printStackTrace();
-			}
-		}
-		return null;
-	}
-
-	
     public boolean validate(LoginBean loginBean) throws ClassNotFoundException {
         boolean status = false;
         try {
-        		Statement statement = connectToDatabase().createStatement();
+        		Class.forName("org.postgresql.Driver");
+    			String user = "postgres";// for offline postres
+    			String password = "ooquie"; // for offline postres
+
+    			//String user = "group35";
+    			//String password = "eibahv";
+    			String database = "localhost";
+    			Connection connection = null;
+    			String protocol = "jdbc:postgresql://";
+    			String dbName = "/postgres";    //offline postres
+    			//String dbName = "CS2810%2fgroup35";
+    			String fullURL = protocol + database + dbName;
+    			connection = DriverManager.getConnection(fullURL, user, password);
+    			System.out.println("connecte");
+        		Statement statement = connection.createStatement();
         		String Username = loginBean.getUsername();
         		String Password = loginBean.getPassword();
         		String loginsql = "SELECT * "+
         		"FROM StaffTable "+
-        		"WHERE username == "+ Username+
-        		" AND password == "+ Password +";";
+        		"WHERE username = '"+ Username+
+        		"' AND password = '"+ Password +"';";
+        		System.out.println(loginsql);
         		ResultSet rs = statement.executeQuery(loginsql);
         		status = rs.next();
+        		System.out.println(status);
         } 
     catch(SQLException e) {
     	printSQLException(e);
