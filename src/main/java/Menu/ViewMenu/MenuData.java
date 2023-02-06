@@ -1,13 +1,14 @@
 package Menu.ViewMenu;
 
 
+import java.io.IOException;
 import java.sql.*;
 
 import DB.connection.Database;
 
 public class MenuData {
 	
-	public void getMenu(String Category) throws SQLException {
+	public String getMenu(String Category) throws SQLException, IOException {
 		Connection connection = Database.connectToDatabase();
 		Statement st = connection.createStatement();
 		String sql = "SELECT Name, Cost " +
@@ -15,19 +16,21 @@ public class MenuData {
 					 "WHERE Category = \"" + Category + "\";";
 		
 		ResultSet rs = st.executeQuery(sql);
-		
+		String categoryMenu = "";
 		while (rs.next()) {
 			
-			String categoryMenu = "<div class=\"menu-item\">"+
-		                "<div class=\"menu-item-text\">"+
-		                    "<h3 class=\"menu-item-heading\">"+
-		                        "<span class=\"menu-item-name\">+rs.getString(1)+</span>"+
-		                        "<span class=\"menu-item-price\">£"+rs.getString(2)+"</span>"+
-		                    "</h3>"+
-		                "</div>"+
-		            "</div>";
-			System.out.println(categoryMenu);
+			categoryMenu += "<div class=\"menu-item\">"+ "\n"+
+		                "<div class=\"menu-item-text\">"+ "\n"+
+		                    "<h3 class=\"menu-item-heading\">"+ "\n"+
+		                        "<span class=\"menu-item-name\">"+rs.getString(1)+"</span>"+ "\n"+
+		                        "<span class=\"menu-item-price\">£"+rs.getString(2)+"</span>"+ "\n"+
+		                    "</h3>"+ "\n"+
+		                "</div>"+ "\n"+
+		            "</div>" +"\n";
+			
 		}
+		
+		return categoryMenu;
 	}
 	
 	

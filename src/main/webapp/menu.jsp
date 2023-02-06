@@ -9,6 +9,11 @@
   <link rel="stylesheet" href="Restaurant Style menu.css">
 </head>
 <body>
+
+<%
+System.out.println("adding menu");
+MenuData Menu = new MenuData();
+%>
 <div class="header">
   <a href="#default" class="logo">Restaurant</a>
   <div class="header-right">
@@ -29,31 +34,10 @@
             Starter
         </h2>
         <div class="menu-group">
-            
-            <div class="menu-item">
-                <div class="menu-item-text">
-                    <h3 class="menu-item-heading">
-                        <span class="menu-item-name">Margarita Pizza</span>
-                        <span class="menu-item-price">£10.99</span>
-                    </h3>
-                </div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-text">
-                    <h3 class="menu-item-heading">
-                        <span class="menu-item-name">Margarita Pizza</span>
-                        <span class="menu-item-price">£10.99</span>
-                    </h3>
-                </div>
-            </div>
-            <div class="menu-item">
-                <div class="menu-item-text">
-                    <h3 class="menu-item-heading">
-                        <span class="menu-item-name">Margarita Pizza</span>
-                        <span class="menu-item-price">£10.99</span>
-                    </h3>
-                </div>
-            </div>
+            <%
+            out.println(Menu.getMenu("Starter"));
+            %>
+
         </div>
 
         </div>
@@ -68,30 +52,10 @@
               Burger
           </h2>
           <div class="menu-group">
-              <div class="menu-item">
-                  <div class="menu-item-text">
-                      <h3 class="menu-item-heading">
-                          <span class="menu-item-name">Margarita Pizza</span>
-                          <span class="menu-item-price">£10.99</span>
-                      </h3>
-                  </div>
-              </div>
-              <div class="menu-item">
-                  <div class="menu-item-text">
-                      <h3 class="menu-item-heading">
-                          <span class="menu-item-name">Margarita Pizza</span>
-                          <span class="menu-item-price">£10.99</span>
-                      </h3>
-                  </div>
-              </div>
-              <div class="menu-item">
-                  <div class="menu-item-text">
-                      <h3 class="menu-item-heading">
-                          <span class="menu-item-name">Margarita Pizza</span>
-                          <span class="menu-item-price">£10.99</span>
-                      </h3>
-                  </div>
-              </div>
+            <%
+            out.println(Menu.getMenu("Burger"));
+            %>
+
           </div>
   
           </div>
@@ -104,30 +68,9 @@
               pizza
           </h2>
           <div class="menu-group">
-              <div class="menu-item">
-                  <div class="menu-item-text">
-                      <h3 class="menu-item-heading">
-                          <span class="menu-item-name">Margarita Pizza</span>
-                          <span class="menu-item-price">£10.99</span>
-                      </h3>
-                  </div>
-              </div>
-              <div class="menu-item">
-                  <div class="menu-item-text">
-                      <h3 class="menu-item-heading">
-                          <span class="menu-item-name">Margarita Pizza</span>
-                          <span class="menu-item-price">£10.99</span>
-                      </h3>
-                  </div>
-              </div>
-              <div class="menu-item">
-                  <div class="menu-item-text">
-                      <h3 class="menu-item-heading">
-                          <span class="menu-item-name">Margarita Pizza</span>
-                          <span class="menu-item-price">£10.99</span>
-                      </h3>
-                  </div>
-              </div>
+            <%
+            out.println(Menu.getMenu("pizza"));
+            %>
           </div>
   
           </div>
@@ -140,30 +83,9 @@
               Seafood
           </h2>
           <div class="menu-group">
-              <div class="menu-item">
-                  <div class="menu-item-text">
-                      <h3 class="menu-item-heading">
-                          <span class="menu-item-name">Margarita Pizza</span>
-                          <span class="menu-item-price">£10.99</span>
-                      </h3>
-                  </div>
-              </div>
-              <div class="menu-item">
-                  <div class="menu-item-text">
-                      <h3 class="menu-item-heading">
-                          <span class="menu-item-name">Margarita Pizza</span>
-                          <span class="menu-item-price">£10.99</span>
-                      </h3>
-                  </div>
-              </div>
-              <div class="menu-item">
-                  <div class="menu-item-text">
-                      <h3 class="menu-item-heading">
-                          <span class="menu-item-name">Margarita Pizza</span>
-                          <span class="menu-item-price">£10.99</span>
-                      </h3>
-                  </div>
-              </div>
+            <%
+            out.println(Menu.getMenu("Seafood"));
+            %>
           </div>
           </div>
         </div>
