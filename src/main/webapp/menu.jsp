@@ -18,7 +18,7 @@ MenuData Menu = new MenuData();
   <a href="#default" class="logo">Restaurant</a>
   <div class="header-right">
     <a href="./Restaurant Home Page.html">Home</a>
-	<a class="active" href="./menu.html">Order</a>
+	<a class="active" href="./menu.jsp">Order</a>
     <a href="#contact">Contact</a>
     <a href="#about">About</a>
   </div>
@@ -69,7 +69,7 @@ MenuData Menu = new MenuData();
           </h2>
           <div class="menu-group">
             <%
-            out.println(Menu.getMenu("pizza"));
+            out.println(Menu.getMenu("Pizza"));
             %>
           </div>
   

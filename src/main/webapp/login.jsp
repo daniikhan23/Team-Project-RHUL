@@ -22,7 +22,12 @@
 
    </table>
    <input type="submit" value="Submit" id="login-submit"/>
-   <input type="submit" value="Customer" id="customer-submit">
+   
+    	
+    <div class="button" style="display:inline-block;">
+      <a href="menu.jsp">Customer</a>
+    </div>
+
   </form>
  </main>
 </body>

@@ -8,12 +8,12 @@ import DB.connection.Database;
 
 public class MenuData {
 	
-	public String getMenu(String Category) throws SQLException, IOException {
+	public String getMenu(String Category) throws SQLException, IOException, ClassNotFoundException {
 		Connection connection = Database.connectToDatabase();
 		Statement st = connection.createStatement();
 		String sql = "SELECT Name, Cost " +
-					 "FROM Menu " +
-					 "WHERE Category = \"" + Category + "\";";
+					 "FROM MenuTable " +
+					 "WHERE category = '" + Category + "';";
 		
 		ResultSet rs = st.executeQuery(sql);
 		String categoryMenu = "";

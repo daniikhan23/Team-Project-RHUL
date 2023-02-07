@@ -9,7 +9,7 @@ import java.util.*;
 public class Database {
 	
 	// NOTE: You will need to change some variables from START to END.
-	public static void main(String[] argv) throws SQLException {
+	public static void main(String[] argv) throws SQLException, ClassNotFoundException {
 
 		Connection connection = connectToDatabase();
 		if (connection != null) {
@@ -103,7 +103,7 @@ public class Database {
 	}
 	
 	
-	public static Connection connectToDatabase() {
+	public static Connection connectToDatabase() throws ClassNotFoundException {
 		System.out.println("------ Testing PostgreSQL JDBC Connection ------");
 		String user = "postgres"; //for offline postres
 		String password = "ooquie";  //for offline postres
@@ -113,6 +113,7 @@ public class Database {
 		String database = "localhost";
 		Connection connection = null;
 		try {
+			Class.forName("org.postgresql.Driver");
 			String protocol = "jdbc:postgresql://";
 			String dbName = "/postgres";    //offline postres
 			//String dbName = "CS2810%2fgroup35";
