@@ -33,7 +33,7 @@ public class LoginServlet extends HttpServlet {
             if ( LoginDatabase.validate(loginBean)) {
                 //HttpSession session = request.getSession();
                 // session.setAttribute("username",username);
-                response.sendRedirect("loginsuccess.jsp");
+                response.sendRedirect("Kitchen.jsp");
             } else {
                 //HttpSession session = request.getSession();
                 //session.setAttribute("user", username);

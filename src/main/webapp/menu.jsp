@@ -20,7 +20,7 @@ MenuData Menu = new MenuData();
     <a href="./Restaurant Home Page.html">Home</a>
 	<a class="active" href="./menu.jsp">Order</a>
     <a href="#contact">Contact</a>
-    <a href="#about">About</a>
+    <a href="Restaurant About.jsp">About</a>
   </div>
 </div>
 
