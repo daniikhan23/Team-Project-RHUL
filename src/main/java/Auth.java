@@ -20,6 +20,23 @@ public class Auth {
 		byte[] pass_hash = result.getBytes(1);
 		byte[] salt = result.getBytes(2);
 		
+		if (hashPassword(password, salt).equals(pass_hash))
+			return true;
+		
 		return false;
+	}
+	
+	public byte[] hashPassword(String password, byte[] salt) {
+		byte[] hash = null;
+		
+		try {
+			MessageDigest md = MessageDigest.getInstance("SHA-512");
+			md.update(salt);
+			hash = md.digest(password.getBytes());
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		
+		return hash;
 	}
 }
