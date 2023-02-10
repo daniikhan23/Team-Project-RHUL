@@ -108,18 +108,27 @@ public class Database {
 
 	public static Connection connectToDatabase() {
 		System.out.println("------ Testing PostgreSQL JDBC Connection ------");
+<<<<<<< HEAD
+		// String user = "postgres"; for offline postgres
+		// String password = "Vietnam1"; for offline postgres
+=======
+		String user = "postgres"; //for offline postres
+		String password = "ooquie";  //for offline postres
+>>>>>>> main
 
-		//String user = "postgres"; //for offline postres
-		//String password = "ooquie";  //for offline postres
-
-		String user = "group35";
-		String password = "eibahv";
+		//String user = "group35";
+		//String password = "eibahv";
 		String database = "localhost";
 		Connection connection = null;
 		try {
 			String protocol = "jdbc:postgresql://";
-			//String dbName = "/postgres"; offline postgres
+<<<<<<< HEAD
+			// String dbName = "/postgres"; offline postgres
 			String dbName = "/CS2810/group35";
+=======
+			String dbName = "/postgres";    //offline postres
+			//String dbName = "CS2810%2fgroup35";
+>>>>>>> main
 			String fullURL = protocol + database + dbName;
 			connection = DriverManager.getConnection(fullURL, user, password);
 			return connection;

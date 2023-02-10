@@ -81,13 +81,32 @@ body {
 	outline: none;
 }
 
-#customer-submit {
-	width: 100%;
-	background-color: #3a3a3a;
-	color: white;
-	font-weight: bold;
+.text {
+  font-size: 20px;
+  padding-left: 20px;
+}
+
+.button {
+  overflow: hidden;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px; 
+  margin: 4px 2px;
+  background-color: #3a3a3a;
 	padding: 7px;
-	margin: 8px 0;
 	border: none;
 	border-radius: 5px;
+	color: white;
+	font-weight: bold;
+	outline: none;
+}
+
+
+.submit {
+  position:relative; left:90%;
+}
+.submit :hover {
+  background-color: #00FF00;
+  color: black;
 }
