@@ -33,5 +33,27 @@ public class MenuData {
 		return categoryMenu;
 	}
 	
-	
+	public String fillItemList() throws SQLException, IOException, ClassNotFoundException {
+		  Connection connection = Database.connectToDatabase();
+		  Statement st = connection.createStatement();
+		  String sql = "SELECT Name " +
+		      "FROM MenuTable;";
+		  ResultSet rs = st.executeQuery(sql);
+		  String items = "";
+		  int i = 1;
+		  while (rs.next()) {
+		    items += "<option value=\"" + i + "\">"+rs.getString(1)+"</option>";
+		    i++;
+		  }
+		  return items;
+		  }
+		  
+		  public void updateStock(String item, String Stock) throws SQLException, IOException, ClassNotFoundException {
+		    Connection connection = Database.connectToDatabase();
+		    Statement st = connection.createStatement();
+		    
+		    String sql = "UPDATE MenuTable SET Stock = "+ Integer.parseInt(Stock) + " WHERE Name = " + item + ";";
+		    st.executeQuery(sql);
+		  }
+
 }

@@ -45,8 +45,20 @@ public class Database {
 					PRIMARY KEY (StaffID)
 				);
 				""";
+		
+		String OrderTable = """
+				CREATE TABLE OrderTable(
+					OrderID INTEGER NOT NULL,
+					orderItem VARCHAR(256) NOT NULL,
+					TableNo INTEGER NOT NULL,
+					Complete INTEGER NOT NULL,
+					PRIMARY KEY (OrderID)
+				);
+				""";
+		
 		statement.executeUpdate(MenuTable);
 		statement.executeUpdate(StaffTable);
+		statement.executeUpdate(OrderTable);
 		
 		initialiseTable("MenuTable", statement);
 		initialiseTable("StaffTable", statement);
