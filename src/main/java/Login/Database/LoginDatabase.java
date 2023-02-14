@@ -34,6 +34,21 @@ public class LoginDatabase {
         return status;
     }
     
+    public String plevel(LoginBean loginBean) throws ClassNotFoundException, SQLException {
+		Connection connection = Database.connectToDatabase();
+		Statement statement = connection.createStatement();
+		String Username = loginBean.getUsername();
+		String Password = loginBean.getPassword();
+		String loginsql = "SELECT CompletePhase "+
+		"FROM StaffTable "+
+		"WHERE username = '"+ Username+
+		"' AND password = '"+ Password +"';";
+		ResultSet rs = statement.executeQuery(loginsql);
+		rs.next();
+		String level = rs.getString(1);
+		return level;
+    }
+    
     
     private void printSQLException(SQLException ex) {
         for (Throwable e: ex) {

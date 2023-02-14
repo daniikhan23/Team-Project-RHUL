@@ -42,6 +42,7 @@ public class Database {
 					StaffID INTEGER NOT NULL,
 					username VARCHAR(255) NOT NULL,
 					password VARCHAR(255) NOT NULL,
+					level VARCHAR(255) NOT NULL,
 					PRIMARY KEY (StaffID)
 				);
 				""";
@@ -51,7 +52,8 @@ public class Database {
 					OrderID INTEGER NOT NULL,
 					orderItem VARCHAR(256) NOT NULL,
 					TableNo INTEGER NOT NULL,
-					Complete INTEGER NOT NULL,
+					CompletePhase INTEGER NOT NULL,
+					timeStarted DATE NOT NULL,
 					PRIMARY KEY (OrderID)
 				);
 				""";
