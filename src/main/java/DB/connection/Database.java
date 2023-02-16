@@ -53,7 +53,7 @@ public class Database {
 					orderItem VARCHAR(256) NOT NULL,
 					TableNo INTEGER NOT NULL,
 					CompletePhase INTEGER NOT NULL,
-					timeStarted DATE NOT NULL,
+					timeStarted DATETIME NOT NULL,
 					OrderNO INTEGER NOT NULL,
 					PRIMARY KEY (OrderID)
 				);
