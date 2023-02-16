@@ -7,7 +7,6 @@ pageEncoding="ISO-8859-1"%> <%@ page import="Menu.ViewMenu.MenuData" %>
     <link
       rel="stylesheet"
       href="Restaurant Style menu.css"
-      href="SubmitOrder.css"
     />
   </head>
   <body>
@@ -24,18 +23,19 @@ pageEncoding="ISO-8859-1"%> <%@ page import="Menu.ViewMenu.MenuData" %>
 
     <div class="submit">
       <button onclick="showModal()">Order Now</button>
-      <div id="modal" class="modal">
-        <div class="modal-content">
-          <span class="close" onclick="hideModal()">&times;</span>
-          <h1>Order Confirmation</h1>
-          <p>Thank you for your order!</p>
-          <p>Your order details:</p>
-          <ul id="order-details">
-            <!-- Order details will be inserted here -->
-          </ul>
-          <p class="total">Total: <span id="order-total"></span></p>
-        </div>
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="hideModal()">&times;</span>
+        <h1>Order Confirmation</h1>
+        <p>Thank you for your order!</p>
+        <p>Your order details:</p>
+        <ul id="order-details">
+          <!-- Order details will be inserted here -->
+        </ul>
+        <p class="total">Total: <span id="order-total"></span></p>
       </div>
+    </div>
+    <script src="SubmitOrder.js"></script>
     </div>
 
     <div class="container">
@@ -69,6 +69,6 @@ pageEncoding="ISO-8859-1"%> <%@ page import="Menu.ViewMenu.MenuData" %>
         </div>
       </div>
     </div>
-    <script src="SubmitOrder.js"></script>
+    
   </body>
 </html>
