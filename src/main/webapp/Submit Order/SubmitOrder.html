@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Order Confirmation</title>
+    <link rel="stylesheet" href="./SubmitOrder.css" />
+  </head>
+  <body>
+    <button onclick="showModal()">Order Now</button>
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="hideModal()">&times;</span>
+        <h1>Order Confirmation</h1>
+        <p>Thank you for your order!</p>
+        <p>Your order details:</p>
+        <ul id="order-details">
+          <!-- Order details will be inserted here -->
+        </ul>
+        <p class="total">Total: <span id="order-total"></span></p>
+      </div>
+    </div>
+    <script src="./SubmitOrder.js"></script>
+  </body>
+</html>
