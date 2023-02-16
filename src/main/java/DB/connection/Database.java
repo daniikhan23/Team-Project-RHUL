@@ -54,6 +54,7 @@ public class Database {
 					TableNo INTEGER NOT NULL,
 					CompletePhase INTEGER NOT NULL,
 					timeStarted DATE NOT NULL,
+					OrderNO INTEGER NOT NULL,
 					PRIMARY KEY (OrderID)
 				);
 				""";
@@ -106,7 +107,7 @@ public class Database {
 		sql = "INSERT INTO "+tableName+ " VALUES("+temp+");";
 		return sql;
 	}
-	
+
 	public static boolean IsInt(String str){
 		try {
 			Integer.parseInt(str);
