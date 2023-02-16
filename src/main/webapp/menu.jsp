@@ -4,7 +4,11 @@ pageEncoding="ISO-8859-1"%> <%@ page import="Menu.ViewMenu.MenuData" %>
 <html>
   <head>
     <title>Welcome to the restaurant webpage</title>
-    <link rel="stylesheet" href="Restaurant Style menu.css" />
+    <link
+      rel="stylesheet"
+      href="Restaurant Style menu.css"
+      href="SubmitOrder.css"
+    />
   </head>
   <body>
     <% System.out.println("adding menu"); MenuData Menu = new MenuData(); %>
@@ -19,7 +23,19 @@ pageEncoding="ISO-8859-1"%> <%@ page import="Menu.ViewMenu.MenuData" %>
     </div>
 
     <div class="submit">
-      <button class="button" type="button">Submit Order</button>
+      <button onclick="showModal()">Order Now</button>
+      <div id="modal" class="modal">
+        <div class="modal-content">
+          <span class="close" onclick="hideModal()">&times;</span>
+          <h1>Order Confirmation</h1>
+          <p>Thank you for your order!</p>
+          <p>Your order details:</p>
+          <ul id="order-details">
+            <!-- Order details will be inserted here -->
+          </ul>
+          <p class="total">Total: <span id="order-total"></span></p>
+        </div>
+      </div>
     </div>
 
     <div class="container">
@@ -53,5 +69,6 @@ pageEncoding="ISO-8859-1"%> <%@ page import="Menu.ViewMenu.MenuData" %>
         </div>
       </div>
     </div>
+    <script src="SubmitOrder.js"></script>
   </body>
 </html>
