@@ -33,14 +33,15 @@ public class LoginServlet extends HttpServlet {
             if ( LoginDatabase.validate(loginBean)) {
                 //HttpSession session = request.getSession();
                 // session.setAttribute("username",username);
-            	if (LoginDatabase.plevel(loginBean) == "admin") {
+            	System.out.println(LoginDatabase.plevel(loginBean));
+            	if (LoginDatabase.plevel(loginBean).equals("admin")) {
             		response.sendRedirect("loginsuccess.jsp");
             	}
-            	if (LoginDatabase.plevel(loginBean) == "waiter") {
+            	if (LoginDatabase.plevel(loginBean).equals("waiter")) {
             		response.sendRedirect("waiterMenu.jsp");
             	}
             	
-            	if (LoginDatabase.plevel(loginBean) == "kitchen") {
+            	if (LoginDatabase.plevel(loginBean).equals("kitchen")) {
             		response.sendRedirect("kitchen.jsp");
             	}
             } else {

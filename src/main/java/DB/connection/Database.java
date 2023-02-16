@@ -25,6 +25,7 @@ public class Database {
 
 		statement.execute("DROP TABLE IF EXISTS MenuTable;");
 		statement.execute("DROP TABLE IF EXISTS StaffTable;");
+		statement.execute("DROP TABLE IF EXISTS OrderTable;");
 
 		String MenuTable = """
 				CREATE TABLE MenuTable(
@@ -53,7 +54,7 @@ public class Database {
 					orderItem VARCHAR(256) NOT NULL,
 					TableNo INTEGER NOT NULL,
 					CompletePhase INTEGER NOT NULL,
-					timeStarted DATETIME NOT NULL,
+					timeStarted TIMESTAMP NOT NULL,
 					OrderNO INTEGER NOT NULL,
 					PRIMARY KEY (OrderID)
 				);

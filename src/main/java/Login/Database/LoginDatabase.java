@@ -39,7 +39,7 @@ public class LoginDatabase {
 		Statement statement = connection.createStatement();
 		String Username = loginBean.getUsername();
 		String Password = loginBean.getPassword();
-		String loginsql = "SELECT CompletePhase "+
+		String loginsql = "SELECT level "+
 		"FROM StaffTable "+
 		"WHERE username = '"+ Username+
 		"' AND password = '"+ Password +"';";

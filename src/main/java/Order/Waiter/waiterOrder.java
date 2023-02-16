@@ -8,31 +8,6 @@ import java.sql.Statement;
 import DB.connection.Database;
 
 public class waiterOrder {
-
-	public String getOrder() {
-		
-		
-		
-		
-		String SQL = """
-				<div id="order2">
-  <button class="collapsible">Order #58835</button>
-  <div class="content">
-    <ul>
-      <li>Mushroom Swiss Burger</li>
-      <li>Lobster Pie Pizza</li>
-      <li>Fried Mozzarella</li>
-      <li>Crabby Sweets</li>
-    </ul>
-    <button class="order-out" onclick="document.getElementById('order2').style.display = 'none';">Order Out</button>
-  </div>
-</div>
-				""";
-		
-		
-		return SQL;
-	}
-	
 	
 	public ResultSet getName(int OrderNo) throws SQLException, ClassNotFoundException {
 		String SQL = "SELECT OrderItem FROM OrderTable WHERE TableNo ='"+ OrderNo +"' AND Complete = 0;";
@@ -48,6 +23,20 @@ public class waiterOrder {
 		Statement statement = connection.createStatement();
 		ResultSet rs = statement.executeQuery(SQL);
 		return rs;
+	}
+	
+	public String frontEndView() throws SQLException, ClassNotFoundException {
+		int orderSet = 1;
+		String NumberOfCurrentOrders = "SELECT COUNT( DISTINCT OrderNo) as orders FROM OrderTable;";
+		Connection connection = Database.connectToDatabase();
+		Statement statement = connection.createStatement();
+		int numberofOrders = statement.executeQuery(NumberOfCurrentOrders).getInt(0);
+		String frontEndView = "";
+		while (orderSet <= numberofOrders) {
+			
+		}
+		
+		return frontEndView;
 	}
 
 }
