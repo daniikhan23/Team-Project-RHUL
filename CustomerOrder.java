@@ -50,9 +50,6 @@ public class CustomerOrder {
 		Connection connection = Database.connectToDatabase();
 		Statement statement = connection.createStatement();
 		ResultSet LastPrimarykey = statement.executeQuery("SELECT COUNT(*) FROM " + table +";");
-		if (LastPrimarykey == null) {
-			return 1;
-		}
 		int addnew = LastPrimarykey.getInt(0) +1;
 		return addnew;
 	}
@@ -66,6 +63,7 @@ public class CustomerOrder {
 		
 		String sql = "INSERT INTO CurrentOrderTable VALUES ("+primary_key+", "+item+ ", "+ tableNO+ ", 0"+ dtf.format(now) + ");";
 		statement.execute(sql);
+		System.out.println("ADDED TO CURRENT ORDER TABLE");
 	}
 	
 	

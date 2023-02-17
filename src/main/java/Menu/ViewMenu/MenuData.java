@@ -14,11 +14,10 @@ public class MenuData {
 		String sql = "SELECT Name, Cost " +
 					 "FROM MenuTable " +
 					 "WHERE category = '" + Category + "';";
-		
+		//<% Order.inputIntoCtable(\""+rs.getString(0)+"\", 1);
 		ResultSet rs = st.executeQuery(sql);
 		String categoryMenu = "";
 		while (rs.next()) {
-			
 			categoryMenu += "<div class=\"menu-item\">"+ "\n"+
 		                "<div class=\"menu-item-text\">"+ "\n"+
 		                    "<h3 class=\"menu-item-heading\">"+ "\n"+
@@ -27,7 +26,6 @@ public class MenuData {
 		                    "</h3>"+ "\n"+
 		                "</div>"+ "\n"+
 		            "</div>" +"\n";
-			
 		}
 		
 		return categoryMenu;

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
  pageEncoding="ISO-8859-1"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +11,7 @@
 <body>
  <main id="main-holder">
   <h1 id="login-header">Login</h1>
-  
+
   <form action="<%=request.getContextPath()%>/Login" method="post">
    <table style="with: 100%">
     <tr>
@@ -27,8 +28,8 @@
     <div class="button" style="display:inline-block;">
       <a href="menu.jsp">Customer</a>
     </div>
-
   </form>
+
  </main>
 </body>
 </html>

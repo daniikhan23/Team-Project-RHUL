@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
     
 <%@ page import="Menu.ViewMenu.MenuData" %>
+<%@ page import="Order.Customer.CustomerOrder" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +14,7 @@
 <%
 System.out.println("adding menu");
 MenuData Menu = new MenuData();
+CustomerOrder Order = new CustomerOrder();
 %>
 <div class="header">
   <a href="#default" class="logo">Restaurant</a>
@@ -89,5 +91,6 @@ MenuData Menu = new MenuData();
           </div>
           </div>
         </div>
+        
 </body>
 </html>
