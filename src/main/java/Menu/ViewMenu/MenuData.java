@@ -21,13 +21,19 @@ public class MenuData {
 			categoryMenu += "<div class=\"menu-item\">"+ "\n"+
 		                "<div class=\"menu-item-text\">"+ "\n"+
 		                    "<h3 class=\"menu-item-heading\">"+ "\n"+
+		                    "<form action=\"CustomerOrderItem\" method=\"post\">"+"\n"+
+		                    "<input type=\"submit\" value=\"-\" id=\"remove-submit\"/>"+"\n"+
+		                    "<input type=\"submit\" value=\"+\" id=\"add-submit\"/>"+"\n"+
+		                    "<input type= \"hidden\" name=\"MenuItem\" value=\"" + rs.getString(1)+ "\">"+"\n"+
 		                        "<span class=\"menu-item-name\">"+rs.getString(1)+"</span>"+ "\n"+
 		                        "<span class=\"menu-item-price\">£"+rs.getString(2)+"</span>"+ "\n"+
+		                    "</form>"+"\n"+
 		                    "</h3>"+ "\n"+
 		                "</div>"+ "\n"+
 		            "</div>" +"\n";
 		}
 		
+		System.out.println(categoryMenu);
 		return categoryMenu;
 	}
 	

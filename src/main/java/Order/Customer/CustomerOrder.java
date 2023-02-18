@@ -1,5 +1,6 @@
 package Order.Customer;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,8 +9,33 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import DB.connection.Database;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
-public class CustomerOrder {
+public class CustomerOrder extends HttpServlet{
+	
+
+	private static final long serialVersionUID = 6655222004307163766L;
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+		    throws ServletException, IOException {
+		
+		String name = request.getParameter("MenuItem");
+		System.out.println(name);
+		try {
+			inputIntoCtable(name, 1);
+		} catch (ClassNotFoundException e) {
+			System.out.println("Class missing");
+			e.printStackTrace();
+		} catch (SQLException e) {
+			System.out.println("sql missing or invalid");
+			e.printStackTrace();
+		}
+		response.sendRedirect("menu.jsp");
+	}
 	
 	public void CurrentOrder() throws ClassNotFoundException, SQLException {
 		String CurrentOrderTable = """
@@ -50,10 +76,11 @@ public class CustomerOrder {
 		Connection connection = Database.connectToDatabase();
 		Statement statement = connection.createStatement();
 		ResultSet LastPrimarykey = statement.executeQuery("SELECT COUNT(*) FROM " + table +";");
-		if (LastPrimarykey == null) {
+		LastPrimarykey.next();
+		if (LastPrimarykey.getInt(1) == 0) {
 			return 1;
 		}
-		int addnew = LastPrimarykey.getInt(0) +1;
+		int addnew = LastPrimarykey.getInt(1) +1;
 		return addnew;
 	}
 	
@@ -61,10 +88,11 @@ public class CustomerOrder {
 		Connection connection = Database.connectToDatabase();
 		Statement statement = connection.createStatement();
 		int primary_key = addpnum("CurrentOrderTable");
+		System.out.println(primary_key);
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
 		LocalDateTime now = LocalDateTime.now();  
 		
-		String sql = "INSERT INTO CurrentOrderTable VALUES ("+primary_key+", "+item+ ", "+ tableNO+ ", 0"+ dtf.format(now) + ");";
+		String sql = "INSERT INTO CurrentOrderTable VALUES ("+primary_key+", '"+item+ "', "+ tableNO+ ", 0, '"+ dtf.format(now) + "');";
 		statement.execute(sql);
 	}
 	
