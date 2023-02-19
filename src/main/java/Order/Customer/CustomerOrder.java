@@ -25,19 +25,33 @@ public class CustomerOrder extends HttpServlet{
 		
 		String name = request.getParameter("MenuItem");
 		System.out.println(name);
-		try {
-			inputIntoCtable(name, 1);
-		} catch (ClassNotFoundException e) {
-			System.out.println("Class missing");
-			e.printStackTrace();
-		} catch (SQLException e) {
-			System.out.println("sql missing or invalid");
-			e.printStackTrace();
-		}
+		
+		if (request.getParameter("-") != null) {
+			System.out.println("test");
+			try {
+				removefromtable(name, 1);
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        } else {
+        	try {
+				inputIntoCtable(name, 1);
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        }
 		response.sendRedirect("menu.jsp");
 	}
 	
-	public void CurrentOrder() throws ClassNotFoundException, SQLException {
+	public static void CurrentOrder() throws ClassNotFoundException, SQLException {
 		String CurrentOrderTable = """
 				CREATE TABLE CurrentOrderTable(
 					OrderID INTEGER NOT NULL,
@@ -55,7 +69,7 @@ public class CustomerOrder extends HttpServlet{
 	}
 	
 	
-	public void addToOrderTable() throws ClassNotFoundException, SQLException {
+	public static void addToOrderTable() throws ClassNotFoundException, SQLException {
 		Connection connection = Database.connectToDatabase();
 		Statement statement = connection.createStatement();
 		
@@ -72,7 +86,7 @@ public class CustomerOrder extends HttpServlet{
 		}
 	}
 	
-	public int addpnum(String table) throws SQLException, ClassNotFoundException {
+	public static int addpnum(String table) throws SQLException, ClassNotFoundException {
 		Connection connection = Database.connectToDatabase();
 		Statement statement = connection.createStatement();
 		ResultSet LastPrimarykey = statement.executeQuery("SELECT COUNT(*) FROM " + table +";");
@@ -84,7 +98,7 @@ public class CustomerOrder extends HttpServlet{
 		return addnew;
 	}
 	
-	public void inputIntoCtable(String item, int tableNO) throws ClassNotFoundException, SQLException {
+	public static void inputIntoCtable(String item, int tableNO) throws ClassNotFoundException, SQLException {
 		Connection connection = Database.connectToDatabase();
 		Statement statement = connection.createStatement();
 		int primary_key = addpnum("CurrentOrderTable");
@@ -96,6 +110,33 @@ public class CustomerOrder extends HttpServlet{
 		statement.execute(sql);
 	}
 	
+	public static int numberOfitem(String item, int tableNO) throws ClassNotFoundException, SQLException {
+		Connection connection = Database.connectToDatabase();
+		Statement statement = connection.createStatement();
+		
+		String SQL = "SELECT COUNT(*) FROM CurrentOrderTable WHERE orderItem = '"+item+"' AND TableNo = '"+tableNO+"' AND CompletePhase = 0;";
+		ResultSet numberOfItems = statement.executeQuery(SQL);
+		numberOfItems.next();
+		int number = numberOfItems.getInt(1);
+		
+		return number;
+	}
 	
+	public static void removefromtable(String item, int tableNO) throws ClassNotFoundException, SQLException {
+		if (numberOfitem(item, tableNO) != 0) {
+			Connection connection = Database.connectToDatabase();
+			Statement statement = connection.createStatement();
+			String getSQLNAME = "SELECT OrderID FROM CurrentOrderTable WHERE orderItem = '"+item+"' AND TableNo="+tableNO+" AND CompletePhase = 0 ORDER BY orderid ASC;";
+			ResultSet rs = statement.executeQuery(getSQLNAME);
+			rs.next();
+			System.out.println(item);
+			System.out.println("Testing" +rs.getInt(1));
+			String SQL = "UPDATE CurrentOrderTable SET CompletePhase = 1 WHERE OrderID = " +rs.getInt(1)+";";
+			System.out.println(SQL);
+			statement.execute(SQL);
+			statement.close();
+		}
+		
+	}
 	
 }

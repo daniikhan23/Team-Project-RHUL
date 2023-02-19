@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.sql.*;
 
 import DB.connection.Database;
+import Order.Customer.CustomerOrder;
 
 public class MenuData {
 	
@@ -22,8 +23,9 @@ public class MenuData {
 		                "<div class=\"menu-item-text\">"+ "\n"+
 		                    "<h3 class=\"menu-item-heading\">"+ "\n"+
 		                    "<form action=\"CustomerOrderItem\" method=\"post\">"+"\n"+
-		                    "<input type=\"submit\" value=\"-\" id=\"remove-submit\"/>"+"\n"+
-		                    "<input type=\"submit\" value=\"+\" id=\"add-submit\"/>"+"\n"+
+		                    "<span>"+ CustomerOrder.numberOfitem(rs.getString(1), 1)+"  </span>"+
+		                    "<input type=\"submit\" name=\"-\" value=\"-\" id=\"remove-submit\"/>"+"\n"+
+		                    "<input type=\"submit\" name=\"+\" value=\"+\" id=\"add-submit\"/>"+"\n"+
 		                    "<input type= \"hidden\" name=\"MenuItem\" value=\"" + rs.getString(1)+ "\">"+"\n"+
 		                        "<span class=\"menu-item-name\">"+rs.getString(1)+"</span>"+ "\n"+
 		                        "<span class=\"menu-item-price\">£"+rs.getString(2)+"</span>"+ "\n"+
@@ -33,7 +35,6 @@ public class MenuData {
 		            "</div>" +"\n";
 		}
 		
-		System.out.println(categoryMenu);
 		return categoryMenu;
 	}
 	

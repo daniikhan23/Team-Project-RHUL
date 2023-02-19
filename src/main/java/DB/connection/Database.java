@@ -13,8 +13,7 @@ public class Database {
 
 		Connection connection = connectToDatabase();
 		if (connection != null) {
-			System.out.println("SUCCESS: You made it!"
-					+ "\n\t You can now take control of your database!\n");
+			System.out.println("Used Database");
 		} else {
 			System.out.println("ERROR: \tFailed to make connection!");
 			System.exit(1);
