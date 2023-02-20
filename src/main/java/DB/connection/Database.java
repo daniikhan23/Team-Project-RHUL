@@ -25,7 +25,7 @@ public class Database {
 		statement.execute("DROP TABLE IF EXISTS MenuTable;");
 		statement.execute("DROP TABLE IF EXISTS StaffTable;");
 		statement.execute("DROP TABLE IF EXISTS OrderTable;");
-
+		
 		String MenuTable = """
 				CREATE TABLE MenuTable(
 					ItemCode INTEGER NOT NULL,
@@ -62,7 +62,7 @@ public class Database {
 		statement.executeUpdate(MenuTable);
 		statement.executeUpdate(StaffTable);
 		statement.executeUpdate(OrderTable);
-		
+
 		initialiseTable("MenuTable", statement);
 		initialiseTable("StaffTable", statement);
 		
@@ -72,7 +72,7 @@ public class Database {
 	
 	public static void initialiseTable(String tableName, Statement statement) throws SQLException {
 	    try{
-	        FileInputStream fis = new FileInputStream(tableName+".txt");
+	        FileInputStream fis = new FileInputStream("src/main/java/DB/connection/"+tableName+".txt");
 	        Scanner sc = new Scanner(fis);
 	        String[] arrOfStr = sc.nextLine().split(",");
 
