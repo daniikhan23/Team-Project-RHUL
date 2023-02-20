@@ -13,7 +13,7 @@ public class Database {
 
 		Connection connection = connectToDatabase();
 		if (connection != null) {
-			System.out.println("Reinitialising Database.");
+			System.out.println("Used Database");
 		} else {
 			System.out.println("ERROR: \tFailed to make connection!");
 			System.exit(1);
@@ -21,14 +21,11 @@ public class Database {
 		// Now we're ready to use the DB. You may add your code below this line.
 		
 		Statement statement = connection.createStatement();
-		
-		System.out.println("Creating relevant tables.");
 
 		statement.execute("DROP TABLE IF EXISTS MenuTable;");
 		statement.execute("DROP TABLE IF EXISTS StaffTable;");
 		statement.execute("DROP TABLE IF EXISTS OrderTable;");
-		statement.execute("DROP TABLE IF EXISTS CurrentOrderTable;");
-		
+
 		String MenuTable = """
 				CREATE TABLE MenuTable(
 					ItemCode INTEGER NOT NULL,
@@ -62,22 +59,9 @@ public class Database {
 				);
 				""";
 		
-		String CurrentOrderTable = """
-				CREATE TABLE CurrentOrderTable(
-					OrderID INTEGER NOT NULL,
-					orderItem VARCHAR(256) NOT NULL,
-					TableNo INTEGER NOT NULL,
-					CompletePhase INTEGER NOT NULL,
-					timeStarted TIMESTAMP NOT NULL,
-					PRIMARY KEY (OrderID)
-				);
-				""";
-		
-		
 		statement.executeUpdate(MenuTable);
 		statement.executeUpdate(StaffTable);
 		statement.executeUpdate(OrderTable);
-		statement.execute(CurrentOrderTable);
 		
 		initialiseTable("MenuTable", statement);
 		initialiseTable("StaffTable", statement);
@@ -88,7 +72,7 @@ public class Database {
 	
 	public static void initialiseTable(String tableName, Statement statement) throws SQLException {
 	    try{
-	        FileInputStream fis = new FileInputStream("src/main/java/DB/connection/"+tableName+".txt");
+	        FileInputStream fis = new FileInputStream(tableName+".txt");
 	        Scanner sc = new Scanner(fis);
 	        String[] arrOfStr = sc.nextLine().split(",");
 
@@ -135,7 +119,6 @@ public class Database {
 	
 	
 	public static Connection connectToDatabase() throws ClassNotFoundException {
-		System.out.println("------ Testing PostgreSQL JDBC Connection ------");
 		String user = "postgres"; //for offline postres
 		String password = "ooquie";  //for offline postres
 

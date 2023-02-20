@@ -51,7 +51,7 @@ public class CustomerOrder extends HttpServlet{
 		response.sendRedirect("menu.jsp");
 	}
 	
-	public static void CurrentOrder() throws ClassNotFoundException, SQLException {
+	public void CurrentOrder() throws ClassNotFoundException, SQLException {
 		String CurrentOrderTable = """
 				CREATE TABLE CurrentOrderTable(
 					OrderID INTEGER NOT NULL,
