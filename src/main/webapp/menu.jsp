@@ -67,7 +67,7 @@ CustomerOrder Order = new CustomerOrder();
       <div class="container">
         <div class="menu">
           <h2 class="menu-group-heading">
-              pizza
+              Pizza
           </h2>
           <div class="menu-group">
             <%
