@@ -5,17 +5,21 @@
     <link rel="stylesheet" href="SubmitOrder.css" />
   </head>
   <body>
-    <button type='' onclick="showModal()">Order Now</button>
+    <button type="" onclick="showModal()">Order Now</button>
     <div id="modal" class="modal">
       <div class="modal-content">
-        <span type='input' class="close" onclick="hideModal()">&times;</span>
-        <h1>Order Confirmation</h1>
-        <p>Thank you for your order!</p>
+        <span type="input" class="close" onclick="hideModal()">&times;</span>
+        <h1>Your Cart</h1>
         <p>Your order details:</p>
         <ul id="order-details">
           <!-- Order details will be inserted here -->
         </ul>
         <p class="total">Total: <span id="order-total"></span></p>
+
+        <h2>Would you like to place the order?</h2>
+        <p>This action cannot be undone.</p>
+        <button onclick="confirmAction()">Yes</button>
+        <button onclick="hidePopup()">No</button>
       </div>
     </div>
     <script src="SubmitOrder.js"></script>

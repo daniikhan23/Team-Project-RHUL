@@ -25,3 +25,25 @@ function showModal() {
 function hideModal() {
     modal.style.display = "none";
 }
+
+// Get the popup element
+var popup = document.querySelector(".modal");
+
+// Show the popup
+function showPopup() {
+    popup.style.display = "block";
+}
+
+// Hide the popup
+function hidePopup() {
+    popup.style.display = "none";
+}
+
+// Confirm the action
+function confirmAction() {
+    // Do something (e.g. delete a record)
+    console.log("Action confirmed");
+
+    // Hide the popup
+    hidePopup();
+}
