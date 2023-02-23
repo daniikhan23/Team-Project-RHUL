@@ -141,3 +141,28 @@ img {
 	background-color: #00FF00;
 	color: black;
 }
+
+.table-group button {
+  background-color: #04AA6D;
+  border: 1px solid green;
+  color: white;
+  padding: 10px 24px;
+  cursor: pointer;
+  float: left;
+}
+
+/* Clear floats (clearfix hack) */
+.table-group:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.table-group button:not(:last-child) {
+  border-right: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+.table-group button:hover {
+  background-color: #3e8e41;
+}
