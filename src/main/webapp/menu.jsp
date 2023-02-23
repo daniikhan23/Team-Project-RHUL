@@ -63,7 +63,7 @@ CustomerOrder Order = new CustomerOrder();
         <p>This action cannot be undone.</p>
         <button onclick="confirmAction()">Yes</button>
         <button onclick="hidePopup()">No</button>
-      </div>
+      </div> 
     </div>
     <script src="SubmitOrder.js"></script>
 
