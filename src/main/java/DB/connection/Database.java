@@ -25,6 +25,7 @@ public class Database {
 		statement.execute("DROP TABLE IF EXISTS MenuTable;");
 		statement.execute("DROP TABLE IF EXISTS StaffTable;");
 		statement.execute("DROP TABLE IF EXISTS OrderTable;");
+		statement.execute("DROP TABLE IF EXISTS TableNO;");
 
 		String MenuTable = """
 				CREATE TABLE MenuTable(

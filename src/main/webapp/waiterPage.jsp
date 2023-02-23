@@ -34,13 +34,13 @@
   <form action="menuChange" method="post">
     <h1>Add/Remove item</h1>
       <div>
-    <button class="button" type="button" name = "AddEDITEM">Add item:</button> 
+    <input type="submit" class="button" value="Add item: " name = "Add item: " id="login-submit"/>
     <input type="text" name="add-item" id="item-field" placeholder="Item">
     <input type="text" name="add-cost" id="item-field" placeholder="Cost">
     <input type="text" name="add-category" id="item-field" placeholder="Category">
       </div>
       <div class="remove">
-		    <button class="button" type="button" id="remove-button">Remove item:</button> 
+		    <input type="submit" class="button" value="remove: " name = "remove: " id="login-submit"/>
 		    <select name="Items" id="remove-item">
 		    <%
 		    out.println(Menu.fillItemList());
@@ -50,6 +50,9 @@
     <br></br>
     </form>
   </div>
+  
+  
+  
   <div class="text">
     <h1 >Customer help</h1>
   </div>
