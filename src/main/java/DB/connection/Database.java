@@ -59,10 +59,19 @@ public class Database {
 				);
 				""";
 		
+		String TNoTable = """
+				CREATE TABLE TableNO(
+					TableNo INTEGER NOT NULL,
+					help INTEGER NOT NULL,
+					empty INTEGER NOT NULL,
+					PRIMARY KEY (TableNO)
+				);
+				""";
+		
 		statement.executeUpdate(MenuTable);
 		statement.executeUpdate(StaffTable);
 		statement.executeUpdate(OrderTable);
-		
+		statement.executeUpdate(TNoTable);
 		initialiseTable("MenuTable", statement);
 		initialiseTable("StaffTable", statement);
 		

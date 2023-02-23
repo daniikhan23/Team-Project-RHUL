@@ -112,9 +112,5 @@ img {
 
 
 .submit {
-  position:relative; left:90%;
-}
-.submit :hover {
-  background-color: #00FF00;
-  color: black;
+  position:relative; left:85%;
 }

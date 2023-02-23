@@ -18,7 +18,7 @@ public class CustomerOrder extends HttpServlet{
 	
 
 	private static final long serialVersionUID = 6655222004307163766L;
-
+	private int tableNO;
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 		    throws ServletException, IOException {
@@ -31,10 +31,8 @@ public class CustomerOrder extends HttpServlet{
 			try {
 				removefromtable(name, 1);
 			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
         } else {
@@ -136,7 +134,42 @@ public class CustomerOrder extends HttpServlet{
 			statement.execute(SQL);
 			statement.close();
 		}
+	}
+		
+	public String getCurrentOrder(int TableNO) throws ClassNotFoundException, SQLException {
+		Connection connection = Database.connectToDatabase();
+		Statement statement = connection.createStatement();
+		String SQL = "SELECT orderItem FROM CurrentOrderTable WHERE TableNo = '"+TableNO+"' AND CompletePhase = 0;";
+		ResultSet rs = statement.executeQuery(SQL);
+		String returnSTring = "";
+		while (rs.next()) {
+			returnSTring += "<li>"+rs.getString(1)+"  -  £"+ getitemcost(rs.getString(1))+"</li>";
+		}
+		return returnSTring;
+		
+		}
+	
+	public int getitemcost(String item) throws ClassNotFoundException, SQLException {
+		Connection connection = Database.connectToDatabase();
+		Statement statement = connection.createStatement();
+		String getCost = "SELECT Cost FROM MenuTable WHERE Name = '"+item+"';";
+		ResultSet combined = statement.executeQuery(getCost);
+		combined.next();
+		return combined.getInt(1);	
+	}
+	public int totalcost(int TableNO) throws ClassNotFoundException, SQLException {
+		Connection connection = Database.connectToDatabase();
+		Statement statement = connection.createStatement();
+		String SQL = "SELECT orderItem FROM CurrentOrderTable WHERE TableNo = '"+TableNO+"' AND CompletePhase = 0;";
+		ResultSet rs = statement.executeQuery(SQL);
+		int totalcost = 0;
+		while (rs.next()) {
+			totalcost += getitemcost(rs.getString(1));
+		}
+		
+		return totalcost;
+		
+	}
 		
 	}
 	
-}
