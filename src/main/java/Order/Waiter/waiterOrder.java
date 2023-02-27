@@ -50,9 +50,33 @@ public class waiterOrder extends HttpServlet{
 			}
         }
 		
-		
 		response.sendRedirect("waiterPage.jsp");
 	}
+	
+	public ResultSet getOrder(int tableNo) {
+		 String sql = "SELECT * FROM OrderTable WHERE TableNo = " + tableNo + " AND CompletePhase = 0;";
+		 Connection connection = Database.connectToDatabase();
+		 Statement statement = connection.createStatement();
+		 ResultSet rs = statement.executeQuery(sql);
+		 return rs;
+	 }
+	 
+	 public ResultSet setOrder(int tableNo) {
+		 String sql = "SELECT orderItem FROM OrderTable WHERE TableNo = " + tableNo + " AND CompletePhase = 0;";
+		 Connection connection = Database.connectToDatabase();
+		 Statement statement = connection.createStatement();
+		 ResultSet rs = statement.executeQuery(sql);
+		 return rs;
+	 }
+	 
+	 public ResultSet completeOrder(int orderId) {
+		 String sql = "UPDATE OrderTable SET CompletePhase = 1 WHERE OrderID = " + orderId + ";";
+		 Connection connection = Database.connectToDatabase();
+		 Statement statement = connection.createStatement();
+		 ResultSet rs = statement.executeQuery(sql);
+		 return rs;
+	 }
+	 
 	public ResultSet getName(int OrderNo) throws SQLException, ClassNotFoundException {
 		String SQL = "SELECT OrderItem FROM OrderTable WHERE TableNo ='"+ OrderNo +"' AND Complete = 0;";
 		Connection connection = Database.connectToDatabase();
