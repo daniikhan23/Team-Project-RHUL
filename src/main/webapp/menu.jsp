@@ -18,6 +18,7 @@ System.out.println("adding menu");
 MenuData Menu = new MenuData();
 CustomerOrder Order = new CustomerOrder();
 %>
+
 <div class="header">
   <a href="#default" class="logo">Restaurant</a>
   <div class="header-right">
@@ -30,7 +31,7 @@ CustomerOrder Order = new CustomerOrder();
 
 <div class = "tableno">
    <div class="dropdown">
-      <select id="myDropdown">
+      <select id="myDropdown" name = "myDropdown">
         <option value="0">Select an option</option>
         <option value="1">Table 1</option>
         <option value="2">Table 2</option>
@@ -61,6 +62,9 @@ CustomerOrder Order = new CustomerOrder();
 
         <h2>Would you like to place the order?</h2>
         <p>This action cannot be undone.</p>
+          <form action= "CustomerOrderItem" method="post">
+   		  <input type="submit" name="Yes" value="Yes" id="OrderTable"/>/>
+  		  </form>
         <button onclick="confirmAction()">Yes</button>
         <button onclick="hidePopup()">No</button>
       </div> 

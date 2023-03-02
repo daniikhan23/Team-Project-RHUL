@@ -42,7 +42,7 @@ public class LoginServlet extends HttpServlet {
             	}
             	
             	if (LoginDatabase.plevel(loginBean).equals("kitchen")) {
-            		response.sendRedirect("kitchen.jsp");
+            		response.sendRedirect("Kitchen.jsp");
             	}
             } else {
                 //HttpSession session = request.getSession();

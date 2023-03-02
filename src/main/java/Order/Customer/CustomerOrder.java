@@ -24,6 +24,7 @@ public class CustomerOrder extends HttpServlet{
 		    throws ServletException, IOException {
 		
 		String name = request.getParameter("MenuItem");
+		
 		System.out.println(name);
 		
 		if (request.getParameter("-") != null) {
@@ -35,7 +36,8 @@ public class CustomerOrder extends HttpServlet{
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-        } else {
+        }
+		else if (request.getParameter("+") != null){
         	try {
 				inputIntoCtable(name, 1);
 			} catch (ClassNotFoundException e) {
@@ -46,6 +48,19 @@ public class CustomerOrder extends HttpServlet{
 				e.printStackTrace();
 			}
         }
+		
+		else {
+			try {
+				addToOrderTable();
+				CurrentOrder();
+			} catch (ClassNotFoundException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+				
+				
+			
 		response.sendRedirect("menu.jsp");
 	}
 	
@@ -71,18 +86,54 @@ public class CustomerOrder extends HttpServlet{
 		Connection connection = Database.connectToDatabase();
 		Statement statement = connection.createStatement();
 		
-		ResultSet rs = statement.executeQuery("SELECT * FROM CurrentOrderTable;");
 		String sql = "INSERT INTO OrderTable VALUES(";
-
 		ResultSet OrderNo = statement.executeQuery("SELECT OrderNO FROM OrderTable ORDER BY OrderNO;");
-		int NewOrderNo = OrderNo.getInt(0) + 1;
-		int NewOrderID = addpnum("OrderTable");
+		int NewOrderNo;
+		if (OrderNo.next() == false) {
+			NewOrderNo = 1;
+			System.out.println(NewOrderNo);
+		}
+		
+		else {
+			OrderNo.next();
+			NewOrderNo = OrderNo.getInt(1) + 1;
+			
+		}
+		ResultSet rs = statement.executeQuery("SELECT * FROM CurrentOrderTable;");
 
+		int NewOrderID = addpnum("OrderTable");		
 		while (rs.next()) {
-			statement.execute(sql+NewOrderID+",'"+rs.getString(1)+"', "+rs.getString(2)+", 0, "+rs.getString(4)+", "+NewOrderNo);
+			statement.execute(sql+NewOrderID+",'"+rs.getString(2)+"', "+rs.getInt(3)+", 0, '"+rs.getTimestamp("timeStarted")+"', "+NewOrderNo+");");
 			NewOrderID ++;
 		}
 	}
+	
+	
+	/*
+	public static void addToOrderTable() throws ClassNotFoundException, SQLException {
+		Connection connection = Database.connectToDatabase();
+		Statement statement = connection.createStatement();
+		
+		String sql = "INSERT INTO OrderTable VALUES(";
+		
+		ResultSet OrderNo = statement.executeQuery("SELECT OrderNO FROM OrderTable ORDER BY OrderNO;");
+		int NewOrderNo;
+		OrderNo.next();
+		if (OrderNo.getInt(1) == 0) {
+			NewOrderNo = 1;
+		}
+		
+		else {
+			NewOrderNo = OrderNo.getInt(1) + 1;
+		}
+		ResultSet rs = statement.executeQuery("SELECT * FROM CurrentOrderTable;");
+		int NewOrderID = addpnum("OrderTable");
+
+		while (rs.next()) {
+			statement.execute(sql+NewOrderID+",'"+rs.getString(2)+"', "+rs.getInt(3)+", 0, "+rs.getTimestamp(4)+", "+NewOrderNo);
+			NewOrderID ++;
+		}
+	}*/
 	
 	public static int addpnum(String table) throws SQLException, ClassNotFoundException {
 		Connection connection = Database.connectToDatabase();
