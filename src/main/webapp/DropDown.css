@@ -1,0 +1,16 @@
+/* Style the dropdown list */
+.dropdown select {
+    width: 200px;
+    height: 40px;
+    padding: 8px 16px;
+    font-size: 16px;
+    border: none;
+    background-color: #f1f1f1;
+    border-radius: 4px;
+}
+
+/* Style the dropdown list when it is focused */
+.dropdown select:focus {
+    outline: none;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}

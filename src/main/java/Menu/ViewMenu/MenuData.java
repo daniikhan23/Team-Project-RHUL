@@ -45,10 +45,8 @@ public class MenuData {
 		      "FROM MenuTable;";
 		  ResultSet rs = st.executeQuery(sql);
 		  String items = "";
-		  int i = 1;
 		  while (rs.next()) {
-		    items += "<option value=\"" + i + "\">"+rs.getString(1)+"</option>";
-		    i++;
+		    items += "<option value=\"" + rs.getString(1) + "\">"+rs.getString(1)+"</option>";
 		  }
 		  return items;
 		  }

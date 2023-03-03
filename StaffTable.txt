@@ -1,0 +1,4 @@
+1,admin,admin,admin
+2,Staff1,Password1,waiter
+3,Staff2,Password2,kitchen
+4,Staff3,Password3,waiter

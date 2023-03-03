@@ -33,4 +33,17 @@
   </servlet-mapping>
   
   
+      <servlet>
+	  <servlet-name>menuChange</servlet-name>
+	  <servlet-class>Order.Waiter.waiterOrder</servlet-class>
+  </servlet>
+  
+  
+  <servlet-mapping>
+	  <servlet-name>menuChange</servlet-name>
+	  
+	  <url-pattern>/menuChange</url-pattern>
+	  
+  </servlet-mapping>
+  
 </web-app>

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
  pageEncoding="ISO-8859-1"%>
-
+<%@ page import="Order.Customer.CustomerOrder" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,6 +30,10 @@
     </div>
   </form>
 
+ <%
+ CustomerOrder Order = new CustomerOrder();
+ Order.CurrentOrder();
+ %>
  </main>
 </body>
 </html>

@@ -94,15 +94,13 @@ img {
 }
 
 
-.submit {
-  position:relative; left:90%;
-}
-.submit :hover {
-  background-color: #00FF00;
-  color: black;
+.tableno {
+  position:relative; right:85%;
 }
 
-
+.submittingbutton{
+	position:relative; left: 85%;
+}
 
 .menu {
     font-family: sans-serif;
