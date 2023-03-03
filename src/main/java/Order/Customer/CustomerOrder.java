@@ -18,7 +18,7 @@ public class CustomerOrder extends HttpServlet{
 	
 
 	private static final long serialVersionUID = 6655222004307163766L;
-	private int tableNO;
+	public int tableNO;
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 		    throws ServletException, IOException {
@@ -62,6 +62,14 @@ public class CustomerOrder extends HttpServlet{
 				
 			
 		response.sendRedirect("menu.jsp");
+	}
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
+		
+		String table = request.getParameter("myDropdown");
+		this.tableNO = Integer.parseInt(table);
+		System.out.println(this.tableNO);
 	}
 	
 	public void CurrentOrder() throws ClassNotFoundException, SQLException {

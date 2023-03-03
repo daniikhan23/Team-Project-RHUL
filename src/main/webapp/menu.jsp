@@ -7,8 +7,8 @@
 <html>
 <head>
   <title>Welcome to the restaurant webpage</title>
-  <link rel="stylesheet" href="Restaurant Style menu.css">
   <link rel="stylesheet" href="DropDown.css" />
+  <link rel="stylesheet" href="Restaurant Style menu.css">
   <link rel="stylesheet" href="SubmitOrder.css" />
 </head>
 <body>
@@ -28,8 +28,8 @@ CustomerOrder Order = new CustomerOrder();
     <a href="Restaurant About.jsp">About</a>
   </div>
 </div>
-
-<div class = "tableno">
+	
+   <form action= "menu.jsp" method="GET">
    <div class="dropdown">
       <select id="myDropdown" name = "myDropdown">
         <option value="0">Select an option</option>
@@ -44,8 +44,10 @@ CustomerOrder Order = new CustomerOrder();
         <option value="9">Table 9</option>
         <option value="10">Table 10</option>
       </select>
+      <input type = "submit" value = "Submit" />
     </div>
-</div>
+    </form>
+	
 
 <div class = "submittingbutton">
     <button type="" onclick="showModal()">Order Now</button>
