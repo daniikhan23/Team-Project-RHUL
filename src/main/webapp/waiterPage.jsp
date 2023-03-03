@@ -8,6 +8,7 @@
 <head>
 <title>Waiter Page</title>
 <link rel="stylesheet" href="Restaurant Style waiter.css">
+<link rel="stylesheet" href="Kitchen Style.css">
 </head>
 
   <%
@@ -84,6 +85,9 @@
   
   <div class="text">
     <h1 >Order status</h1>
+    
+    <%out.println(Order.GetOrders.basicoutput()); %>
+
   </div>
 </div>
 </div>
@@ -101,3 +105,21 @@
   </div>
 </div>
 </div>
+
+
+<script>
+  var coll = document.getElementsByClassName("collapsible");
+  var i;
+
+  for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
+      this.classList.toggle("active");
+      var content = this.nextElementSibling;
+      if (content.style.maxHeight){
+        content.style.maxHeight = null;
+      } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+      }
+    });
+  }
+</script>

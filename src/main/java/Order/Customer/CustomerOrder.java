@@ -24,8 +24,11 @@ public class CustomerOrder extends HttpServlet{
 		    throws ServletException, IOException {
 		
 		String name = request.getParameter("MenuItem");
-		
-		System.out.println(name);
+		String table = request.getParameter("myDropdown");
+		this.tableNO = Integer.parseInt(table);
+		if (this.tableNO == 0) {
+			System.out.println("cannot do");
+		}
 		
 		if (request.getParameter("-") != null) {
 			System.out.println("test");
@@ -51,7 +54,7 @@ public class CustomerOrder extends HttpServlet{
 		
 		else {
 			try {
-				addToOrderTable();
+				addToOrderTable(this.tableNO);
 				CurrentOrder();
 			} catch (ClassNotFoundException | SQLException e) {
 				// TODO Auto-generated catch block
@@ -90,7 +93,7 @@ public class CustomerOrder extends HttpServlet{
 	}
 	
 	
-	public static void addToOrderTable() throws ClassNotFoundException, SQLException {
+	public static void addToOrderTable(int tableNO) throws ClassNotFoundException, SQLException {
 		Connection connection = Database.connectToDatabase();
 		Statement statement = connection.createStatement();
 		
@@ -111,7 +114,7 @@ public class CustomerOrder extends HttpServlet{
 
 		int NewOrderID = addpnum("OrderTable");		
 		while (rs.next()) {
-			statement.execute(sql+NewOrderID+",'"+rs.getString(2)+"', "+rs.getInt(3)+", 0, '"+rs.getTimestamp("timeStarted")+"', "+NewOrderNo+");");
+			statement.execute(sql+NewOrderID+",'"+rs.getString(2)+"', "+tableNO+", 0, '"+rs.getTimestamp("timeStarted")+"', "+NewOrderNo+");");
 			NewOrderID ++;
 		}
 	}
