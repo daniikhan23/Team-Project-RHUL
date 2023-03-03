@@ -93,6 +93,14 @@ public class waiterOrder extends HttpServlet{
 		return rs;
 	}
 	
+	public ResultSet getOrderTimes() throws ClassNotFoundException, SQLException {
+		 String sql = "SELECT OrderID, timeStarted FROM OrderTable WHERE CompletePhase = 0;";
+		 Connection connection = Database.connectToDatabase();
+		 Statement statement = connection.createStatement();
+		 ResultSet rs = statement.executeQuery(sql);
+		 return rs;
+	 }
+	
 	public String frontEndView() throws SQLException, ClassNotFoundException {
 		int orderSet = 1;
 		String NumberOfCurrentOrders = "SELECT COUNT( DISTINCT OrderNo) as orders FROM OrderTable;";
