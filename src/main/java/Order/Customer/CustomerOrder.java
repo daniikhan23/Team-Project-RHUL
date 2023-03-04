@@ -120,32 +120,6 @@ public class CustomerOrder extends HttpServlet{
 	}
 	
 	
-	/*
-	public static void addToOrderTable() throws ClassNotFoundException, SQLException {
-		Connection connection = Database.connectToDatabase();
-		Statement statement = connection.createStatement();
-		
-		String sql = "INSERT INTO OrderTable VALUES(";
-		
-		ResultSet OrderNo = statement.executeQuery("SELECT OrderNO FROM OrderTable ORDER BY OrderNO;");
-		int NewOrderNo;
-		OrderNo.next();
-		if (OrderNo.getInt(1) == 0) {
-			NewOrderNo = 1;
-		}
-		
-		else {
-			NewOrderNo = OrderNo.getInt(1) + 1;
-		}
-		ResultSet rs = statement.executeQuery("SELECT * FROM CurrentOrderTable;");
-		int NewOrderID = addpnum("OrderTable");
-
-		while (rs.next()) {
-			statement.execute(sql+NewOrderID+",'"+rs.getString(2)+"', "+rs.getInt(3)+", 0, "+rs.getTimestamp(4)+", "+NewOrderNo);
-			NewOrderID ++;
-		}
-	}*/
-	
 	public static int addpnum(String table) throws SQLException, ClassNotFoundException {
 		Connection connection = Database.connectToDatabase();
 		Statement statement = connection.createStatement();

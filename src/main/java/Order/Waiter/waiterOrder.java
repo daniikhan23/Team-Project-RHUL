@@ -133,4 +133,19 @@ public class waiterOrder extends HttpServlet{
 	}
 	
 	
+	//Still needs implementation
+	public void checkCustomer(String[] tables) throws ClassNotFoundException, SQLException {
+		Connection connection = Database.connectToDatabase();
+		Statement statement = connection.createStatement();
+		for (int i = 0; i < tables.length; i++) {
+			String SQL = "SELECT * FROM CustomerTable WHERE CustomerNeed = 1 AND TableNO = "+tables[i]+";";
+			ResultSet rs = statement.executeQuery(SQL);
+			rs.next();
+			
+			
+					
+		}
+	}
+	
+	
 }
