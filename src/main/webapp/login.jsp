@@ -17,7 +17,7 @@
   
   <h3 style="color: red">${errorMessage}</h3>
 
-  <form action="Login" method="post">
+  <form action="./waiterPage.jsp" method="post">
    <table style="with: 100%">
     <tr>
      <td><input type="text" name="username" id="username-field" placeholder="Username" class="login-field"/></td>
