@@ -71,6 +71,19 @@ CustomerOrder Order = new CustomerOrder();
     </div>
     <script src="SubmitOrder.js"></script>
 
+<div class="callingsupport">
+	<button onclick="showHelp()">Call Staff</button>
+	<div id="help" class="modal">
+		<div class="modal-content">
+			<span class="close" onclick="hideHelp()">&times;</span>
+			<h1>Please stay seated</h1>
+			<p>Customer service will be with you shortly.</p>
+			<p>Press the close button to dismiss assistance.</p>
+		</div>
+	</div>
+</div>
+<script src="CallSupport.js"></script>
+
 </div>
     <div class="container">
       <div class="menu">
