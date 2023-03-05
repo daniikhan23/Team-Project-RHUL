@@ -18,13 +18,17 @@ public class CustomerOrder extends HttpServlet{
 	
 
 	private static final long serialVersionUID = 6655222004307163766L;
-	private int tableNO;
+	public int tableNO;
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 		    throws ServletException, IOException {
 		
 		String name = request.getParameter("MenuItem");
-		System.out.println(name);
+		String table = request.getParameter("myDropdown");
+		this.tableNO = Integer.parseInt(table);
+		if (this.tableNO == 0) {
+			System.out.println("cannot do");
+		}
 		
 		if (request.getParameter("-") != null) {
 			System.out.println("test");
@@ -35,7 +39,8 @@ public class CustomerOrder extends HttpServlet{
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-        } else {
+        }
+		else if (request.getParameter("+") != null){
         	try {
 				inputIntoCtable(name, 1);
 			} catch (ClassNotFoundException e) {
@@ -46,7 +51,28 @@ public class CustomerOrder extends HttpServlet{
 				e.printStackTrace();
 			}
         }
+		
+		else {
+			try {
+				addToOrderTable(this.tableNO);
+				CurrentOrder();
+			} catch (ClassNotFoundException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+				
+				
+			
 		response.sendRedirect("menu.jsp");
+	}
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
+		
+		String table = request.getParameter("myDropdown");
+		this.tableNO = Integer.parseInt(table);
+		System.out.println(this.tableNO);
 	}
 	
 	public void CurrentOrder() throws ClassNotFoundException, SQLException {
@@ -67,22 +93,32 @@ public class CustomerOrder extends HttpServlet{
 	}
 	
 	
-	public static void addToOrderTable() throws ClassNotFoundException, SQLException {
+	public static void addToOrderTable(int tableNO) throws ClassNotFoundException, SQLException {
 		Connection connection = Database.connectToDatabase();
 		Statement statement = connection.createStatement();
 		
-		ResultSet rs = statement.executeQuery("SELECT * FROM CurrentOrderTable;");
 		String sql = "INSERT INTO OrderTable VALUES(";
-
 		ResultSet OrderNo = statement.executeQuery("SELECT OrderNO FROM OrderTable ORDER BY OrderNO;");
-		int NewOrderNo = OrderNo.getInt(0) + 1;
-		int NewOrderID = addpnum("OrderTable");
+		int NewOrderNo;
+		if (OrderNo.next() == false) {
+			NewOrderNo = 1;
+			System.out.println(NewOrderNo);
+		}
+		
+		else {
+			OrderNo.next();
+			NewOrderNo = OrderNo.getInt(1) + 1;
+			
+		}
+		ResultSet rs = statement.executeQuery("SELECT * FROM CurrentOrderTable;");
 
+		int NewOrderID = addpnum("OrderTable");		
 		while (rs.next()) {
-			statement.execute(sql+NewOrderID+",'"+rs.getString(1)+"', "+rs.getString(2)+", 0, "+rs.getString(4)+", "+NewOrderNo);
+			statement.execute(sql+NewOrderID+",'"+rs.getString(2)+"', "+tableNO+", 0, '"+rs.getTimestamp("timeStarted")+"', "+NewOrderNo+");");
 			NewOrderID ++;
 		}
 	}
+	
 	
 	public static int addpnum(String table) throws SQLException, ClassNotFoundException {
 		Connection connection = Database.connectToDatabase();

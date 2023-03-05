@@ -8,23 +8,29 @@ import java.sql.Statement;
 
 import DB.connection.Database;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class waiterOrder {
+public class waiterOrder extends HttpServlet{
 	
-	
+	private static final long serialVersionUID = 1L;
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 		    throws ServletException, IOException {
-		
-		String name = request.getParameter("add-item");
-		String cost = request.getParameter("add-cost");
-		double cost1 = Double.parseDouble(cost);
-		String Category = request.getParameter("add-category");
-		
-		if (request.getParameter("AddEDITEM") != null) {
+		System.out.println("editing Menu");
+
+		if (request.getParameter("Add item: ") != null) {
 			System.out.println("test");
 			try {
+				String name = request.getParameter("add-item");
+				String cost = request.getParameter("add-cost");
+				double cost1 = Double.parseDouble(cost);
+				String Category = request.getParameter("add-category");
+				System.out.println("correcting");
+				System.out.println(name);
+				System.out.println(cost);
+				System.out.println(Category);
 				add(name, (int) cost1, Category);
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
@@ -33,7 +39,8 @@ public class waiterOrder {
 			}
         } else {
         	try {
-				remove(name);
+        		String items = request.getParameter("Items");
+				remove(items);
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -105,6 +112,7 @@ public class waiterOrder {
 		Statement statement = connection.createStatement();
 		
 		String sql = "INSERT INTO MenuTable VALUES("+getprimarykey()+", '"+item+"', "+cost+", '"+ Category+"');";
+		System.out.println(sql);
 		statement.execute(sql);
 	}
 	
@@ -112,7 +120,7 @@ public class waiterOrder {
 		Connection connection = Database.connectToDatabase();
 		Statement statement = connection.createStatement();
 		
-		String sql = "SELECT ItemCode FROM menutable ORDER BY ASC;";
+		String sql = "SELECT ItemCode FROM menutable ORDER BY ItemCode ASC;";
 		int num = 1;
 		ResultSet rs = statement.executeQuery(sql);
 		
@@ -122,6 +130,21 @@ public class waiterOrder {
 			}
 		}
 		return num;
+	}
+	
+	
+	//Still needs implementation
+	public void checkCustomer(String[] tables) throws ClassNotFoundException, SQLException {
+		Connection connection = Database.connectToDatabase();
+		Statement statement = connection.createStatement();
+		for (int i = 0; i < tables.length; i++) {
+			String SQL = "SELECT * FROM CustomerTable WHERE CustomerNeed = 1 AND TableNO = "+tables[i]+";";
+			ResultSet rs = statement.executeQuery(SQL);
+			rs.next();
+			
+			
+					
+		}
 	}
 	
 	

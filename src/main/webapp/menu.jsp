@@ -7,8 +7,8 @@
 <html>
 <head>
   <title>Welcome to the restaurant webpage</title>
-  <link rel="stylesheet" href="Restaurant Style menu.css">
   <link rel="stylesheet" href="DropDown.css" />
+  <link rel="stylesheet" href="Restaurant Style menu.css">
   <link rel="stylesheet" href="SubmitOrder.css" />
 </head>
 <body>
@@ -18,6 +18,7 @@ System.out.println("adding menu");
 MenuData Menu = new MenuData();
 CustomerOrder Order = new CustomerOrder();
 %>
+
 <div class="header">
   <a href="#default" class="logo">Restaurant</a>
   <div class="header-right">
@@ -27,24 +28,18 @@ CustomerOrder Order = new CustomerOrder();
     <a href="Restaurant About.jsp">About</a>
   </div>
 </div>
-
-<div class = "tableno">
-   <div class="dropdown">
-      <select id="myDropdown">
-        <option value="0">Select an option</option>
-        <option value="1">Table 1</option>
-        <option value="2">Table 2</option>
-        <option value="3">Table 3</option>
-        <option value="4">Table 4</option>
-        <option value="5">Table 5</option>
-        <option value="6">Table 6</option>
-        <option value="7">Table 7</option>
-        <option value="8">Table 8</option>
-        <option value="9">Table 9</option>
-        <option value="10">Table 10</option>
-      </select>
-    </div>
-</div>
+	
+<div class="dropdown">
+    <label for="filter">Filter by:</label>
+    <select id="filter">
+      <option value="all">All</option>
+      <option value="Starter">Starter</option>
+      <option value="Burger">Burger</option>
+      <option value="Pizza">Pizza</option>
+      <option value="Seafood">Seafood</option>
+    </select>
+  </div>
+	
 
 <div class = "submittingbutton">
     <button type="" onclick="showModal()">Order Now</button>
@@ -60,14 +55,36 @@ CustomerOrder Order = new CustomerOrder();
         <p class="total">Total: £<% out.println(Order.totalcost(1)); %></p>
 
         <h2>Would you like to place the order?</h2>
+        <form action= "CustomerOrderItem" method="post">
+   <div class="dropdown">
+      <select id="myDropdown" name = "myDropdown">
+        <option value="0">Table Number?</option>
+        <option value="1">Table 1</option>
+        <option value="2">Table 2</option>
+        <option value="3">Table 3</option>
+        <option value="4">Table 4</option>
+        <option value="5">Table 5</option>
+        <option value="6">Table 6</option>
+        <option value="7">Table 7</option>
+        <option value="8">Table 8</option>
+        <option value="9">Table 9</option>
+        <option value="10">Table 10</option>
+      </select>
+    </div>
         <p>This action cannot be undone.</p>
-        <button onclick="confirmAction()">Yes</button>
+          
+   		  <input class = button type="submit" name="Yes" value="Yes" id="OrderTable"/>
+  		  </form>
         <button onclick="hidePopup()">No</button>
       </div> 
     </div>
     <script src="SubmitOrder.js"></script>
 
+
+
 </div>
+
+	<div class="item Starter">
     <div class="container">
       <div class="menu">
         <h2 class="menu-group-heading">
@@ -82,10 +99,10 @@ CustomerOrder Order = new CustomerOrder();
 
         </div>
       </div>
+	</div>
 
 
-
-    
+   <div class="item Burger">
     <div class="container">
         <div class="menu">
           <h2 class="menu-group-heading">
@@ -100,8 +117,9 @@ CustomerOrder Order = new CustomerOrder();
   
           </div>
         </div>
+	</div>
 
-
+	<div class="item Pizza">
       <div class="container">
         <div class="menu">
           <h2 class="menu-group-heading">
@@ -115,8 +133,9 @@ CustomerOrder Order = new CustomerOrder();
   
           </div>
         </div>
+     </div>
 
-
+	<div class="item Seafood">
       <div class="container">
         <div class="menu">
           <h2 class="menu-group-heading">
@@ -129,7 +148,8 @@ CustomerOrder Order = new CustomerOrder();
           </div>
           </div>
         </div>
-
+	</div>
+	
 	<script src="DropDown.js"></script>
 	
 	<script>
@@ -137,5 +157,26 @@ function hidePopup() {
     popup.style.display = "none";
 }
 	</script>
+	
+  <script>
+  const filterSelect = document.getElementById("filter");
+  const items = document.querySelectorAll(".item");
+
+  filterSelect.addEventListener("change", (event) => {
+    const selectedValue = event.target.value;
+
+    items.forEach((item) => {
+      if (selectedValue === "all") {
+        item.hidden = false;
+      } else if (item.classList.contains(selectedValue)) {
+        item.hidden = false;
+      } else {
+        item.hidden = true;
+      }
+    });
+  });
+  </script>
+  
+  
 </body>
 </html>
