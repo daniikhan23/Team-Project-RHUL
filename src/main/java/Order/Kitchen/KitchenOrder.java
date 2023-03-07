@@ -24,4 +24,12 @@ public class KitchenOrder {
 		 ResultSet rs = statement.executeQuery(sql);
 		 return rs;
 	 }
+	
+	public ResultSet removeOrder(int orderNo) throws ClassNotFoundException, SQLException {
+		 String sql = "DELETE FROM OrderTable WHERE OrderNo = " + orderNo + " AND CompletePhase = 1;";
+		 Connection connection = Database.connectToDatabase();
+		 Statement statement = connection.createStatement();
+		 ResultSet rs = statement.executeQuery(sql);
+		 return rs;
+	 }
 }
