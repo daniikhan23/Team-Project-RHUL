@@ -18,7 +18,7 @@ public class MenuData {
 		//<% Order.inputIntoCtable(\""+rs.getString(0)+"\", 1);
 		ResultSet rs = st.executeQuery(sql);
 		String categoryMenu = "";
-		while (rs.next()) {
+		while (rs.next()) {//need to change for specific table
 			categoryMenu += "<div class=\"menu-item\">"+ "\n"+
 		                "<div class=\"menu-item-text\">"+ "\n"+
 		                    "<h3 class=\"menu-item-heading\">"+ "\n"+

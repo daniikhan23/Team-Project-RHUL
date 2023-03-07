@@ -10,6 +10,24 @@
   <link rel="stylesheet" href="DropDown.css" />
   <link rel="stylesheet" href="Restaurant Style menu.css">
   <link rel="stylesheet" href="SubmitOrder.css" />
+  
+  
+      <style>
+      .requestbutton {
+        background-color: green;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .requestbutton:hover {
+        background-color: darkgreen;
+      }
+      .requestbutton.active {
+        background-color: red;
+      }
+    </style>
 </head>
 <body>
 
@@ -38,9 +56,31 @@ CustomerOrder Order = new CustomerOrder();
       <option value="Pizza">Pizza</option>
       <option value="Seafood">Seafood</option>
     </select>
+    
   </div>
-	
+    <%!
+      boolean active = false;
+    %>
+    <script>
+      function changeColor() {
+        var btn = document.querySelector(".requestbutton");
+        btn.classList.add("active");
 
+        
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "CustomerOrderItem", true);
+        xhr.send();
+      }
+    </script>
+
+    <button class="requestbutton" onclick="changeColor()">Click me</button>
+    <% if (active) { 
+     %>
+      <script>
+        document.querySelector(".requestbutton").classList.add("active");
+      </script>
+    <% } %>
+    
 <div class = "submittingbutton">
     <button type="" onclick="showModal()">Order Now</button>
     <div id="modal" class="modal">
@@ -49,10 +89,10 @@ CustomerOrder Order = new CustomerOrder();
         <h1>Your Cart</h1>
         <p>Your order details:</p>
         <ul id="order-details">
-          <!-- Order details will be inserted here -->
-          <% out.println(Order.getCurrentOrder(1)); %>
+         
+          <% out.println(Order.getCurrentOrder(1)); //need to change for specific table%>
         </ul>
-        <p class="total">Total: £<% out.println(Order.totalcost(1)); %></p>
+        <p class="total">Total: £<% out.println(Order.totalcost(1)); //need to change for specific table%></p>
 
         <h2>Would you like to place the order?</h2>
         <form action= "CustomerOrderItem" method="post">
@@ -91,6 +131,7 @@ CustomerOrder Order = new CustomerOrder();
             Starter
         </h2>
         <div class="menu-group">
+        
             <%
             out.println(Menu.getMenu("Starter"));
             %>
