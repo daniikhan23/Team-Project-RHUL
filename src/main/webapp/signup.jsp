@@ -1,29 +1,32 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+ pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Sign Up Page</title>
-    <link rel="stylesheet" type="text/css" href="style.css" />
-  </head>
-  <body>
-    <div class="container">
-      <h1>Sign Up</h1>
-      <form>
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" />
+<head>
+<meta charset="ISO-8859-1">
+<title>Sign Up</title>
+<link rel="stylesheet" href="login.css">
+</head>
+<body>
+ <main id="main-holder">
+  <h1 id="login-header">Signup Page</h1>
+  
+  <form action="<%=request.getContextPath()%>/loginsuccess.jsp" method="post">
+   <table style="with: 100%">
+    <tr>
+     <td><input type="text" name="username" id="username-field" placeholder="Username" class="login-field"/></td>
+    </tr>
+    <tr>
+     <td><input type="text" name="email" id="username-field" placeholder="Email" class="login-field"/></td>
+    </tr>
+    <tr>
+     <td><input type="password" name="password" id="password-field" placeholder="Password" class="login-field"/></td>
+    </tr>
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" />
+   </table>
+   <input type="submit" value="Submit" id="login-submit"/>
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" />
-
-        <label for="confirm-password">Confirm Password:</label>
-        <input type="password" id="confirm-password" name="confirm-password" />
-
-        <input type="submit" value="Sign Up" />
-      </form>
-    </div>
-
-    <script type="text/javascript" src="script.js"></script>
-  </body>
+  </form>
+ </main>
+</body>
 </html>
