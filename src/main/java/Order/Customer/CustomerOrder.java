@@ -23,11 +23,7 @@ public class CustomerOrder extends HttpServlet{
 		    throws ServletException, IOException {
 		
 		String name = request.getParameter("MenuItem");
-		//String table = request.getParameter("myDropdown");
-		//this.tableNO = Integer.parseInt(table);
-		//if (this.tableNO == 0) {
-		//	System.out.println("cannot do");
-		//}
+
 		if (request.getParameter("-") != null) {
 			System.out.println("removed item"+name);
 			try {
@@ -53,8 +49,13 @@ public class CustomerOrder extends HttpServlet{
 		
 		else {
 			try {
+				String table = request.getParameter("myDropdown");
+				int Table = Integer.parseInt(table);
+				if (Table == 0) {
+					System.out.println("cannot do");
+				}
 				System.out.println("Added currentordertable to ordertable");
-				addToOrderTable(1);
+				addToOrderTable(Table);
 			} catch (ClassNotFoundException | SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

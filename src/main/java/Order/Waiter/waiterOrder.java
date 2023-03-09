@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import DB.connection.Database;
 import jakarta.servlet.ServletException;
@@ -79,17 +81,26 @@ public class waiterOrder extends HttpServlet{
 	}
 	
 	public String frontEndView() throws SQLException, ClassNotFoundException {
-		int orderSet = 1;
-		String NumberOfCurrentOrders = "SELECT COUNT(DISTINCT OrderNo) as orders FROM OrderTable;";
-		String AllOrders = "SELECT DISTINCT OrderNo as orders FROM OrderTable WHERE CompletePhase = 0;";
+
+		String AllOrders = "SELECT DISTINCT OrderNo FROM OrderTable WHERE CompletePhase = 0;";
+		
 		Connection connection = Database.connectToDatabase();
 		Statement statement = connection.createStatement();
-		int numberofOrders = statement.executeQuery(NumberOfCurrentOrders).getInt(0);
+		
+
 		ResultSet OrderNo = statement.executeQuery(AllOrders);
 		String frontEndView = "";
-		while (orderSet <= numberofOrders) {
-			String itemsSQL = "SELECT orderItem FROM OrderTable WHERE OrderNo = "+ OrderNo.getInt(0)+";";
+		List<Integer> Orderlist = new ArrayList<Integer>();
+		while (OrderNo.next()) {
+			
+			Orderlist.add(OrderNo.getInt(1));
+		}
+		System.out.println(Orderlist);
+		
+		for (int i = 1; i<= Orderlist.size(); i++) {
+			String itemsSQL = "SELECT orderItem FROM OrderTable WHERE OrderNo = "+ Orderlist.get(i)+";";
 			ResultSet ItemOrder = statement.executeQuery(itemsSQL);
+			
 			String container = "<button class=\"collapsible\">Order #"+OrderNo.getInt(0)+"</button>"+
 					"<div class=\"content\">\r\n"
 					+ "<ul>";
@@ -99,8 +110,6 @@ public class waiterOrder extends HttpServlet{
 			container += "</ul>";
 			container += "<button>Cancel Order</button></div>";
 			frontEndView += container;
-			OrderNo.next();		
-			orderSet++;
 			
 		}
 		
