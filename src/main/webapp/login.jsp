@@ -33,10 +33,6 @@
     </div>
   </form>
 
- <%
- CustomerOrder Order = new CustomerOrder();
- Order.CurrentOrder();
- %>
  </main>
 </body>
 </html>

@@ -74,7 +74,7 @@ public class Database {
 		statement.executeUpdate(TNoTable);
 		initialiseTable("MenuTable", statement);
 		initialiseTable("StaffTable", statement);
-		
+		initialiseTable("TableNO", statement);
 		
 	}
 	

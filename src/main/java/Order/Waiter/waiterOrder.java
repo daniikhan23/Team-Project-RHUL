@@ -38,7 +38,8 @@ public class waiterOrder extends HttpServlet{
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-        } else {
+        }
+		else if (request.getParameter("remove: ") != null) {
         	try {
         		String items = request.getParameter("Items");
 				remove(items);
@@ -49,31 +50,15 @@ public class waiterOrder extends HttpServlet{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}
+		
+		else {
+			String table = request.getParameter("TableNum");
+			int Table = Integer.parseInt(table);
         }
 		
 		
 		response.sendRedirect("waiterPage.jsp");
-	}
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
-			throws ServletException, IOException {
-		
-		//String table = request.getParameter("myDropdown");
-		//this.tableNO = Integer.parseInt(table);
-		//System.out.println(this.tableNO);
-		
-	    response.setContentType("text/plain");
-	    response.setCharacterEncoding("UTF-8");
-	    
-	    // Update the button's name
-	    HttpSession session = request.getSession();
-	    
-		try {
-			session.setAttribute("gethelp", gethelp());
-		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 	
 	
@@ -95,7 +80,7 @@ public class waiterOrder extends HttpServlet{
 	
 	public String frontEndView() throws SQLException, ClassNotFoundException {
 		int orderSet = 1;
-		String NumberOfCurrentOrders = "SELECT COUNT( DISTINCT OrderNo) as orders FROM OrderTable;";
+		String NumberOfCurrentOrders = "SELECT COUNT(DISTINCT OrderNo) as orders FROM OrderTable;";
 		String AllOrders = "SELECT DISTINCT OrderNo as orders FROM OrderTable WHERE CompletePhase = 0;";
 		Connection connection = Database.connectToDatabase();
 		Statement statement = connection.createStatement();
@@ -111,8 +96,8 @@ public class waiterOrder extends HttpServlet{
 			while (ItemOrder.next()) {
 				container += "<li>"+ ItemOrder.getString(0) +"<li>";
 			}
-			container += "</ul></div>";
-					
+			container += "</ul>";
+			container += "<button>Cancel Order</button></div>";
 			frontEndView += container;
 			OrderNo.next();		
 			orderSet++;
@@ -183,14 +168,12 @@ public class waiterOrder extends HttpServlet{
 		}
 	}
 	
-	public String gethelp() throws ClassNotFoundException, SQLException {
+	public void gethelp(int tableno) throws ClassNotFoundException, SQLException {
 		Connection connection = Database.connectToDatabase();
 		Statement statement = connection.createStatement();
 		
-		String SQL = "SELECT TableNo FROM TableNO WHERE help = 1;";
-		ResultSet rs = statement.executeQuery(SQL);
-		rs.next();
-		return rs.getString(1);
+		String SQL = "UPDATE TableNO SET help = 1 WHERE TableNo = "+tableno+ ";";
+		statement.execute(SQL);
 	}
 	
 }

@@ -18,20 +18,18 @@ public class CustomerOrder extends HttpServlet{
 	
 
 	private static final long serialVersionUID = 6655222004307163766L;
-	public int tableNO;
-	
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 		    throws ServletException, IOException {
 		
 		String name = request.getParameter("MenuItem");
 		//String table = request.getParameter("myDropdown");
 		//this.tableNO = Integer.parseInt(table);
-		if (this.tableNO == 0) {
-			System.out.println("cannot do");
-		}
-		
+		//if (this.tableNO == 0) {
+		//	System.out.println("cannot do");
+		//}
 		if (request.getParameter("-") != null) {
-			System.out.println("test");
+			System.out.println("removed item"+name);
 			try {
 				removefromtable(name, 1);
 			} catch (ClassNotFoundException e) {
@@ -43,6 +41,7 @@ public class CustomerOrder extends HttpServlet{
 		else if (request.getParameter("+") != null){
         	try {
 				inputIntoCtable(name, 1);
+				System.out.println("added item"+name);
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -54,8 +53,8 @@ public class CustomerOrder extends HttpServlet{
 		
 		else {
 			try {
-				addToOrderTable(this.tableNO);
-				CurrentOrder();
+				System.out.println("Added currentordertable to ordertable");
+				addToOrderTable(1);
 			} catch (ClassNotFoundException | SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -83,7 +82,7 @@ public class CustomerOrder extends HttpServlet{
 		}
 	}
 	
-	public void CurrentOrder() throws ClassNotFoundException, SQLException {
+	public static void CurrentOrder() throws ClassNotFoundException, SQLException {
 		String CurrentOrderTable = """
 				CREATE TABLE CurrentOrderTable(
 					OrderID INTEGER NOT NULL,
@@ -98,6 +97,7 @@ public class CustomerOrder extends HttpServlet{
 		Statement statement = connection.createStatement();
 		statement.execute("DROP TABLE IF EXISTS CurrentOrderTable;");
 		statement.execute(CurrentOrderTable);
+		System.out.println("Reseted currentordertable");
 	}
 	
 	
@@ -105,26 +105,31 @@ public class CustomerOrder extends HttpServlet{
 		Connection connection = Database.connectToDatabase();
 		Statement statement = connection.createStatement();
 		
-		String sql = "INSERT INTO OrderTable VALUES(";
-		ResultSet OrderNo = statement.executeQuery("SELECT OrderNO FROM OrderTable ORDER BY OrderNO;");
+		String sql = "INSERT INTO OrderTable VALUES";
+		ResultSet OrderNo = statement.executeQuery("SELECT OrderNO FROM OrderTable ORDER BY OrderNO DESC;");
 		int NewOrderNo;
 		if (OrderNo.next() == false) {
-			NewOrderNo = 1;
-			System.out.println(NewOrderNo);
-		}
+			NewOrderNo = 1;		}
 		
 		else {
-			OrderNo.next();
-			NewOrderNo = OrderNo.getInt(1) + 1;
-			
+			NewOrderNo = OrderNo.getInt(1) + 1;	
 		}
-		ResultSet rs = statement.executeQuery("SELECT * FROM CurrentOrderTable;");
-
 		int NewOrderID = addpnum("OrderTable");		
+		System.out.println(NewOrderID);
+		System.out.println("Adding items to order Table: ");
+		ResultSet rs = statement.executeQuery("SELECT * FROM CurrentOrderTable WHERE completephase = 0;");
+		String FinishedS = sql;
 		while (rs.next()) {
-			statement.execute(sql+NewOrderID+",'"+rs.getString(2)+"', "+tableNO+", 0, '"+rs.getTimestamp("timeStarted")+"', "+NewOrderNo+");");
-			NewOrderID ++;
+			System.out.println(rs.getString(2));
+			FinishedS += "("+NewOrderID+",'"+rs.getString(2)+"', "+tableNO+", 0, '"+rs.getTimestamp("timeStarted")+"', "+NewOrderNo+"),";
+			NewOrderID ++; 
 		}
+		
+		FinishedS = FinishedS.replaceFirst(".$","");
+		FinishedS += ";";
+		System.out.println(FinishedS);
+		statement.execute(FinishedS);
+		CurrentOrder();
 	}
 	
 	
@@ -132,12 +137,14 @@ public class CustomerOrder extends HttpServlet{
 		Connection connection = Database.connectToDatabase();
 		Statement statement = connection.createStatement();
 		ResultSet LastPrimarykey = statement.executeQuery("SELECT COUNT(*) FROM " + table +";");
-		LastPrimarykey.next();
-		if (LastPrimarykey.getInt(1) == 0) {
+		if (LastPrimarykey.next() == false) {
 			return 1;
 		}
-		int addnew = LastPrimarykey.getInt(1) +1;
-		return addnew;
+		else {
+			int addnew = LastPrimarykey.getInt(1) +1;
+			return addnew;
+		}
+
 	}
 	
 	public static void inputIntoCtable(String item, int tableNO) throws ClassNotFoundException, SQLException {
@@ -151,6 +158,7 @@ public class CustomerOrder extends HttpServlet{
 		String sql = "INSERT INTO CurrentOrderTable VALUES ("+primary_key+", '"+item+ "', "+ tableNO+ ", 0, '"+ dtf.format(now) + "');";
 		statement.execute(sql);
 	}
+	
 	
 	public static int numberOfitem(String item, int tableNO) throws ClassNotFoundException, SQLException {
 		Connection connection = Database.connectToDatabase();
