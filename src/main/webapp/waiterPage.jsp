@@ -32,7 +32,7 @@
 <script>
   function helping(table) {
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", "menuChange", true);
+    xhr.open("GET", "menuChange?parameter1=?"+table, true);
     xhr.send();
   }
 </script>
@@ -69,22 +69,24 @@
   
   <div class="text">
     <h1>Customer help</h1>
+    <form action= "menuChange" method="post">
     <div class="table-group" style="width:100%">
-      <button onclick = helping(1) style="width:25%; background-color: <% out.println(order.checkCustomer(1)); %>;">Table 1</button>
-      <button style="width:25%; background-color: <% out.println(order.checkCustomer(2)); %>">Table 2</button>
-      <button style="width:25%; background-color: <% out.println(order.checkCustomer(3)); %>">Table 3</button>
-      <button style="width:25%; background-color: <% out.println(order.checkCustomer(4)); %>">Table 4</button>
+      <button onclick = "helping(1)" style="width:25%; background-color: <% out.println(order.checkCustomer(1)); %>;">Table 1</button>
+      <button onclick = "helping(2)" style="width:25%; background-color: <% out.println(order.checkCustomer(2)); %>">Table 2</button>
+      <button onclick = "helping(3)" style="width:25%; background-color: <% out.println(order.checkCustomer(3)); %>">Table 3</button>
+      <button onclick = "helping(4)" style="width:25%; background-color: <% out.println(order.checkCustomer(4)); %>">Table 4</button>
     </div>
     <div class="table-group" style="width:100%">
-      <button style="width:25%; background-color: <% out.println(order.checkCustomer(5)); %>">Table 5</button>
-      <button style="width:25%; background-color: <% out.println(order.checkCustomer(6)); %>">Table 6</button>
-      <button style="width:25%; background-color: <% out.println(order.checkCustomer(7)); %>">Table 7</button>
-      <button style="width:25%; background-color: <% out.println(order.checkCustomer(8)); %>">Table 8</button>
+      <button onclick = "helping(5)" style="width:25%; background-color: <% out.println(order.checkCustomer(5)); %>">Table 5</button>
+      <button onclick = "helping(6)" style="width:25%; background-color: <% out.println(order.checkCustomer(6)); %>">Table 6</button>
+      <button onclick = "helping(7)" style="width:25%; background-color: <% out.println(order.checkCustomer(7)); %>">Table 7</button>
+      <button onclick = "helping(8)" style="width:25%; background-color: <% out.println(order.checkCustomer(8)); %>">Table 8</button>
     </div>
     <div class="table-group" style="width:100%">
-      <button style="width:50%; background-color: <% out.println(order.checkCustomer(9)); %>">Table 9</button>
-      <button style="width:50%; background-color: <% out.println(order.checkCustomer(10)); %>">Table 10</button>
+      <button onclick = "helping(9)" style="width:50%; background-color: <% out.println(order.checkCustomer(9)); %>">Table 9</button>
+      <button onclick = "helping(10)" style="width:50%; background-color: <% out.println(order.checkCustomer(10)); %>">Table 10</button>
     </div>
+    </form>
 
   </div>
 </div>

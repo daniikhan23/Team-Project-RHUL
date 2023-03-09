@@ -51,8 +51,25 @@ public class waiterOrder extends HttpServlet{
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
-		}
+			} 
+		  }
+        	
+   else if (request.getParameter("parameter1") != null) {
+     String help = request.getParameter("parameter1");
+     Connection connection;
+     Statement statement;
+    try {
+      connection = Database.connectToDatabase();
+      statement = connection.createStatement();
+      String SQL = "INSERT INTO TableNO (help) VALUES (0) WHERE TableNO = "+help+";";
+      ResultSet rs = statement.executeQuery(SQL);
+    } catch (SQLException | ClassNotFoundException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+
+   }
+		
 		
 		else {
 			String table = request.getParameter("TableNum");
