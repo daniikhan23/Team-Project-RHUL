@@ -76,15 +76,34 @@ CustomerOrder Order = new CustomerOrder();
 	<div id="help" class="modal">
 		<div class="modal-content">
 			<span class="close" onclick="hideHelp()">&times;</span>
-			<h1>Please stay seated</h1>
-			<p>Customer service will be with you shortly.</p>
-			<p>Press the close button to dismiss assistance.</p>
+			<h1>Request for help</h1>
+			<form action="CustomerAssist" method="post">
+				<div class="dropdown">
+      			<select id="myDropdown" name = "myDropdown">
+         		<option value="0">Table Number?</option>
+         		<option value="1">Table 1</option>
+        		<option value="2">Table 2</option>
+        		<option value="3">Table 3</option>
+        		<option value="4">Table 4</option>
+        		<option value="5">Table 5</option>
+        		<option value="6">Table 6</option>
+        		<option value="7">Table 7</option>
+        		<option value="8">Table 8</option>
+        		<option value="9">Table 9</option>
+        		<option value="10">Table 10</option>
+      			</select>
+    			</div>
+				<p>Once you confirm, a staff member will be with you shortly.</p>
+				<input class = button type="submit" name="Yes" value="Yes" id="HelpTable"/>
+			</form>
+			<button onclick="hideHelp()">No</button>
 		</div>
 	</div>
 </div>
 <script src="CallSupport.js"></script>
-
 </div>
+
+
     <div class="container">
       <div class="menu">
         <h2 class="menu-group-heading">

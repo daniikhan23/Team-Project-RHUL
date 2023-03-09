@@ -14,3 +14,12 @@ var popup = document.querySelector(".modal");
 function showPopup() {
     popup.style.display = "block";
 }
+
+// Confirm the action
+function confirmAction() {
+    // Do something (e.g. delete a record)
+    console.log("Action confirmed");
+
+    // Hide the popup
+    hidePopup();
+}

@@ -57,20 +57,20 @@
   <div class="text">
     <h1>Customer help</h1>
     <div class="table-group" style="width:100%">
-      <button style="width:25%">Table 1</button>
-      <button style="width:25%">Table 2</button>
-      <button style="width:25%">Table 3</button>
-      <button style="width:25%">Table 4</button>
+      <button id="table1" style="width:25%">Table 1</button>
+      <button id="table2" style="width:25%">Table 2</button>
+      <button id="table3" style="width:25%">Table 3</button>
+      <button id="table4" style="width:25%">Table 4</button>
     </div>
     <div class="table-group" style="width:100%">
-      <button style="width:25%">Table 5</button>
-      <button style="width:25%">Table 6</button>
-      <button style="width:25%">Table 7</button>
-      <button style="width:25%">Table 8</button>
+      <button id="table5" style="width:25%">Table 5</button>
+      <button id="table6" style="width:25%">Table 6</button>
+      <button id="table7" style="width:25%">Table 7</button>
+      <button id="table8" style="width:25%">Table 8</button>
     </div>
     <div class="table-group" style="width:100%">
-      <button style="width:50%">Table 9</button>
-      <button style="width:50%">Table 10</button>
+      <button id="table9" style="width:50%">Table 9</button>
+      <button id="table10" style="width:50%">Table 10</button>
     </div>
 
   </div>

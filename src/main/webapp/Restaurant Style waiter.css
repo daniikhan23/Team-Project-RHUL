@@ -166,3 +166,7 @@ img {
 .table-group button:hover {
   background-color: #3e8e41;
 }
+
+.table-group button:checked {
+  background-color: #ff0000;
+}
