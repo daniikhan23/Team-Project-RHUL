@@ -12,13 +12,28 @@ public class MenuData {
 	public String getMenu(String Category) throws SQLException, IOException, ClassNotFoundException {
 		Connection connection = Database.connectToDatabase();
 		Statement st = connection.createStatement();
-		String sql = "SELECT Name, Cost " +
+		String sql = "SELECT Name, Cost, Stock " +
 					 "FROM MenuTable " +
 					 "WHERE category = '" + Category + "';";
 		//<% Order.inputIntoCtable(\""+rs.getString(0)+"\", 1);
 		ResultSet rs = st.executeQuery(sql);
 		String categoryMenu = "";
 		while (rs.next()) {//need to change for specific table
+	   if (rs.getInt(3) == 0) {
+	     categoryMenu += "<div class=\"menu-item\">"+ "\n"+
+          "<div class=\"menu-item-text\">"+ "\n"+
+          "<h3 class=\"menu-item-heading\">"+ "\n"+
+          "<form action=\"CustomerOrderItem\" method=\"post\">"+"\n"+
+          "<span> Out Of Stock: </span>"+
+          "<input type= \"hidden\" name=\"MenuItem\" value=\"" + rs.getString(1)+ "\">"+"\n"+
+              "<span class=\"menu-item-name\"><del>"+rs.getString(1)+"</span>"+ "\n"+
+              "<span class=\"menu-item-price\">£"+rs.getString(2)+"</del></span>"+ "\n"+
+          "</form>"+"\n"+
+          "</h3>"+ "\n"+
+      "</div>"+ "\n"+
+  "</div>" +"\n";
+	   } else {
+
 			categoryMenu += "<div class=\"menu-item\">"+ "\n"+
 		                "<div class=\"menu-item-text\">"+ "\n"+
 		                    "<h3 class=\"menu-item-heading\">"+ "\n"+
@@ -34,8 +49,9 @@ public class MenuData {
 		                "</div>"+ "\n"+
 		            "</div>" +"\n";
 		}
-		
+		}
 		return categoryMenu;
+		
 	}
 	
 	public String fillItemList() throws SQLException, IOException, ClassNotFoundException {

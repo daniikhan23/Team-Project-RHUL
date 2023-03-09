@@ -33,6 +33,7 @@ public class Database {
 					Name VARCHAR(255) NOT NULL,
 					Cost INTEGER NOT NULL,
 					Category VARCHAR(255) NOT NULL,
+					Stock INTEGER NOT NULL,
 					PRIMARY KEY (ItemCode)
 				);
 				""";
