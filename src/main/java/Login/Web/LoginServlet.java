@@ -45,9 +45,8 @@ public class LoginServlet extends HttpServlet {
             		response.sendRedirect("Kitchen.jsp");
             	}
             } else {
-                //HttpSession session = request.getSession();
-                //session.setAttribute("user", username);
-                response.sendRedirect("login.jsp");
+                request.setAttribute("errorMessage", "The specified username and password was incorrect. Please try again.");
+            	request.getRequestDispatcher("login.jsp").forward(request, response);
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
