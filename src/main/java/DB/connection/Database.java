@@ -68,7 +68,6 @@ public class Database {
 					PRIMARY KEY (TableNO)
 				);
 				""";
-		
 		statement.executeUpdate(MenuTable);
 		statement.executeUpdate(StaffTable);
 		statement.executeUpdate(OrderTable);

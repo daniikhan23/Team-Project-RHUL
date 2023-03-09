@@ -10,6 +10,24 @@
   <link rel="stylesheet" href="DropDown.css" />
   <link rel="stylesheet" href="Restaurant Style menu.css">
   <link rel="stylesheet" href="SubmitOrder.css" />
+  
+  
+      <style>
+      .requestbutton {
+        background-color: green;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .requestbutton:hover {
+        background-color: darkgreen;
+      }
+      .requestbutton.active {
+        background-color: red;
+      }
+    </style>
 </head>
 <body>
 
@@ -29,9 +47,40 @@ CustomerOrder Order = new CustomerOrder();
   </div>
 </div>
 	
+<div class="dropdown">
+    <label for="filter">Filter by:</label>
+    <select id="filter">
+      <option value="all">All</option>
+      <option value="Starter">Starter</option>
+      <option value="Burger">Burger</option>
+      <option value="Pizza">Pizza</option>
+      <option value="Seafood">Seafood</option>
+    </select>
+    
+  </div>
+    <%!
+      boolean active = false;
+    %>
+    <script>
+      function changeColor() {
+        var btn = document.querySelector(".requestbutton");
+        btn.classList.add("active");
 
-	
+        
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "CustomerOrderItem", true);
+        xhr.send();
+      }
+    </script>
 
+    <button class="requestbutton" onclick="changeColor()">Click me</button>
+    <% if (active) { 
+     %>
+      <script>
+        document.querySelector(".requestbutton").classList.add("active");
+      </script>
+    <% } %>
+    
 <div class = "submittingbutton">
     <button type="" onclick="showModal()">Order Now</button>
     <div id="modal" class="modal">
@@ -40,10 +89,10 @@ CustomerOrder Order = new CustomerOrder();
         <h1>Your Cart</h1>
         <p>Your order details:</p>
         <ul id="order-details">
-          <!-- Order details will be inserted here -->
-          <% out.println(Order.getCurrentOrder(1)); %>
+         
+          <% out.println(Order.getCurrentOrder(1)); //need to change for specific table%>
         </ul>
-        <p class="total">Total: £<% out.println(Order.totalcost(1)); %></p>
+        <p class="total">Total: <% out.println(Order.totalcost(1)); //need to change for specific table%></p>
 
         <h2>Would you like to place the order?</h2>
         <form action= "CustomerOrderItem" method="post">
@@ -103,13 +152,14 @@ CustomerOrder Order = new CustomerOrder();
 <script src="CallSupport.js"></script>
 </div>
 
-
+	<div class="item Starter">
     <div class="container">
       <div class="menu">
         <h2 class="menu-group-heading">
             Starter
         </h2>
         <div class="menu-group">
+        
             <%
             out.println(Menu.getMenu("Starter"));
             %>
@@ -118,10 +168,10 @@ CustomerOrder Order = new CustomerOrder();
 
         </div>
       </div>
+	</div>
 
 
-
-    
+   <div class="item Burger">
     <div class="container">
         <div class="menu">
           <h2 class="menu-group-heading">
@@ -136,8 +186,9 @@ CustomerOrder Order = new CustomerOrder();
   
           </div>
         </div>
+	</div>
 
-
+	<div class="item Pizza">
       <div class="container">
         <div class="menu">
           <h2 class="menu-group-heading">
@@ -151,8 +202,9 @@ CustomerOrder Order = new CustomerOrder();
   
           </div>
         </div>
+     </div>
 
-
+	<div class="item Seafood">
       <div class="container">
         <div class="menu">
           <h2 class="menu-group-heading">
@@ -165,7 +217,8 @@ CustomerOrder Order = new CustomerOrder();
           </div>
           </div>
         </div>
-
+	</div>
+	
 	<script src="DropDown.js"></script>
 	
 	<script>
@@ -173,5 +226,26 @@ function hidePopup() {
     popup.style.display = "none";
 }
 	</script>
+	
+  <script>
+  const filterSelect = document.getElementById("filter");
+  const items = document.querySelectorAll(".item");
+
+  filterSelect.addEventListener("change", (event) => {
+    const selectedValue = event.target.value;
+
+    items.forEach((item) => {
+      if (selectedValue === "all") {
+        item.hidden = false;
+      } else if (item.classList.contains(selectedValue)) {
+        item.hidden = false;
+      } else {
+        item.hidden = true;
+      }
+    });
+  });
+  </script>
+  
+  
 </body>
 </html>

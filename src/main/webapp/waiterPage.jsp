@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 	
 <%@ page import="Menu.ViewMenu.MenuData"%>
+<%@ page import="Order.Waiter.waiterOrder" %>
 
 <!DOCTYPE html>
 <html>
@@ -14,6 +15,7 @@
   <%
   System.out.println("adding staff menu");
   MenuData Menu = new MenuData();
+  waiterOrder order = new waiterOrder();
   %>
   
 <div class="header">
@@ -27,12 +29,23 @@
 	</div>
 </div>
 
+<script>
+  function helping() {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "menuChange", true);
+    xhr.send();
+  }
+</script>
+
+
+
 <div class="middle-line"></div>
 <div class="box-style">
 
 <div class="container">
   <div class="text">
   <form action="menuChange" method="post">
+
     <h1>Add/Remove item</h1>
       <div>
     <input type="submit" class="button" value="Add item: " name = "Add item: " id="login-submit"/>
@@ -57,20 +70,20 @@
   <div class="text">
     <h1>Customer help</h1>
     <div class="table-group" style="width:100%">
-      <button id="table1" style="width:25%">Table 1</button>
-      <button id="table2" style="width:25%">Table 2</button>
-      <button id="table3" style="width:25%">Table 3</button>
-      <button id="table4" style="width:25%">Table 4</button>
+      <button style="width:25%; background-color: <% out.println(order.checkCustomer(1)); %>">Table 1</button>
+      <button style="width:25%; background-color: <% out.println(order.checkCustomer(2)); %>">Table 2</button>
+      <button style="width:25%; background-color: <% out.println(order.checkCustomer(3)); %>">Table 3</button>
+      <button style="width:25%; background-color: <% out.println(order.checkCustomer(4)); %>">Table 4</button>
     </div>
     <div class="table-group" style="width:100%">
-      <button id="table5" style="width:25%">Table 5</button>
-      <button id="table6" style="width:25%">Table 6</button>
-      <button id="table7" style="width:25%">Table 7</button>
-      <button id="table8" style="width:25%">Table 8</button>
+      <button style="width:25%; background-color: <% out.println(order.checkCustomer(5)); %>">Table 5</button>
+      <button style="width:25%; background-color: <% out.println(order.checkCustomer(6)); %>">Table 6</button>
+      <button style="width:25%; background-color: <% out.println(order.checkCustomer(7)); %>">Table 7</button>
+      <button style="width:25%; background-color: <% out.println(order.checkCustomer(8)); %>">Table 8</button>
     </div>
     <div class="table-group" style="width:100%">
-      <button id="table9" style="width:50%">Table 9</button>
-      <button id="table10" style="width:50%">Table 10</button>
+      <button style="width:50%; background-color: <% out.println(order.checkCustomer(9)); %>">Table 9</button>
+      <button style="width:50%; background-color: <% out.println(order.checkCustomer(10)); %>">Table 10</button>
     </div>
 
   </div>

@@ -11,6 +11,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 public class waiterOrder extends HttpServlet{
 	
@@ -53,6 +54,29 @@ public class waiterOrder extends HttpServlet{
 		
 		response.sendRedirect("waiterPage.jsp");
 	}
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
+		
+		//String table = request.getParameter("myDropdown");
+		//this.tableNO = Integer.parseInt(table);
+		//System.out.println(this.tableNO);
+		
+	    response.setContentType("text/plain");
+	    response.setCharacterEncoding("UTF-8");
+	    
+	    // Update the button's name
+	    HttpSession session = request.getSession();
+	    
+		try {
+			session.setAttribute("gethelp", gethelp());
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
 	public ResultSet getName(int OrderNo) throws SQLException, ClassNotFoundException {
 		String SQL = "SELECT OrderItem FROM OrderTable WHERE TableNo ='"+ OrderNo +"' AND Complete = 0;";
 		Connection connection = Database.connectToDatabase();
@@ -132,5 +156,41 @@ public class waiterOrder extends HttpServlet{
 		return num;
 	}
 	
+	
+	//Still needs implementation
+	public void checkCustomer(String[] tables) throws ClassNotFoundException, SQLException {
+		Connection connection = Database.connectToDatabase();
+		Statement statement = connection.createStatement();
+		for (int i = 0; i < tables.length; i++) {
+			String SQL = "SELECT * FROM TableNO WHERE help = 1 AND TableNO = "+tables[i]+";";
+			ResultSet rs = statement.executeQuery(SQL);
+			rs.next();
+			
+		}
+	}
+	
+	
+	public String checkCustomer(int tables) throws ClassNotFoundException, SQLException {
+		Connection connection = Database.connectToDatabase();
+		Statement statement = connection.createStatement();
+		String SQL = "SELECT * FROM TableNO WHERE help = 1 AND TableNO = "+tables+";";
+		ResultSet rs = statement.executeQuery(SQL);
+		if (rs.next() == true) {
+			return "red";
+		}
+		else {
+			return "#04AA6D";
+		}
+	}
+	
+	public String gethelp() throws ClassNotFoundException, SQLException {
+		Connection connection = Database.connectToDatabase();
+		Statement statement = connection.createStatement();
+		
+		String SQL = "SELECT TableNo FROM TableNO WHERE help = 1;";
+		ResultSet rs = statement.executeQuery(SQL);
+		rs.next();
+		return rs.getString(1);
+	}
 	
 }
