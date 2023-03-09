@@ -52,11 +52,12 @@ public class CustomerOrder extends HttpServlet{
 		else {
 			try {
 				String table = request.getParameter("myDropdown");
-                if (table != null) {
-                  tableNo = Integer.parseInt(table);
-                }
-            
-                if (tableNo == 0) {
+				if (table != null) {
+					  tableNo = Integer.parseInt(table);
+					}
+				
+					if (tableNo == 0) {
+
 					System.out.println("cannot do");
 				}
 				System.out.println("Added currentordertable to ordertable");
@@ -66,8 +67,6 @@ public class CustomerOrder extends HttpServlet{
 				e.printStackTrace();
 			}
 		}
-				
-				
 			
 		response.sendRedirect("menu.jsp");
 	}

@@ -91,25 +91,27 @@ public class waiterOrder extends HttpServlet{
 		String frontEndView = "";
 		List<Integer> Orderlist = new ArrayList<Integer>();
 		while (OrderNo.next()) {
-			
 			Orderlist.add(OrderNo.getInt(1));
 		}
-		System.out.println(Orderlist);
+		System.out.println("full order: " +Orderlist);
 		
-		for (int i = 1; i<= Orderlist.size(); i++) {
+		for (int i = 0; i< Orderlist.size(); i++) {
 			String itemsSQL = "SELECT orderItem FROM OrderTable WHERE OrderNo = "+ Orderlist.get(i)+";";
+			System.out.println(itemsSQL);
 			ResultSet ItemOrder = statement.executeQuery(itemsSQL);
 			
-			String container = "<button class=\"collapsible\">Order #"+OrderNo.getInt(0)+"</button>"+
+			String container = "<button class=\"collapsible\">Order #"+Orderlist.get(i)+"</button>"+
 					"<div class=\"content\">\r\n"
 					+ "<ul>";
 			while (ItemOrder.next()) {
-				container += "<li>"+ ItemOrder.getString(0) +"<li>";
+				container += "<li>"+ ItemOrder.getString(1) +"<button>Cancel Item</button><button>Finished Item</button></li>";
 			}
 			container += "</ul>";
-			container += "<button>Cancel Order</button></div>";
-			frontEndView += container;
 			
+			container += "<button>Cancel Order</button>";
+			container += "<button>Accept Order</button>";
+			container += "<button>Finished Order</button></div>";
+			frontEndView += container;
 		}
 		
 		return frontEndView;
@@ -129,7 +131,6 @@ public class waiterOrder extends HttpServlet{
 		Statement statement = connection.createStatement();
 		
 		String sql = "INSERT INTO MenuTable VALUES("+getprimarykey()+", '"+item+"', "+cost+", '"+ Category+"');";
-		System.out.println(sql);
 		statement.execute(sql);
 	}
 	
