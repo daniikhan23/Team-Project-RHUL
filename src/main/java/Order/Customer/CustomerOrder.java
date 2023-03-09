@@ -19,12 +19,11 @@ public class CustomerOrder extends HttpServlet{
 
 	private static final long serialVersionUID = 6655222004307163766L;
 	public int tableNo;
-
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 		    throws ServletException, IOException {
 		
 		String name = request.getParameter("MenuItem");
-		
 
 		if (request.getParameter("-") != null) {
 			System.out.println("removed item"+name);
@@ -53,10 +52,11 @@ public class CustomerOrder extends HttpServlet{
 			try {
 				String table = request.getParameter("myDropdown");
 				if (table != null) {
-				  tableNo = Integer.parseInt(table);
-				}
-			
-				if (tableNo == 0) {
+					  tableNo = Integer.parseInt(table);
+					}
+				
+					if (tableNo == 0) {
+
 					System.out.println("cannot do");
 				}
 				System.out.println("Added currentordertable to ordertable");
@@ -66,8 +66,6 @@ public class CustomerOrder extends HttpServlet{
 				e.printStackTrace();
 			}
 		}
-				
-				
 			
 		response.sendRedirect("menu.jsp");
 	}

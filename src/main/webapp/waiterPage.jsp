@@ -99,7 +99,7 @@
   <div class="text">
     <h1 >Order status</h1>
     
-    <%out.println(Order.GetOrders.basicoutput()); %>
+    <%out.println(order.frontEndView()); %>
 
   </div>
 </div>
