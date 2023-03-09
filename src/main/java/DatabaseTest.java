@@ -1,10 +1,10 @@
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.sql.Connection;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import DB.connection.Database;
 
 class DatabaseTest {
 

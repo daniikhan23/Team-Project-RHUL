@@ -1,0 +1,28 @@
+1, Crab, Shellfish
+2, Sweetcorn, Vegetable
+3, Cheese, Dairy
+4, Chicken, Poultry
+5, Beef, Red Meat
+6, Pork, Red Meat
+7, Tomato, Vegetable
+8, Onion, Vegetable
+9, Mushroom, Vegetable
+10, Shrimp, Shellfish
+11, Mussels, Shellfish
+12, Lobster, Shellfish
+13, Bread, Gluten
+14, Dough, Gluten
+15, Tortilla, Gluten
+16, Sauce(BBQ), Sauce
+17, Sauce(White), Sauce
+18, Ketchup, Sauce
+19, Mustard, Sauce
+20, Milk, Dairy
+21, Lettuce, Vegetable
+22, Bun, Gluten
+23, Butter, Dairy
+24, Parsley, Herb
+25, Shortcrust, Gluten
+26, Sauce(Buffalo), Sauce
+27, Salsa, Sauce
+28, Pickles, Vegetable

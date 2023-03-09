@@ -1,5 +1,3 @@
-
-
 import java.io.*;
 import java.sql.*;
 import java.util.*;
@@ -21,31 +19,63 @@ public class Database {
 		
 		Statement statement = connection.createStatement();
 
-		statement.execute("DROP TABLE IF EXIST Menu;");
-
+		statement.execute("DROP TABLE IF EXISTS Ingredients;");
+		statement.execute("DROP TABLE IF EXISTS MenuTable;");
+		statement.execute("DROP TABLE IF EXISTS MenuItemIngredients;");
+		statement.execute("DROP TABLE IF EXISTS StaffTable;");
+		String Ingredients ="""
+				CREATE TABLE Ingredients (
+				  IngredientID SERIAL PRIMARY KEY,
+				  Name VARCHAR(255) NOT NULL,
+				  AllergyType VARCHAR(255) NOT NULL
+				);""";
 		String MenuTable = """
 				CREATE TABLE MenuTable(
 					ItemCode INTEGER NOT NULL,
 					Name VARCHAR(255) NOT NULL,
 					Cost INTEGER NOT NULL,
 					Category VARCHAR(255) NOT NULL,
-					PRIMARY KEY (ItemCode);
-				)
+					PRIMARY KEY (ItemCode)
+				);
 				""";
-
+		String MenuItemIngredients ="""
+				CREATE TABLE MenuItemIngredients (
+						  MenuItemIngredientID SERIAL PRIMARY KEY,
+						  ItemCode INTEGER NOT NULL,
+						  IngredientID INTEGER NOT NULL,
+						  FOREIGN KEY (ItemCode) REFERENCES MenuTable (ItemCode),
+						  FOREIGN KEY (IngredientID) REFERENCES Ingredients (IngredientID)
+						);""";
 
 		String StaffTable = """
 				CREATE TABLE StaffTable(
 					StaffID INTEGER NOT NULL,
 					username VARCHAR(255) NOT NULL,
 					password VARCHAR(255) NOT NULL,
-					PRIMARY KEY (StaffID);
-				)
+					PRIMARY KEY (StaffID)
+				);
 				""";
-		statement.executeUpdate(MenuTable);
-		statement.executeUpdate(StaffTable);
-
 		
+		String OrderTable = """
+				CREATE TABLE OrderTable(
+					OrderID INTEGER NOT NULL,
+					orderItem VARCHAR(256) NOT NULL,
+					TableNo INTEGER NOT NULL,
+					Complete INTEGER NOT NULL,
+					PRIMARY KEY (OrderID)
+				);
+				""";
+		statement.executeUpdate(Ingredients);
+		statement.executeUpdate(MenuTable);
+		statement.executeUpdate(MenuItemIngredients);
+		statement.executeUpdate(StaffTable);
+		statement.executeUpdate(OrderTable);
+		initialiseTable("Ingredients", statement);
+		initialiseTable("MenuTable", statement);
+		initialiseTable("MenuItemIngredients", statement);
+		initialiseTable("StaffTable", statement);
+		
+	
 	}
 	
 	
@@ -126,5 +156,4 @@ public class Database {
 		}
 		return null;
 	}
-
 }
