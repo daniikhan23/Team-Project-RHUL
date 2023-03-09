@@ -126,7 +126,7 @@ CustomerOrder Order = new CustomerOrder();
 		<div class="modal-content">
 			<span class="close" onclick="hideHelp()">&times;</span>
 			<h1>Request for help</h1>
-			<form action="CustomerAssist" method="post">
+			<form action="CustomerOrderItem" method="post">
 				<div class="dropdown">
       			<select id="myDropdown" name = "myDropdown">
          		<option value="0">Table Number?</option>
@@ -143,7 +143,7 @@ CustomerOrder Order = new CustomerOrder();
       			</select>
     			</div>
 				<p>Once you confirm, a staff member will be with you shortly.</p>
-				<input class = button type="submit" name="Yes" value="Yes" id="HelpTable"/>
+				<input class = button type="submit" name="Yes" value="Yes" id="TableNO"/>
 			</form>
 			<button onclick="hideHelp()">No</button>
 		</div>

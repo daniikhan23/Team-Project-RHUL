@@ -57,7 +57,6 @@ public class CustomerOrder extends HttpServlet{
 					}
 				
 					if (tableNo == 0) {
-
 					System.out.println("cannot do");
 				}
 				System.out.println("Added currentordertable to ordertable");
