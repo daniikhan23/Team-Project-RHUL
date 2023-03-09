@@ -49,6 +49,21 @@ public class CustomerOrder extends HttpServlet{
 			}
         }
 		
+		else if (request.getParameter("helpParameter") == null) {
+		  String help = request.getParameter("helpParameter");
+		  Connection connection;
+		  Statement statement;
+		  try {
+		    connection = Database.connectToDatabase();
+		    statement = connection.createStatement();
+		    String SQL = "INSERT INTO TableNO (help) VALUES (1) WHERE TableNO = "+tableNo+";";
+		    ResultSet rs = statement.executeQuery(SQL);
+		  } catch (SQLException | ClassNotFoundException e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+		  }
+		}
+		
 		else {
 			try {
 				String table = request.getParameter("myDropdown");

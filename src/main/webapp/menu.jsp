@@ -71,6 +71,12 @@ CustomerOrder Order = new CustomerOrder();
         xhr.open("GET", "CustomerOrderItem", true);
         xhr.send();
       }
+      
+      function helper(table) {
+    	var xhr = new XMLHttpRequest();
+    	xhr.open("GET", "CustomerSupport?parameterHelp=?"+table, true);
+    	xhr.send();
+      }
     </script>
 
     <button class="requestbutton" onclick="changeColor()">Click me</button>
@@ -126,7 +132,7 @@ CustomerOrder Order = new CustomerOrder();
 		<div class="modal-content">
 			<span class="close" onclick="hideHelp()">&times;</span>
 			<h1>Request for help</h1>
-			<form action="CustomerOrderItem" method="post">
+			<form action="CustomerSupport" method="post">
 				<div class="dropdown">
       			<select id="myDropdown" name = "myDropdown">
          		<option value="0">Table Number?</option>
