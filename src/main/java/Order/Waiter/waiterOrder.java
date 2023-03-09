@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import DB.connection.Database;
 import jakarta.servlet.ServletException;
@@ -38,7 +40,8 @@ public class waiterOrder extends HttpServlet{
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-        } else {
+        }
+		else if (request.getParameter("remove: ") != null) {
         	try {
         		String items = request.getParameter("Items");
 				remove(items);
@@ -49,31 +52,15 @@ public class waiterOrder extends HttpServlet{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}
+		
+		else {
+			String table = request.getParameter("TableNum");
+			int Table = Integer.parseInt(table);
         }
 		
 		
 		response.sendRedirect("waiterPage.jsp");
-	}
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
-			throws ServletException, IOException {
-		
-		//String table = request.getParameter("myDropdown");
-		//this.tableNO = Integer.parseInt(table);
-		//System.out.println(this.tableNO);
-		
-	    response.setContentType("text/plain");
-	    response.setCharacterEncoding("UTF-8");
-	    
-	    // Update the button's name
-	    HttpSession session = request.getSession();
-	    
-		try {
-			session.setAttribute("gethelp", gethelp());
-		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 	
 	
@@ -94,28 +81,35 @@ public class waiterOrder extends HttpServlet{
 	}
 	
 	public String frontEndView() throws SQLException, ClassNotFoundException {
-		int orderSet = 1;
-		String NumberOfCurrentOrders = "SELECT COUNT( DISTINCT OrderNo) as orders FROM OrderTable;";
-		String AllOrders = "SELECT DISTINCT OrderNo as orders FROM OrderTable WHERE CompletePhase = 0;";
+
+		String AllOrders = "SELECT DISTINCT OrderNo FROM OrderTable WHERE CompletePhase = 0;";
+		
 		Connection connection = Database.connectToDatabase();
 		Statement statement = connection.createStatement();
-		int numberofOrders = statement.executeQuery(NumberOfCurrentOrders).getInt(0);
+		
+
 		ResultSet OrderNo = statement.executeQuery(AllOrders);
 		String frontEndView = "";
-		while (orderSet <= numberofOrders) {
-			String itemsSQL = "SELECT orderItem FROM OrderTable WHERE OrderNo = "+ OrderNo.getInt(0)+";";
+		List<Integer> Orderlist = new ArrayList<Integer>();
+		while (OrderNo.next()) {
+			
+			Orderlist.add(OrderNo.getInt(1));
+		}
+		System.out.println(Orderlist);
+		
+		for (int i = 1; i<= Orderlist.size(); i++) {
+			String itemsSQL = "SELECT orderItem FROM OrderTable WHERE OrderNo = "+ Orderlist.get(i)+";";
 			ResultSet ItemOrder = statement.executeQuery(itemsSQL);
+			
 			String container = "<button class=\"collapsible\">Order #"+OrderNo.getInt(0)+"</button>"+
 					"<div class=\"content\">\r\n"
 					+ "<ul>";
 			while (ItemOrder.next()) {
 				container += "<li>"+ ItemOrder.getString(0) +"<li>";
 			}
-			container += "</ul></div>";
-					
+			container += "</ul>";
+			container += "<button>Cancel Order</button></div>";
 			frontEndView += container;
-			OrderNo.next();		
-			orderSet++;
 			
 		}
 		
@@ -183,14 +177,12 @@ public class waiterOrder extends HttpServlet{
 		}
 	}
 	
-	public String gethelp() throws ClassNotFoundException, SQLException {
+	public void gethelp(int tableno) throws ClassNotFoundException, SQLException {
 		Connection connection = Database.connectToDatabase();
 		Statement statement = connection.createStatement();
 		
-		String SQL = "SELECT TableNo FROM TableNO WHERE help = 1;";
-		ResultSet rs = statement.executeQuery(SQL);
-		rs.next();
-		return rs.getString(1);
+		String SQL = "UPDATE TableNO SET help = 1 WHERE TableNo = "+tableno+ ";";
+		statement.execute(SQL);
 	}
 	
 }
