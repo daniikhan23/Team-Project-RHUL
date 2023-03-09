@@ -30,10 +30,28 @@
 </div>
 
 <script>
-  function helping() {
+  function helping(table) {
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", "menuChange", true);
-    xhr.send();
+    xhr.open("GET", "http://localhost:8080/cafe/menuChange", true);
+    xhr.send("table=" + table);
+  }
+  
+  function cancelorder(order){
+	    var xhr = new XMLHttpRequest();
+	    xhr.open("GET", "Order.Waiter.waiterOrder", true);
+	    xhr.send("order=" + order);
+  }
+  
+  function acceptorder(order){
+	    var xhr = new XMLHttpRequest();
+	    xhr.open("GET", "http://localhost:8080/cafe/menuChange", true);
+	    xhr.send("id=" + order);
+  }
+  function finishedorder(order){
+	  
+	    var xhr = new XMLHttpRequest();
+	    xhr.open("GET", "http://localhost:8080/cafe/menuChange", true);
+	    xhr.send("id=" + order);
   }
 </script>
 
@@ -70,7 +88,7 @@
   <div class="text">
     <h1>Customer help</h1>
     <div class="table-group" style="width:100%">
-      <button style="width:25%; background-color: <% out.println(order.checkCustomer(1)); %>;">Table 1</button>
+      <button onclick = helping(1) style="width:25%; background-color: <% out.println(order.checkCustomer(1)); %>;">Table 1</button>
       <button style="width:25%; background-color: <% out.println(order.checkCustomer(2)); %>">Table 2</button>
       <button style="width:25%; background-color: <% out.println(order.checkCustomer(3)); %>">Table 3</button>
       <button style="width:25%; background-color: <% out.println(order.checkCustomer(4)); %>">Table 4</button>
@@ -99,7 +117,7 @@
   <div class="text">
     <h1 >Order status</h1>
     
-    <%out.println(Order.GetOrders.basicoutput()); %>
+    <%out.println(order.frontEndView()); %>
 
   </div>
 </div>

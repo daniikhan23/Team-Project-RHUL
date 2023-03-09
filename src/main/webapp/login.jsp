@@ -14,8 +14,6 @@
 
  <main id="main-holder">
   <h1 id="login-header">Login</h1>
-  
-  <h3 style="color: red">${errorMessage}</h3>
 
   <form action="Login" method="post">
    <table style="with: 100%">

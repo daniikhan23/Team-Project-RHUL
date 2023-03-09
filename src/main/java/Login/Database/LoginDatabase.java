@@ -23,7 +23,6 @@ public class LoginDatabase {
         		"FROM StaffTable "+
         		"WHERE username = '"+ Username+
         		"' AND password = '"+ Password +"';";
-        		System.out.println(loginsql);
         		ResultSet rs = statement.executeQuery(loginsql);
         		status = rs.next();
         		System.out.println(status);
