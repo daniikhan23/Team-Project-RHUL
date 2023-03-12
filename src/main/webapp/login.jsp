@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
  pageEncoding="ISO-8859-1"%>
+<%@ page import="Order.Customer.CustomerOrder" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,8 +11,8 @@
 <body>
  <main id="main-holder">
   <h1 id="login-header">Login</h1>
-  
-  <form action="<%=request.getContextPath()%>/Login" method="post">
+
+  <form action="Login" method="post">
    <table style="with: 100%">
     <tr>
      <td><input type="text" name="username" id="username-field" placeholder="Username" class="login-field"/></td>
@@ -27,8 +28,12 @@
     <div class="button" style="display:inline-block;">
       <a href="menu.jsp">Customer</a>
     </div>
-
   </form>
+
+ <%
+ CustomerOrder Order = new CustomerOrder();
+ Order.CurrentOrder();
+ %>
  </main>
 </body>
 </html>

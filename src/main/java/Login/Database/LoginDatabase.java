@@ -1,11 +1,11 @@
 package Login.Database;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import DB.connection.Database;
 import Login.Bean.LoginBean;
 
 
@@ -15,20 +15,7 @@ public class LoginDatabase {
     public boolean validate(LoginBean loginBean) throws ClassNotFoundException {
         boolean status = false;
         try {
-        		Class.forName("org.postgresql.Driver");
-    			String user = "postgres";// for offline postres
-    			String password = "ooquie"; // for offline postres
-
-    			//String user = "group35";
-    			//String password = "eibahv";
-    			String database = "localhost";
-    			Connection connection = null;
-    			String protocol = "jdbc:postgresql://";
-    			String dbName = "/postgres";    //offline postres
-    			//String dbName = "CS2810%2fgroup35";
-    			String fullURL = protocol + database + dbName;
-    			connection = DriverManager.getConnection(fullURL, user, password);
-    			System.out.println("connecte");
+    			Connection connection = Database.connectToDatabase();
         		Statement statement = connection.createStatement();
         		String Username = loginBean.getUsername();
         		String Password = loginBean.getPassword();
@@ -45,6 +32,21 @@ public class LoginDatabase {
     	printSQLException(e);
         }
         return status;
+    }
+    
+    public String plevel(LoginBean loginBean) throws ClassNotFoundException, SQLException {
+		Connection connection = Database.connectToDatabase();
+		Statement statement = connection.createStatement();
+		String Username = loginBean.getUsername();
+		String Password = loginBean.getPassword();
+		String loginsql = "SELECT level "+
+		"FROM StaffTable "+
+		"WHERE username = '"+ Username+
+		"' AND password = '"+ Password +"';";
+		ResultSet rs = statement.executeQuery(loginsql);
+		rs.next();
+		String level = rs.getString(1);
+		return level;
     }
     
     

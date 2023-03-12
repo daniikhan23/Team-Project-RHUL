@@ -13,8 +13,7 @@ public class Database {
 
 		Connection connection = connectToDatabase();
 		if (connection != null) {
-			System.out.println("SUCCESS: You made it!"
-					+ "\n\t You can now take control of your database!\n");
+			System.out.println("Used Database");
 		} else {
 			System.out.println("ERROR: \tFailed to make connection!");
 			System.exit(1);
@@ -25,6 +24,8 @@ public class Database {
 
 		statement.execute("DROP TABLE IF EXISTS MenuTable;");
 		statement.execute("DROP TABLE IF EXISTS StaffTable;");
+		statement.execute("DROP TABLE IF EXISTS OrderTable;");
+		statement.execute("DROP TABLE IF EXISTS TableNO;");
 
 		String MenuTable = """
 				CREATE TABLE MenuTable(
@@ -42,12 +43,36 @@ public class Database {
 					StaffID INTEGER NOT NULL,
 					username VARCHAR(255) NOT NULL,
 					password VARCHAR(255) NOT NULL,
+					level VARCHAR(255) NOT NULL,
 					PRIMARY KEY (StaffID)
 				);
 				""";
+		
+		String OrderTable = """
+				CREATE TABLE OrderTable(
+					OrderID INTEGER NOT NULL,
+					orderItem VARCHAR(256) NOT NULL,
+					TableNo INTEGER NOT NULL,
+					CompletePhase INTEGER NOT NULL,
+					timeStarted TIMESTAMP NOT NULL,
+					OrderNO INTEGER NOT NULL,
+					PRIMARY KEY (OrderID)
+				);
+				""";
+		
+		String TNoTable = """
+				CREATE TABLE TableNO(
+					TableNo INTEGER NOT NULL,
+					help INTEGER NOT NULL,
+					empty INTEGER NOT NULL,
+					PRIMARY KEY (TableNO)
+				);
+				""";
+		
 		statement.executeUpdate(MenuTable);
 		statement.executeUpdate(StaffTable);
-		
+		statement.executeUpdate(OrderTable);
+		statement.executeUpdate(TNoTable);
 		initialiseTable("MenuTable", statement);
 		initialiseTable("StaffTable", statement);
 		
@@ -92,7 +117,7 @@ public class Database {
 		sql = "INSERT INTO "+tableName+ " VALUES("+temp+");";
 		return sql;
 	}
-	
+
 	public static boolean IsInt(String str){
 		try {
 			Integer.parseInt(str);
@@ -104,7 +129,6 @@ public class Database {
 	
 	
 	public static Connection connectToDatabase() throws ClassNotFoundException {
-		System.out.println("------ Testing PostgreSQL JDBC Connection ------");
 		String user = "postgres"; //for offline postres
 		String password = "ooquie";  //for offline postres
 

@@ -1,7 +1,7 @@
 package Login.Web;
 
 import java.io.IOException;
-
+import java.sql.SQLException;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -33,7 +33,17 @@ public class LoginServlet extends HttpServlet {
             if ( LoginDatabase.validate(loginBean)) {
                 //HttpSession session = request.getSession();
                 // session.setAttribute("username",username);
-                response.sendRedirect("loginsuccess.jsp");
+            	System.out.println(LoginDatabase.plevel(loginBean));
+            	if (LoginDatabase.plevel(loginBean).equals("admin")) {
+            		response.sendRedirect("loginsuccess.jsp");
+            	}
+            	if (LoginDatabase.plevel(loginBean).equals("waiter")) {
+            		response.sendRedirect("waiterPage.jsp");
+            	}
+            	
+            	if (LoginDatabase.plevel(loginBean).equals("kitchen")) {
+            		response.sendRedirect("Kitchen.jsp");
+            	}
             } else {
                 //HttpSession session = request.getSession();
                 //session.setAttribute("user", username);
@@ -41,6 +51,9 @@ public class LoginServlet extends HttpServlet {
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-        }
+        } catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 }
