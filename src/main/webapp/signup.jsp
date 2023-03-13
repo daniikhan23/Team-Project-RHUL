@@ -11,7 +11,7 @@
  <main id="main-holder">
   <h1 id="login-header">Signup Page</h1>
   
-  <form action="<%=request.getContextPath()%>/loginsuccess.jsp" method="post">
+  <form action="register" method="post">
    <table style="with: 100%">
     <tr>
      <td><input type="text" name="username" id="username-field" placeholder="Username" class="login-field"/></td>

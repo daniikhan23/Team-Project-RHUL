@@ -9,13 +9,17 @@
 	  <servlet-name>LoginServlet</servlet-name>
 	  <servlet-class>Login.Web.LoginServlet</servlet-class>
   </servlet>
-  
-  
   <servlet-mapping>
 	  <servlet-name>LoginServlet</servlet-name>
-	  
 	  <url-pattern>/Login</url-pattern>
-	  
+  </servlet-mapping>
+   <servlet>
+	  <servlet-name>EmployeeServlet</servlet-name>
+	  <servlet-class>Signup.EmployeeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+	  <servlet-name>EmployeeServlet</servlet-name>
+	  <url-pattern>/register</url-pattern>
   </servlet-mapping>
   
   
