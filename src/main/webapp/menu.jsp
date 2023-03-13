@@ -43,7 +43,7 @@ CustomerOrder Order = new CustomerOrder();
           <!-- Order details will be inserted here -->
           <% out.println(Order.getCurrentOrder(1)); %>
         </ul>
-        <p class="total">Total: £<% out.println(Order.totalcost(1)); %></p>
+        <p class="total">Total: ï¿½<% out.println(Order.totalcost(1)); %></p>
 
         <h2>Would you like to place the order?</h2>
         <form action= "CustomerOrderItem" method="post">
