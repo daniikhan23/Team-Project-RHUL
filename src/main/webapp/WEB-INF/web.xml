@@ -14,11 +14,11 @@
 	  <url-pattern>/Login</url-pattern>
   </servlet-mapping>
    <servlet>
-	  <servlet-name>EmployeeServlet</servlet-name>
-	  <servlet-class>Signup.EmployeeServlet</servlet-class>
+	  <servlet-name>SignupServlet</servlet-name>
+	  <servlet-class>Signup.SignupServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-	  <servlet-name>EmployeeServlet</servlet-name>
+	  <servlet-name>SignupServlet</servlet-name>
 	  <url-pattern>/register</url-pattern>
   </servlet-mapping>
   

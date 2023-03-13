@@ -1,6 +1,6 @@
 package Signup;
 
-public class Employee {
+public class SignupBean {
 	private String username;
 	private String email;
 	private String password;

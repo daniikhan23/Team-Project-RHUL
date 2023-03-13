@@ -4,12 +4,12 @@ import java.io.IOException;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 
-public class EmployeeServlet extends HttpServlet {
+public class SignupServlet extends HttpServlet {
     private static final long serialVersionUID = 1 ;
-    private EmployeeDB employeeDao;
+    private SignupDB employeeDB;
 
     public void init() {
-        employeeDao = new EmployeeDB();
+        employeeDB = new SignupDB();
     }
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -28,17 +28,18 @@ public class EmployeeServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
-        Employee employee = new Employee();
+        SignupBean employee = new SignupBean();
         employee.setUsername(username);
         employee.setEmail(email);
         employee.setPassword(password);
         try {
-            employeeDao.registerEmployee(employee);
+            employeeDB.registerEmployee(employee);
         } catch (Exception e) {
             // TODO Auto-generated catch block
             //System.out.println(e);
         }
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/webapp/login.jsp");
-    	dispatcher.forward(request, response);
+//        RequestDispatcher dispatcher = request.getRequestDispatcher("/webapp/login.jsp");
+//    	dispatcher.forward(request, response);
+        response.sendRedirect("login.jsp");
     }
 }

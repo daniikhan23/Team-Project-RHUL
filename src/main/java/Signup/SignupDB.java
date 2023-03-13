@@ -8,9 +8,9 @@ import java.sql.Statement;
 
 import DB.connection.Database;
 
-public class EmployeeDB {
+public class SignupDB {
 
-    public int registerEmployee(Employee employee) throws Exception {
+    public int registerEmployee(SignupBean employee) throws Exception {
     	String INSERT_USERS_SQL = "INSERT INTO StaffTable VALUES (?, ?, ?, ?)";
 
         int result = 0;
