@@ -1,6 +1,8 @@
 package DB.connection;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -46,4 +48,10 @@ class DatabaseTest {
         Connection connection = Database.connectToDatabase();
         Assertions.assertNotNull(connection, "Connection should not be null");
     }
+	
+	@Test
+	void testExceptions() throws ClassNotFoundException {
+		Connection test = Database.connectToDatabase();
+		assertThrows(ClassNotFoundException.class, () -> Class.forName("test.NonExistentClass"));
+	}
 }

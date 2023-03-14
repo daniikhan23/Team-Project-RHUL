@@ -48,4 +48,9 @@ class CustomerTest {
         String actual3 = "";
         assertEquals(expected3, actual3);
     }
+	
+	@Test
+	public void testExceptions() {
+		assertThrows(SQLException.class, () -> customer.getMenu("Dessert"));
+	}
 }
