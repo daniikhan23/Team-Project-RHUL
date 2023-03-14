@@ -1,21 +1,21 @@
-1,Crabby Sweets,10,Starter,1
-2,Fried Mozzarella,10,Starter,0
-3,Crab and Street Corn Nachos,10,Starter,1
-4,Wings - Boneless,10,Starter,1
-5,Cheeseburger,10,Burger,1
-6,BBQ Burger,10,Burger,1
-7,Ultimate Tailgate Burger,10,Burger,1
-8,Mushroom Swiss Burger,10,Burger,1
-9,Tradional,10,Pizza,1
-10,BBQ Chicken,10,Pizza,1
-11,Lobster Pie,10,Pizza,1
-12,Pepperoni,10,Pizza,1
-13,White,10,Pizza,1
-14,Mushroom,10,Pizza,1
-15,Buffalo Chicken,10,Pizza,1
-16,Shrimp Tacos,10,Seafood,1
-17,Crab Sandwich,10,Seafood,1
-18,Snow Crab Legs,10,Seafood,1
-19,Lobster Roll Sandwich,10,Seafood,1
-20,Cold Shrimp,10,Seafood,1
-21,Sicilian Mussels,10,Seafood,1
+1,Crabby Sweets,10,Starter
+2,Fried Mozzarella,10,Starter
+3,Crab and Street Corn Nachos,10,Starter
+4,Wings - Boneless,10,Starter
+5,Cheeseburger,10,Burger
+6,BBQ Burger,10,Burger
+7,Ultimate Tailgate Burger,10,Burger
+8,Mushroom Swiss Burger,10,Burger
+9,Tradional,10,Pizza
+10,BBQ Chicken,10,Pizza
+11,Lobster Pie,10,Pizza
+12,Pepperoni,10,Pizza
+13,White,10,Pizza
+14,Mushroom,10,Pizza
+15,Buffalo Chicken,10,Pizza
+16,Shrimp Tacos,10,Seafood
+17,Crab Sandwich,10,Seafood
+18,Snow Crab Legs,10,Seafood
+19,Lobster Roll Sandwich,10,Seafood
+20,Cold Shrimp,10,Seafood
+21,Sicilian Mussels,10,Seafood
