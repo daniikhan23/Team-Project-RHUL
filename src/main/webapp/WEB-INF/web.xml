@@ -46,4 +46,33 @@
 	  
   </servlet-mapping>
   
+ 
+        <servlet>
+	  <servlet-name>cancelorder</servlet-name>
+	  <servlet-class>Order.Waiter.cancelOrder</servlet-class>
+  </servlet>
+  
+  
+  <servlet-mapping>
+	  <servlet-name>cancelorder</servlet-name>
+	  
+	  <url-pattern>/cancelorder</url-pattern>
+	  
+  </servlet-mapping>
+  
+  
+          <servlet>
+	  <servlet-name>acceptorder</servlet-name>
+	  <servlet-class>Order.Waiter.acceptOrder</servlet-class>
+  </servlet>
+  
+  
+  <servlet-mapping>
+	  <servlet-name>acceptorder</servlet-name>
+	  
+	  <url-pattern>/acceptorder</url-pattern>
+	  
+  </servlet-mapping>
+  
+  
 </web-app>

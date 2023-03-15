@@ -71,6 +71,12 @@ CustomerOrder Order = new CustomerOrder();
         xhr.open("GET", "CustomerOrderItem", true);
         xhr.send();
       }
+      
+      
+      const form = document.querySelector('form');
+      form.addEventListener('submit', (e)) => {
+    	  e.preventDefault();
+      }
     </script>
 
     <button class="requestbutton" onclick="changeColor()">Click me</button>

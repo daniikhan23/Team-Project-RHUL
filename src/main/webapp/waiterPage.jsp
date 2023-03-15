@@ -37,9 +37,14 @@
   }
   
   function cancelorder(order){
-	    var xhr = new XMLHttpRequest();
-	    xhr.open("GET", "Order.Waiter.waiterOrder", true);
-	    xhr.send("order=" + order);
+	  	const formdata = new FormData();
+	  	formdata.append("Order", order);
+	  	
+	  	fetch("cafe/menuChange", {
+	  		method: "POST",
+	  		body: formdata,
+	  		
+	  	})
   }
   
   function acceptorder(order){
@@ -112,6 +117,9 @@
 <div class="container">
   <div class="text">
     <h1>Special order notes</h1>
+    <textarea id="freeform" name="freeform" rows="4" cols="50">
+Enter text here...
+</textarea>
   </div>
   
   <div class="text">
@@ -127,11 +135,17 @@
 <div class="container">
   <div class="text">
     <h1>Msg from kitchen</h1>
+    <textarea id="freeform" name="freeform" rows="4" cols="30">
+    No Message...
+</textarea>
   </div>
   
   <div>
     <div class ="text">
     <h1 >Msg to Kitchen</h1>
+    <textarea id="freeform" name="freeform" rows="4" cols="30">
+Enter message...
+</textarea>
     </div>
   </div>
 </div>

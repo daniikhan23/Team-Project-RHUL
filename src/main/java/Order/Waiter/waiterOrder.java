@@ -13,7 +13,6 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 public class waiterOrder extends HttpServlet{
 	
@@ -27,7 +26,7 @@ public class waiterOrder extends HttpServlet{
 		System.out.println(tes);
 		
 		if (request.getParameter("Add item: ") != null) {
-			System.out.println("test");
+			System.out.println("Adding item.");
 			try {
 				String name = request.getParameter("add-item");
 				String cost = request.getParameter("add-cost");
@@ -85,7 +84,7 @@ public class waiterOrder extends HttpServlet{
 	
 	public String frontEndView() throws SQLException, ClassNotFoundException {
 
-		String AllOrders = "SELECT DISTINCT OrderNo FROM OrderTable WHERE CompletePhase >= 0 ORDER BY OrderNO;";
+		String AllOrders = "SELECT DISTINCT OrderNo,tableno FROM OrderTable WHERE CompletePhase >= 0 ORDER BY OrderNO;";
 		
 		Connection connection = Database.connectToDatabase();
 		Statement statement = connection.createStatement();
@@ -94,25 +93,39 @@ public class waiterOrder extends HttpServlet{
 		ResultSet OrderNo = statement.executeQuery(AllOrders);
 		String frontEndView = "";
 		List<Integer> Orderlist = new ArrayList<Integer>();
+		
 		while (OrderNo.next()) {
 			Orderlist.add(OrderNo.getInt(1));
+			Orderlist.add(OrderNo.getInt(2));
 		}
-		System.out.println("full order: " +Orderlist);
 		
-		for (int i = 0; i< Orderlist.size(); i++) {
+		System.out.println("full order: " +Orderlist);
+
+		
+		for (int i = 0; i< Orderlist.size(); i+=2) {
 			String itemsSQL = "SELECT orderItem FROM OrderTable WHERE OrderNo = "+ Orderlist.get(i)+";";
 			ResultSet ItemOrder = statement.executeQuery(itemsSQL);
 			
-			String container = "<button style = \"color:"+getcompleteness(Orderlist.get(i))+"; \"class=\"collapsible\">Order #"+Orderlist.get(i)+"</button>"+
+			String container = "<button style = \"color:"+getcompleteness(Orderlist.get(i))+"; \"class=\"collapsible\">Order #"+Orderlist.get(i)+ "      Table:"+Orderlist.get(i+1)+"</button>"+
 					"<div class=\"content\">\r\n"
 					+ "<ul>";
 			while (ItemOrder.next()) {
 				container += "<li>"+ ItemOrder.getString(1) +"<button>Cancel Item</button><button>Finished Item</button></li>";
 			}
 			container += "</ul>";
+			container += "<form action=\"cancelorder\" method=\"post\">";
+
+			container += "<input type=\"submit\" name=\"Cancel Order\" value=\"Cancel Order\" id=\"cancelorder\"/>"+"\n";
+			container += "<input type= \"hidden\" name=\"OrderCancel\" value=\"" + Orderlist.get(i)+ "\">";
+			container += "</form>";
 			
-			container += "<button onclick = \"cancelorder("+Orderlist.get(i)+")\">Cancel Order</button>";
-			container += "<button onclick = \"acceptorder("+Orderlist.get(i)+")\">Accept Order</button>";
+			container += "<form action=\"acceptorder\" method=\"post\">";
+
+			container += "<input type=\"submit\" name=\"Accept Order\" value=\"Accept Order\" id=\"acceptorder\"/>"+"\n";
+			container += "<input type= \"hidden\" name=\"Acceptorder\" value=\"" + Orderlist.get(i)+ "\">";
+			container += "</form>";
+			
+			
 			container += "<button onclick = \"finishedorder("+Orderlist.get(i)+")\">Finished Order</button></div>";
 			frontEndView += container;
 		}
