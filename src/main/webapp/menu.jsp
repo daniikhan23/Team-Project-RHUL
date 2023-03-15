@@ -149,7 +149,7 @@ CustomerOrder Order = new CustomerOrder();
       			</select>
     			</div>
 				<p>Once you confirm, a staff member will be with you shortly.</p>
-				<input class = button type="submit" name="Yes" value="Yes" id="TableNO"/>
+				<input class = button type="submit" name="Yes" value="Yes" id="TableNO" onclick="helper(value)"/>
 			</form>
 			<button onclick="hideHelp()">No</button>
 		</div>

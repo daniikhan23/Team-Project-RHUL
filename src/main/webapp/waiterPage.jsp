@@ -32,7 +32,7 @@
 <script>
   function helping(table) {
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", "menuChange", true);
+    xhr.open("GET", "menuChange?parameter1=?"+table, true);
     xhr.send();
   }
 </script>
