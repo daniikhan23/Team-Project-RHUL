@@ -120,6 +120,9 @@
     <textarea id="freeform" name="freeform" rows="4" cols="50">
 Enter text here...
 </textarea>
+<br>
+<button>Submit button</button>
+
   </div>
   
   <div class="text">
@@ -138,14 +141,18 @@ Enter text here...
     <textarea id="freeform" name="freeform" rows="4" cols="30">
     No Message...
 </textarea>
+<button>Submit button</button>
   </div>
   
   <div>
     <div class ="text">
     <h1 >Msg to Kitchen</h1>
+    
     <textarea id="freeform" name="freeform" rows="4" cols="30">
 Enter message...
 </textarea>
+
+<button>Submit button</button>
     </div>
   </div>
 </div>

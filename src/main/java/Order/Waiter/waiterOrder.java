@@ -110,11 +110,18 @@ public class waiterOrder extends HttpServlet{
 					"<div class=\"content\">\r\n"
 					+ "<ul>";
 			while (ItemOrder.next()) {
-				container += "<li>"+ ItemOrder.getString(1) +"<button>Cancel Item</button><button>Finished Item</button></li>";
+				container += "<li>"+ ItemOrder.getString(1);
 				container += "<form action=\"cancelorder\" method=\"post\">";
 				container += "<input type=\"submit\" name=\"Cancel Item\" value=\"Cancel Item\" id=\"cancelorder\"/>";
 				container += "<input type= \"hidden\" name=\"OrderCancel\" value=\"" + Orderlist.get(i)+ "\">";
 				container += "<input type= \"hidden\" name=\"OrderItem\" value=\"" + ItemOrder.getString(1)+ "\">";
+				container += "</form>";
+				
+				//still needs to implement finished item
+				container += "<form action=\"finishedorder\" method=\"post\">";
+				container += "<input type=\"submit\" name=\"finished item\" value=\"finished order\" id=\"finishedorder\"/>";
+				container += "<input type= \"hidden\" name=\"finishedorder\" value=\"" + Orderlist.get(i)+ "\">";
+				container += "<input type= \"hidden\" name=\"finished Item\" value=\"" + ItemOrder.getString(1)+ "\">";
 				container += "</form>";
 				container += "</li>";
 			}
