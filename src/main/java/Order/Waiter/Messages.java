@@ -20,6 +20,27 @@ public class Messages extends HttpServlet{
 	//DO POST WILL SET IT
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 		    throws ServletException, IOException {
+		
+		
+		if (request.getParameter("Message") != null) {
+			try {
+				String Message = request.getParameter("Message");
+				inputMessage(Message);
+			} catch (ClassNotFoundException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		else {
+			try {
+				getMessage();
+			} catch (ClassNotFoundException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		response.sendRedirect("waiterPage.jsp");
 	}
 	
 	

@@ -75,4 +75,18 @@
   </servlet-mapping>
   
   
+            <servlet>
+	  <servlet-name>Messaging</servlet-name>
+	  <servlet-class>Order.Waiter.Messages</servlet-class>
+  </servlet>
+  
+  
+  <servlet-mapping>
+	  <servlet-name>Messaging</servlet-name>
+	  
+	  <url-pattern>/Messaging</url-pattern>
+	  
+  </servlet-mapping>
+  
+  
 </web-app>

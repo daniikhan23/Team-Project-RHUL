@@ -138,21 +138,25 @@ Enter text here...
 <div class="container">
   <div class="text">
     <h1>Msg from kitchen</h1>
+    <form action="Messaging" method="post">
     <textarea id="freeform" name="freeform" rows="4" cols="30">
     No Message...
 </textarea>
-<button>Submit button</button>
+<input type="submit" value="Submit" id="submit"/>
+</form>
   </div>
   
   <div>
     <div class ="text">
+    <form action="Messaging" method="post">
     <h1 >Msg to Kitchen</h1>
     
-    <textarea id="freeform" name="freeform" rows="4" cols="30">
+    <textarea id="Message" name="Message" rows="4" cols="30">
 Enter message...
 </textarea>
 
-<button>Submit button</button>
+<input type="submit" value="Submit" id="submit"/>
+</form>
     </div>
   </div>
 </div>
