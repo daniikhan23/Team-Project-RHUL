@@ -131,28 +131,25 @@ CustomerOrder Order = new CustomerOrder();
 </div>
 
 	<div class="item Starter">
-    <div class="container">
       <div class="menu">
         <h2 class="menu-group-heading">
             Starter
         </h2>
-        <div class="starterImage">
-    		<img src="starters.png" alt="Starters" style="display: block; margin-left: auto; margin-right: auto; height: 0%; width: 20% ">
+        <div class="food-image">
+    		<img src="starters.png" alt="Starters">
   		</div>
         <div class="menu-group">
         
             <%
             out.println(Menu.getMenu("Starter"));
             %>
-
-        </div>
+            
         </div>
       </div>
 	</div>
 
 
    <div class="item Burger">
-    <div class="container">
         <div class="menu">
           <h2 class="menu-group-heading">
               Burger
@@ -166,13 +163,10 @@ CustomerOrder Order = new CustomerOrder();
             %>
 
           </div>
-  
-          </div>
         </div>
 	</div>
 
 	<div class="item Pizza">
-      <div class="container">
         <div class="menu">
           <h2 class="menu-group-heading">
               Pizza
@@ -185,13 +179,10 @@ CustomerOrder Order = new CustomerOrder();
             out.println(Menu.getMenu("Pizza"));
             %>
           </div>
-  
-          </div>
         </div>
      </div>
 
 	<div class="item Seafood">
-      <div class="container">
         <div class="menu">
           <h2 class="menu-group-heading">
               Seafood
@@ -203,7 +194,6 @@ CustomerOrder Order = new CustomerOrder();
             <%
             out.println(Menu.getMenu("Seafood"));
             %>
-          </div>
           </div>
         </div>
 	</div>
