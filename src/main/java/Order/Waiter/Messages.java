@@ -25,6 +25,8 @@ public class Messages extends HttpServlet{
 		if (request.getParameter("Message") != null) {
 			try {
 				String Message = request.getParameter("Message");
+				System.out.println("Sending message to Kitchen");
+				System.out.println(Message);
 				inputMessage(Message);
 			} catch (ClassNotFoundException | SQLException e) {
 				// TODO Auto-generated catch block
@@ -32,25 +34,16 @@ public class Messages extends HttpServlet{
 			}
 		}
 		
-		else {
-			try {
-				getMessage();
-			} catch (ClassNotFoundException | SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
 		response.sendRedirect("waiterPage.jsp");
 	}
 	
 	
 	
-	public String getMessage() throws ClassNotFoundException, SQLException {
+	public static String getMessage() throws ClassNotFoundException, SQLException {
 		Connection connection = Database.connectToDatabase();
 		Statement statement = connection.createStatement();
 		
-		
-		String SQL = "SELECT message from MessageTable WHERE MessageNO = 2;";
+		String SQL = "SELECT message from MessagingTable WHERE MessageNO = 2;";
 		ResultSet rs = statement.executeQuery(SQL);
 		rs.next();
 		return rs.getString(1);
@@ -59,6 +52,6 @@ public class Messages extends HttpServlet{
 	public void inputMessage(String message) throws ClassNotFoundException, SQLException {
 		Connection connection = Database.connectToDatabase();
 		Statement statement = connection.createStatement();
-		statement.execute("UPDATE MessageTable SET Message = '"+message+"' WHERE MessageNO = 1;");
+		statement.execute("UPDATE MessagingTable SET Message = '"+message+"' WHERE MessageNO = 1;");
 	}
 }

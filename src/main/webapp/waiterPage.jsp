@@ -3,7 +3,7 @@
 	
 <%@ page import="Menu.ViewMenu.MenuData"%>
 <%@ page import="Order.Waiter.waiterOrder" %>
-
+<%@ page import="Order.Waiter.Messages" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -93,20 +93,53 @@
   <div class="text">
     <h1>Customer help</h1>
     <div class="table-group" style="width:100%">
-      <button onclick = helping(1) style="width:25%; background-color: <% out.println(order.checkCustomer(1)); %>;">Table 1</button>
-      <button style="width:25%; background-color: <% out.println(order.checkCustomer(2)); %>">Table 2</button>
-      <button style="width:25%; background-color: <% out.println(order.checkCustomer(3)); %>">Table 3</button>
-      <button style="width:25%; background-color: <% out.println(order.checkCustomer(4)); %>">Table 4</button>
+      <form action=menuChange method="post">
+        <input type="hidden" class="table" name="table" value=1>
+        <button style="width:25%; background-color: <% out.println(order.checkCustomer(1)); %>;">Table 1</button>
+      </form>
+      <form action=menuChange method="post">
+        <input type="hidden" class="table" name="table" value=2>
+        <button style="width:25%; background-color: <% out.println(order.checkCustomer(2)); %>">Table 2</button>
+      </form>  
+      <form action=menuChange method="post">
+        <input type="hidden" class="table" name="table" value=3>
+        <button style="width:25%; background-color: <% out.println(order.checkCustomer(3)); %>">Table 3</button>
+      </form>
+      <form action=menuChange method="post">
+        <input type="hidden" class="table" name="table" value=4>
+        <button style="width:25%; background-color: <% out.println(order.checkCustomer(4)); %>">Table 4</button>
+      </form>
+
     </div>
     <div class="table-group" style="width:100%">
-      <button style="width:25%; background-color: <% out.println(order.checkCustomer(5)); %>">Table 5</button>
-      <button style="width:25%; background-color: <% out.println(order.checkCustomer(6)); %>">Table 6</button>
-      <button style="width:25%; background-color: <% out.println(order.checkCustomer(7)); %>">Table 7</button>
-      <button style="width:25%; background-color: <% out.println(order.checkCustomer(8)); %>">Table 8</button>
+      <form action=menuChange method="post">
+        <input type="hidden" class="table" name="table" value=5>
+        <button style="width:25%; background-color: <% out.println(order.checkCustomer(5)); %>">Table 5</button>
+      </form>
+      <form action=menuChange method="post">
+        <input type="hidden" class="table" name="table" value=6>
+        <button style="width:25%; background-color: <% out.println(order.checkCustomer(6)); %>">Table 6</button>
+      </form>
+      <form action=menuChange method="post">
+        <input type="hidden" class="table" name="table" value=7>
+        <button style="width:25%; background-color: <% out.println(order.checkCustomer(7)); %>">Table 7</button>
+      </form>
+      <form action=menuChange method="post">
+        <input type="hidden" class="table" name="table" value=8>
+        <button style="width:25%; background-color: <% out.println(order.checkCustomer(8)); %>">Table 8</button>
+      </form>
+
     </div>
     <div class="table-group" style="width:100%">
-      <button style="width:50%; background-color: <% out.println(order.checkCustomer(9)); %>">Table 9</button>
-      <button style="width:50%; background-color: <% out.println(order.checkCustomer(10)); %>">Table 10</button>
+      <form action=menuChange method="post">
+        <input type="hidden" class="table" name="table" value=9>
+        <button style="width:50%; background-color: <% out.println(order.checkCustomer(9)); %>">Table 9</button>
+      </form>
+      <form action=menuChange method="post">
+        <input type="hidden" class="table" name="table" value=10>
+        <button style="width:50%; background-color: <% out.println(order.checkCustomer(10)); %>">Table 10</button>
+      </form>
+
     </div>
 
   </div>
@@ -138,12 +171,9 @@ Enter text here...
 <div class="container">
   <div class="text">
     <h1>Msg from kitchen</h1>
-    <form action="Messaging" method="post">
     <textarea id="freeform" name="freeform" rows="4" cols="30">
-    No Message...
+    <%out.println(Order.Waiter.Messages.getMessage()); %>
 </textarea>
-<input type="submit" value="Submit" id="submit"/>
-</form>
   </div>
   
   <div>
