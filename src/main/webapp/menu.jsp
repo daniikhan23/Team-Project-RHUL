@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Welcome to the restaurant webpage</title>
+  <title>Welcome to the Restaurant Webpage</title>
   <link rel="stylesheet" href="DropDown.css" />
   <link rel="stylesheet" href="Restaurant Style menu.css">
   <link rel="stylesheet" href="SubmitOrder.css" />
@@ -136,6 +136,9 @@ CustomerOrder Order = new CustomerOrder();
         <h2 class="menu-group-heading">
             Starter
         </h2>
+        <div class="starterImage">
+    		<img src="starters.png" alt="Starters" style="display: block; margin-left: auto; margin-right: auto; height: 0%; width: 20% ">
+  		</div>
         <div class="menu-group">
         
             <%
@@ -143,7 +146,6 @@ CustomerOrder Order = new CustomerOrder();
             %>
 
         </div>
-
         </div>
       </div>
 	</div>
@@ -155,6 +157,9 @@ CustomerOrder Order = new CustomerOrder();
           <h2 class="menu-group-heading">
               Burger
           </h2>
+          <div class="burgerImage">
+    		<img src="burgers.jpg" alt="Burgers" style="display: block; margin-left: auto; margin-right: auto; height: 0%; width: 20% ">
+  		</div>
           <div class="menu-group">
             <%
             out.println(Menu.getMenu("Burger"));
@@ -170,8 +175,11 @@ CustomerOrder Order = new CustomerOrder();
       <div class="container">
         <div class="menu">
           <h2 class="menu-group-heading">
-              pizza
+              Pizza
           </h2>
+          <div class="pizzaImage">
+    		<img src="pizzas.jpg" alt="Pizzas" style="display: block; margin-left: auto; margin-right: auto; height: 0%; width: 20% ">
+  		</div>
           <div class="menu-group">
             <%
             out.println(Menu.getMenu("Pizza"));
@@ -188,6 +196,9 @@ CustomerOrder Order = new CustomerOrder();
           <h2 class="menu-group-heading">
               Seafood
           </h2>
+          <div class="seafoodImage">
+    		<img src="seafood.jpg" alt="Seafood" style="display: block; margin-left: auto; margin-right: auto; height: 0%; width: 20% ">
+  		</div>
           <div class="menu-group">
             <%
             out.println(Menu.getMenu("Seafood"));
