@@ -21,11 +21,20 @@ public class Database {
 		// Now we're ready to use the DB. You may add your code below this line.
 		
 		Statement statement = connection.createStatement();
+		statement.execute("DROP TABLE IF EXISTS MenuItemIngredients;");
+		statement.execute("DROP TABLE IF EXISTS Ingredients;");
 
 		statement.execute("DROP TABLE IF EXISTS MenuTable;");
 		statement.execute("DROP TABLE IF EXISTS StaffTable;");
 		statement.execute("DROP TABLE IF EXISTS OrderTable;");
 		statement.execute("DROP TABLE IF EXISTS TableNO;");
+
+		String Ingredients ="""
+				CREATE TABLE Ingredients (
+				  IngredientID SERIAL PRIMARY KEY,
+				  Name VARCHAR(255) NOT NULL,
+				  AllergyType VARCHAR(255) NOT NULL
+				);""";
 
 		String MenuTable = """
 				CREATE TABLE MenuTable(
@@ -68,14 +77,27 @@ public class Database {
 					PRIMARY KEY (TableNO)
 				);
 				""";
+		
+		String MenuItemIngredients ="""
+				CREATE TABLE MenuItemIngredients (
+						  MenuItemIngredientID SERIAL PRIMARY KEY,
+						  ItemCode INTEGER NOT NULL,
+						  IngredientID INTEGER NOT NULL,
+						  FOREIGN KEY (ItemCode) REFERENCES MenuTable (ItemCode),
+						  FOREIGN KEY (IngredientID) REFERENCES Ingredients (IngredientID)
+						);""";
+		
+		statement.executeUpdate(Ingredients);
 		statement.executeUpdate(MenuTable);
+		statement.executeUpdate(MenuItemIngredients);
 		statement.executeUpdate(StaffTable);
 		statement.executeUpdate(OrderTable);
 		statement.executeUpdate(TNoTable);
 		initialiseTable("MenuTable", statement);
 		initialiseTable("StaffTable", statement);
 		initialiseTable("TableNO", statement);
-		
+		initialiseTable("Ingredients", statement);
+		initialiseTable("MenuItemIngredients", statement);
 	}
 	
 	
