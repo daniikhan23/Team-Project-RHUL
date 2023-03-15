@@ -77,7 +77,13 @@ public class Database {
 					PRIMARY KEY (TableNO)
 				);
 				""";
-		
+		String MessagingTable = """
+				CREATE TABLE MessagingTable(
+					MessageNO INTEGER NOT NULL,
+					Message TEXT NOT NULL,
+					PRIMARY KEY (MessageNO)
+				);
+				""";
 		String MenuItemIngredients ="""
 				CREATE TABLE MenuItemIngredients (
 						  MenuItemIngredientID SERIAL PRIMARY KEY,
@@ -93,11 +99,13 @@ public class Database {
 		statement.executeUpdate(StaffTable);
 		statement.executeUpdate(OrderTable);
 		statement.executeUpdate(TNoTable);
+		statement.executeUpdate(MessagingTable);
 		initialiseTable("MenuTable", statement);
 		initialiseTable("StaffTable", statement);
 		initialiseTable("TableNO", statement);
 		initialiseTable("Ingredients", statement);
 		initialiseTable("MenuItemIngredients", statement);
+		initialiseTable("MessagingTable", statement);
 	}
 	
 	

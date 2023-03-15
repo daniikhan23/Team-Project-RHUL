@@ -55,7 +55,7 @@ public class KitchenOrder {
 					"<div class=\"content\">\r\n"
 					+ "<ul>";
 			while (ItemOrder.next()) {
-				container += "<li>"+ ItemOrder.getString(1) +"<button>Cancel Item</button><button>Finished Item</button></li>";
+				container += "<li style = \"color:"+ getcompleteness(Orderlist.get(i), ItemOrder.getString(1))+">"+ ItemOrder.getString(1);
 				container += "<form action=\"cancelorder\" method=\"post\">";
 				container += "<input type=\"submit\" name=\"Cancel Item\" value=\"Cancel Item\" id=\"cancelorder\"/>";
 				container += "<input type= \"hidden\" name=\"OrderCancel\" value=\"" + Orderlist.get(i)+ "\">";
@@ -95,6 +95,28 @@ public class KitchenOrder {
 			else {
 				return "yellow";
 			}
+		}
+		else if (rs.getInt(1) == 2) {
+			return "yellow";
+		}
+		else if (rs.getInt(1) == 1) {
+			return "red";
+		}
+		else {
+			return "black";
+		}
+	}
+	
+	public String getcompleteness(int order, String item) throws ClassNotFoundException, SQLException {
+		Connection connection = Database.connectToDatabase();
+		Statement statement = connection.createStatement();
+		
+		String SQL = "SELECT CompletePhase FROM ordertable WHERE orderno = "+order+" AND orderItem = '"+item+"';";
+		ResultSet rs = statement.executeQuery(SQL);
+		rs.next();
+		
+		if (rs.getInt(1) == 3) {
+			return "green";
 		}
 		else if (rs.getInt(1) == 2) {
 			return "yellow";
