@@ -43,7 +43,7 @@ CustomerOrder Order = new CustomerOrder();
     <a href="./Restaurant Home Page.html">Home</a>
 	<a class="active" href="./menu.jsp">Order</a>
     <a href="#contact">Contact</a>
-    <a href="Restaurant About.jsp">About</a>
+    <a href="Restaurant About.html">About</a>
   </div>
 </div>
 	
