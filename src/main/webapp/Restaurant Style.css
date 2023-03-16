@@ -62,7 +62,7 @@ footer {
 }
 
 .container {
-  margin: 50%;
+  margin: 50px;
   display: flex;
   align-items: center;
   justify-content: center
@@ -81,11 +81,11 @@ img {
 }
 
 .image1 {
-  flex-basis: 40%
+  flex-basis: 30%
 }
 
 .image2 {
-  flex-basis: 40%;
+  flex-basis: 30%;
   order: 2;
 }
 

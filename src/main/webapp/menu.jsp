@@ -98,7 +98,7 @@ CustomerOrder Order = new CustomerOrder();
          
           <% out.println(Order.getCurrentOrder(1)); //need to change for specific table%>
         </ul>
-        <p class="total">Total: £<% out.println(Order.totalcost(1)); //need to change for specific table%></p>
+        <p class="total">Total: ï¿½<% out.println(Order.totalcost(1)); //need to change for specific table%></p>
 
         <h2>Would you like to place the order?</h2>
         <form action= "CustomerOrderItem" method="post">
@@ -131,69 +131,111 @@ CustomerOrder Order = new CustomerOrder();
 </div>
 
 	<div class="item Starter">
+    <div class="container">
       <div class="menu">
         <h2 class="menu-group-heading">
             Starter
         </h2>
-        <div class="food-image">
-    		<img src="starters.png" alt="Starters">
-  		</div>
+         <div class="row">
+		  <div class="column">
+		    <img src="starters.png" alt="Starters" style="height:80%; width:100%">
+		  </div>
+		  <div class="column">
+		    <img src="starters2.jpg" alt="Starters" style="height:80%; width:100%">
+		  </div>
+		  <div class="column">
+		    <img src="starters3.jpg" alt="Starters" style="height:80%; width:100%">
+		  </div>
+		</div> 
         <div class="menu-group">
         
             <%
             out.println(Menu.getMenu("Starter"));
             %>
-            
+
+        </div>
         </div>
       </div>
 	</div>
 
 
    <div class="item Burger">
+    <div class="container">
         <div class="menu">
           <h2 class="menu-group-heading">
               Burger
           </h2>
-          <div class="burgerImage">
-    		<img src="burgers.jpg" alt="Burgers" style="display: block; margin-left: auto; margin-right: auto; height: 0%; width: 20% ">
-  		</div>
+          <div class="row">
+		  <div class="column">
+		    <img src="burgers.jpg" alt="Burgers" style="height:80%; width:100%">
+		  </div>
+		  <div class="column">
+		    <img src="burgers2.jpg" alt="Burgers" style="height:80%; width:100%">
+		  </div>
+		  <div class="column">
+		    <img src="burgers3.jpg" alt="Burgers" style="height:80%; width:100%">
+		  </div>
+		</div> 
           <div class="menu-group">
             <%
             out.println(Menu.getMenu("Burger"));
             %>
 
           </div>
+  
+          </div>
         </div>
 	</div>
 
 	<div class="item Pizza">
+      <div class="container">
         <div class="menu">
           <h2 class="menu-group-heading">
               Pizza
           </h2>
-          <div class="pizzaImage">
-    		<img src="pizzas.jpg" alt="Pizzas" style="display: block; margin-left: auto; margin-right: auto; height: 0%; width: 20% ">
-  		</div>
+          <div class="row">
+		  <div class="column">
+		    <img src="pizzas.jpg" alt="Pizzas" style="height:80%; width:100%">
+		  </div>
+		  <div class="column">
+		    <img src="pizzas2.jpg" alt="Pizzas" style="height:80%; width:100%">
+		  </div>
+		  <div class="column">
+		    <img src="pizzas3.jpeg" alt="Pizzas" style="height:80%; width:100%">
+		  </div>
+		</div>
           <div class="menu-group">
             <%
             out.println(Menu.getMenu("Pizza"));
             %>
           </div>
+  
+          </div>
         </div>
      </div>
 
 	<div class="item Seafood">
+      <div class="container">
         <div class="menu">
           <h2 class="menu-group-heading">
               Seafood
           </h2>
-          <div class="seafoodImage">
-    		<img src="seafood.jpg" alt="Seafood" style="display: block; margin-left: auto; margin-right: auto; height: 0%; width: 20% ">
-  		</div>
+          <div class="row">
+		  <div class="column">
+		    <img src="seafood.jpg" alt="Seafood" style="height:80%; width:100%">
+		  </div>
+		  <div class="column">
+		    <img src="seafood2.jpg" alt="Seafood" style="height:80%; width:100%">
+		  </div>
+		  <div class="column">
+		    <img src="seafood3.jpg" alt="Seafood" style="height:80%; width:100%">
+		  </div>
+		</div>
           <div class="menu-group">
             <%
             out.println(Menu.getMenu("Seafood"));
             %>
+          </div>
           </div>
         </div>
 	</div>
