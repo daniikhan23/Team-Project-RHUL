@@ -1,6 +1,7 @@
 package Login.Database;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -21,15 +22,17 @@ public class LoginDatabase {
         boolean status = false;
         try {
     			Connection connection = Database.connectToDatabase();
-        		Statement statement = connection.createStatement();
-        		String Username = loginBean.getUsername();
-        		String Password = loginBean.getPassword();
+        		String username = loginBean.getUsername();
+        		String password = loginBean.getPassword();
         		String loginsql = "SELECT * "+
         		"FROM StaffTable "+
-        		"WHERE username = '"+ Username+
-        		"' AND password = '"+ Password +"';";
-        		System.out.println(loginsql);
-        		ResultSet rs = statement.executeQuery(loginsql);
+        		"WHERE username = ? "+
+        		"AND password = ?;";
+        		PreparedStatement ps = connection.prepareStatement(loginsql);
+        		ps.setString(1, username);
+        		ps.setString(2, password);
+        		System.out.println(ps);
+        		ResultSet rs = ps.executeQuery();
         		status = rs.next();
         		System.out.println(status);
         } 
@@ -45,15 +48,14 @@ public class LoginDatabase {
      */
     public String plevel(LoginBean loginBean) throws ClassNotFoundException, SQLException {
 		Connection connection = Database.connectToDatabase();
-		Statement statement = connection.createStatement();
-		String Username = loginBean.getUsername();
-		String Password = loginBean.getPassword();
+		String username = loginBean.getUsername();
 		String loginsql = "SELECT level "+
-		"FROM StaffTable "+
-		"WHERE username = '"+ Username+
-		"' AND password = '"+ Password +"';";
-		ResultSet rs = statement.executeQuery(loginsql);
-		rs.next();
+        "FROM StaffTable "+
+        "WHERE username = ?;";
+        PreparedStatement ps = connection.prepareStatement(loginsql);
+        ps.setString(1, username);
+        ResultSet rs = ps.executeQuery();
+        rs.next();
 		String level = rs.getString(1);
 		return level;
     }
