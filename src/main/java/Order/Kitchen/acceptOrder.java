@@ -1,4 +1,4 @@
-package Order.Waiter;
+package Order.Kitchen;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -41,7 +41,7 @@ public class acceptOrder  extends HttpServlet{
 				}
 			}
 
-		response.sendRedirect("waiterPage.jsp");
+		response.sendRedirect("Kitchen.jsp");
 	}
 	
 }

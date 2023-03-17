@@ -26,7 +26,7 @@ double totalCost = Order.totalcost(1); //need to change for specific table
 
 <div class="container payment-content">
   <h1 class="payment-heading">Thank you for your order!</h1>
-  
+</div>
   
   <div class="order-details-container">
   <p class="current-order-heading">Your Current Order:</p>
@@ -47,6 +47,7 @@ double totalCost = Order.totalcost(1); //need to change for specific table
   
   <button class="pay-contactless-button" onclick="payContactless()">Pay Contactless</button>
   
+</div>
 </div>
 
 

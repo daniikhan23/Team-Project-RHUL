@@ -61,6 +61,7 @@ public class CustomerOrder extends HttpServlet{
 				}
 				System.out.println("Added currentordertable to ordertable");
 				addToOrderTable(tableNo);
+				response.sendRedirect("payment.jsp");
 			} catch (ClassNotFoundException | SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

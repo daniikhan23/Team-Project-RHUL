@@ -101,7 +101,7 @@ CustomerOrder Order = new CustomerOrder();
         <p class="total">Total: £<% out.println(Order.totalcost(1)); //need to change for specific table%></p>
 
         <h2>Would you like to place the order?</h2>
-        <form action= "payment.jsp" method="href">
+        <form action= "CustomerOrderItem" method="post">
    <div class="dropdown">
       <select id="myDropdown" name = "myDropdown">
         <option value="0">Table Number?</option>

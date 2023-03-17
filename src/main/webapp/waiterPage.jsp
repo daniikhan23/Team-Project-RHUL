@@ -182,7 +182,7 @@ Enter text here...
     <h1 >Msg to Kitchen</h1>
     
     <textarea id="Message" name="Message" rows="4" cols="30">
-Enter message...
+
 </textarea>
 
 <input type="submit" value="Submit" id="submit"/>

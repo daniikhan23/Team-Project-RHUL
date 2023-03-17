@@ -17,7 +17,16 @@ import jakarta.servlet.http.HttpServletResponse;
 public class waiterOrder extends HttpServlet{
 	
 	private static final long serialVersionUID = 1L;
-
+/*
+ * The main backbone for the waiter page.
+ * 
+ * @author Leo Nguyen.
+ */
+	
+	/*
+	 * test if the button is for adding items to the order page.
+	 * removing items from the order page or updating the order.
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 		    throws ServletException, IOException {
 		System.out.println("editing Menu");
@@ -82,7 +91,9 @@ else if (request.getParameter("table") != null) {
 		response.sendRedirect("waiterPage.jsp");
 	}
 	
-	
+	/*
+	 * Gets all the order items from an order.
+	 */
 	public ResultSet getName(int OrderNo) throws SQLException, ClassNotFoundException {
 		String SQL = "SELECT OrderItem FROM OrderTable WHERE TableNo ='"+ OrderNo +"' AND Complete = 0;";
 		Connection connection = Database.connectToDatabase();
@@ -90,7 +101,9 @@ else if (request.getParameter("table") != null) {
 		ResultSet rs = statement.executeQuery(SQL);
 		return rs;
 	}
-	
+	/*
+	 * gets the order no.
+	 */
 	public ResultSet getORderNo() throws ClassNotFoundException, SQLException {
 		String SQL = "SELECT OrderNo FROM OrderTable WHERE Complete = 0;";
 		Connection connection = Database.connectToDatabase();
@@ -99,6 +112,10 @@ else if (request.getParameter("table") != null) {
 		return rs;
 	}
 	
+	/*
+	 * returns the order sequence in waiter page running 
+	 * post to this class.
+	 */
 	public String frontEndView() throws SQLException, ClassNotFoundException {
 
 		String AllOrders = "SELECT DISTINCT OrderNo,tableno FROM OrderTable WHERE CompletePhase >= 0 ORDER BY OrderNO;";
@@ -164,6 +181,9 @@ else if (request.getParameter("table") != null) {
 		return frontEndView;
 	}
 	
+	/*
+	 * removes the particular item from the menu.
+	 */
 	public void remove(String item) throws ClassNotFoundException, SQLException {
 		Connection connection = Database.connectToDatabase();
 		Statement statement = connection.createStatement();
@@ -173,6 +193,9 @@ else if (request.getParameter("table") != null) {
 		statement.execute(sql);
 	}
 	
+	/*
+	 * Adds particular item to the menu.
+	 */
 	public void add(String item, int cost, String Category) throws ClassNotFoundException, SQLException {
 		Connection connection = Database.connectToDatabase();
 		Statement statement = connection.createStatement();
@@ -181,6 +204,9 @@ else if (request.getParameter("table") != null) {
 		statement.execute(sql);
 	}
 	
+	/*
+	 * Gets the last primary key in table.
+	 */
 	public int getprimarykey() throws SQLException, ClassNotFoundException {
 		Connection connection = Database.connectToDatabase();
 		Statement statement = connection.createStatement();
