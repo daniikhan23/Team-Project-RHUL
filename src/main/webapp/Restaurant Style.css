@@ -2,8 +2,8 @@ body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
   height: 100%;
-  background-color: red; /* For browsers that do not support gradients */
-  background-image: linear-gradient(to bottom right, red, yellow);
+  background-color: rgb(255, 128, 128); /* For browsers that do not support gradients */
+  background-image: linear-gradient(to bottom right, rgb(255, 128, 128), yellow);
 }
 
 .header {
@@ -71,7 +71,7 @@ footer {
 }
 
 .header a:hover {
-  background-color: #ddd;
+  background-color: rgb(255, 128, 0);
   color: black;
 }
 
@@ -101,10 +101,13 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 5px;
+  background-color: #f79a48;
+  padding: 20px;
 }
 
 img {
-  border-radius: 50px;
+  border-radius: 25px;
   max-width: 100%
 }
 
@@ -148,4 +151,28 @@ img {
 
 .submit {
   position:relative; left:85%;
+}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=submit] {
+  background-color: yellow;
+  color: black;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: white;
 }

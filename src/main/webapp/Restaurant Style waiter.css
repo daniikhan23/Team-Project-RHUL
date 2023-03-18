@@ -49,7 +49,7 @@ footer {
 }
 
 .header a:hover {
-  background-color: #ddd;
+  background-color: rgb(255, 128, 0);
   color: black;
 }
 
