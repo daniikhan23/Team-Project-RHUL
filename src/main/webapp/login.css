@@ -9,7 +9,8 @@ body {
 	display: grid;
 	justify-items: center;
 	align-items: center;
-	background-color: #9ba377;
+	background-color: red; /* For browsers that do not support gradients */
+    background-image: linear-gradient(to bottom right, red, yellow);
 }
 
 .header {

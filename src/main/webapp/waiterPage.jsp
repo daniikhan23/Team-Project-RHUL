@@ -21,10 +21,6 @@
 <div class="header">
 	<a href="#default" class="logo">Restaurant</a>
 	<div class="header-right">
-		<a class="active" href="./waiterPage.jsp">Waiter Page</a> 
-		<a href="./waiterMenu.jsp">Order</a> 
-		<a href="#contact">Contact</a> 
-		<a href="#about">About</a> 
 		<a class="logout" href="./login.jsp">Log Out</a>
 	</div>
 </div>

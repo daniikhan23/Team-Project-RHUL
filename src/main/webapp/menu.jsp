@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Welcome to the Restaurant Webpage</title>
+  <title>The Restaurant Menu</title>
   <link rel="stylesheet" href="DropDown.css" />
   <link rel="stylesheet" href="Restaurant Style menu.css">
   <link rel="stylesheet" href="SubmitOrder.css" />
@@ -267,6 +267,8 @@ function hidePopup() {
   });
   </script>
   
-  
+ <footer>
+ 	<p>Team 35</p>
+ </footer>
 </body>
 </html>
