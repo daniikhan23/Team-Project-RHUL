@@ -47,11 +47,11 @@ public class AlterOrder { //add all order to accepted order
 		statement.execute(SQL);
 	}
 	
-	public void CompleteItem(int order, String item) throws SQLException, ClassNotFoundException {
+	public void CompleteItem(int orderNO, String item) throws SQLException, ClassNotFoundException {
 		Connection connection = Database.connectToDatabase();
 		Statement statement = connection.createStatement();
 		
-		String SQL = "UPDATE ordertable SET CompletePhase = 3 WHERE OrderNO = "+order+" AND orderItem = '"+item+"';";
+		String SQL = "UPDATE ordertable SET CompletePhase = 3 WHERE OrderNO = "+orderNO+" AND orderItem = '"+item+"';";
 		statement.execute(SQL);
 	}
 }

@@ -28,7 +28,7 @@ public class MenuData {
 		ResultSet rs = st.executeQuery(sql);
 		Map<String, List<String>> items = new HashMap<>();
 		
-		
+		String colour = "red";
 		while (rs.next()) {//need to change for specific table
 		       String name = rs.getString(2);
 		       String price=rs.getString(3);
@@ -44,14 +44,15 @@ public class MenuData {
 		   for (String name : items.keySet()) {
 		   	List<String> ingredientList = items.get(name);
 		   	String ingredients = String.join(", ", ingredientList.subList(1, ingredientList.size()));
-
+		   	
+		   	
 			categoryMenu += "<div class=\"menu-item\">"+ "\n"+
 		                "<div class=\"menu-item-text\">"+ "\n"+
 		                    "<h3 class=\"menu-item-heading\">"+ "\n"+
 		                    "<form action=\"CustomerOrderItem\" method=\"post\">"+"\n"+
 		                    "<span>"+ CustomerOrder.numberOfitem(name, 1)+"  </span>"+
-		                    "<input type=\"submit\" name=\"-\" value=\"-\" id=\"remove-submit\"/>"+"\n"+
-		                    "<input type=\"submit\" name=\"+\" value=\"+\" id=\"add-submit\"/>"+"\n"+
+		                    "<input style = \"background-color:"+colour+" \" type=\"submit\" name=\"-\" value=\"-\" id=\"remove-submit\"/>"+"\n"+
+		                    "<input style = \"background-color:"+colour+" \" type=\"submit\" name=\"+\" value=\"+\" id=\"add-submit\"/>"+"\n"+
 		                    "<input type= \"hidden\" name=\"MenuItem\" value=\"" + name+ "\">"+"\n"+
 		                        "<span class=\"menu-item-name\">"+name+"</span>"+ "\n"+
 		                        "<span class=\"menu-item-price\">£"+items.get(name).get(0)+"</span>"+ "\n"+
@@ -61,7 +62,16 @@ public class MenuData {
 		                "</div>"+ "\n"+
 		                    
 		            "</div>" +"\n";
+			if (colour.equals("red")) {
+				colour = "#FFBF00";
+			}
 			
+			else if (colour.equals("#FFBF00")) {
+				colour = "#006847";
+			}
+			else {
+				colour = "red";
+			}
 		}
 		
 		return categoryMenu;

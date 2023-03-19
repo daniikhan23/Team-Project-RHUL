@@ -29,6 +29,7 @@ public class CustomerOrder extends HttpServlet{
 			System.out.println("removed item"+name);
 			try {
 				removefromtable(name, 1);
+				response.sendRedirect("menu.jsp");
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
 			} catch (SQLException e) {
@@ -39,6 +40,7 @@ public class CustomerOrder extends HttpServlet{
         	try {
 				inputIntoCtable(name, 1);
 				System.out.println("added item"+name);
+				response.sendRedirect("menu.jsp");
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -49,7 +51,6 @@ public class CustomerOrder extends HttpServlet{
         }
 		
 		else {
-			try {
 				String table = request.getParameter("myDropdown");
 				if (table != null) {
 					  tableNo = Integer.parseInt(table);
@@ -60,15 +61,11 @@ public class CustomerOrder extends HttpServlet{
 					System.out.println("cannot do");
 				}
 				System.out.println("Added currentordertable to ordertable");
-				addToOrderTable(tableNo);
+				
 				response.sendRedirect("payment.jsp");
-			} catch (ClassNotFoundException | SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 		}
 			
-		response.sendRedirect("menu.jsp");
+		
 	}
 	
 	

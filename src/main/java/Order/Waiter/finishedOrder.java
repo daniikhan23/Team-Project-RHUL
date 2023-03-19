@@ -15,26 +15,24 @@ public class finishedOrder extends HttpServlet{
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 		    throws ServletException, IOException {
-		
-			// still need to implement
-			if (request.getParameter("OrderItem") != null) {
-				String table = request.getParameter("OrderCancel");
-				String item = request.getParameter("OrderItem");
-				int Table = Integer.parseInt(table);
+			
+			if (request.getParameter("finished item") != null) {
+				String Order = request.getParameter("finishedorder");
+				String item = request.getParameter("finished item");
+				int OrderNO = Integer.parseInt(Order);
 				AlterOrder order = new AlterOrder();
 				try {
-					order.cancelitem(Table, item);
+					order.CompleteItem(OrderNO, item);
 				} catch (ClassNotFoundException | SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
 			else {
-				String table = request.getParameter("OrderCancel");
+				String Order = request.getParameter("finishedorder");
 				AlterOrder order = new AlterOrder();
-				int Table = Integer.parseInt(table);
+				int OrderNO = Integer.parseInt(Order);
 				try {
-					order.cancelorder(Table);
+					order.CompleteOrder(OrderNO);;
 				} catch (ClassNotFoundException | SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

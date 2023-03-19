@@ -7,6 +7,7 @@
   <meta charset="UTF-8">
   <title>Incoming Orders</title>
   <link rel="stylesheet" href="Kitchen Style.css">
+  <link rel="stylesheet" href="Restaurant Style waiter.css">
   <meta http-equiv="refresh" content="30">
 </head>
 <body>
@@ -16,6 +17,44 @@
   <div class="header-right">
     <a href="login.jsp">LOG OUT</a>
   </div>
+</div>
+<div class="box-style">
+<div class="container">
+  <div class="text">
+    <h1>Special order notes</h1>
+    <textarea id="freeform" name="freeform" rows="4" cols="50">
+Enter text here...
+</textarea>
+<br>
+<button>Submit button</button>
+
+  </div>
+</div>
+</div>
+
+<div class="box-style-2">
+<div class="container">
+  <div class="text">
+    <h1>Msg from kitchen</h1>
+    <textarea id="freeform" name="freeform" rows="4" cols="30">
+
+</textarea>
+  </div>
+  
+  <div>
+    <div class ="text">
+    <form action="Messaging" method="post">
+    <h1 >Msg to Kitchen</h1>
+    
+    <textarea id="Message" name="Message" rows="4" cols="30">
+
+</textarea>
+
+<input type="submit" value="Submit" id="submit"/>
+</form>
+    </div>
+  </div>
+</div>
 </div>
 
 <%out.println(Order.getOrder()); %>

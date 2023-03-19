@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Welcome to the restaurant webpage</title>
+  <title>The Restaurant Menu</title>
   <link rel="stylesheet" href="DropDown.css" />
   <link rel="stylesheet" href="Restaurant Style menu.css">
   <link rel="stylesheet" href="SubmitOrder.css" />
@@ -38,12 +38,12 @@ CustomerOrder Order = new CustomerOrder();
 %>
 
 <div class="header">
-  <a href="#default" class="logo">diez libras de suciedad</a>
+  <a href="#default" class="logo">Restaurant</a>
   <div class="header-right">
     <a href="./Restaurant Home Page.html">Home</a>
 	<a class="active" href="./menu.jsp">Order</a>
-    <a href="#contact">Contact</a>
-    <a href="Restaurant About.jsp">About</a>
+    <a href="Restaurant Contact.html">Contact</a>
+    <a href="Restaurant About.html">About</a>
   </div>
 </div>
 	
@@ -98,7 +98,7 @@ CustomerOrder Order = new CustomerOrder();
          
           <% out.println(Order.getCurrentOrder(1)); //need to change for specific table%>
         </ul>
-        <p class="total">Total: £<% out.println(Order.totalcost(1)); //need to change for specific table%></p>
+        <p class="total">Total: ï¿½<% out.println(Order.totalcost(1)); //need to change for specific table%></p>
 
         <h2>Would you like to place the order?</h2>
         <form action= "CustomerOrderItem" method="post">
@@ -136,6 +136,17 @@ CustomerOrder Order = new CustomerOrder();
         <h2 class="menu-group-heading">
             Starter
         </h2>
+         <div class="row">
+		  <div class="column">
+		    <img src="starters.png" alt="Starters" style="height:80%; width:100%">
+		  </div>
+		  <div class="column">
+		    <img src="starters2.jpg" alt="Starters" style="height:80%; width:100%">
+		  </div>
+		  <div class="column">
+		    <img src="starters3.jpg" alt="Starters" style="height:80%; width:100%">
+		  </div>
+		</div> 
         <div class="menu-group">
         
             <%
@@ -143,7 +154,6 @@ CustomerOrder Order = new CustomerOrder();
             %>
 
         </div>
-
         </div>
       </div>
 	</div>
@@ -155,6 +165,17 @@ CustomerOrder Order = new CustomerOrder();
           <h2 class="menu-group-heading">
               Burger
           </h2>
+          <div class="row">
+		  <div class="column">
+		    <img src="burgers.jpg" alt="Burgers" style="height:80%; width:100%">
+		  </div>
+		  <div class="column">
+		    <img src="burgers2.jpg" alt="Burgers" style="height:80%; width:100%">
+		  </div>
+		  <div class="column">
+		    <img src="burgers3.jpg" alt="Burgers" style="height:80%; width:100%">
+		  </div>
+		</div> 
           <div class="menu-group">
             <%
             out.println(Menu.getMenu("Burger"));
@@ -170,8 +191,19 @@ CustomerOrder Order = new CustomerOrder();
       <div class="container">
         <div class="menu">
           <h2 class="menu-group-heading">
-              pizza
+              Pizza
           </h2>
+          <div class="row">
+		  <div class="column">
+		    <img src="pizzas.jpg" alt="Pizzas" style="height:80%; width:100%">
+		  </div>
+		  <div class="column">
+		    <img src="pizzas2.jpg" alt="Pizzas" style="height:80%; width:100%">
+		  </div>
+		  <div class="column">
+		    <img src="pizzas3.jpeg" alt="Pizzas" style="height:80%; width:100%">
+		  </div>
+		</div>
           <div class="menu-group">
             <%
             out.println(Menu.getMenu("Pizza"));
@@ -188,6 +220,17 @@ CustomerOrder Order = new CustomerOrder();
           <h2 class="menu-group-heading">
               Seafood
           </h2>
+          <div class="row">
+		  <div class="column">
+		    <img src="seafood.jpg" alt="Seafood" style="height:80%; width:100%">
+		  </div>
+		  <div class="column">
+		    <img src="seafood2.jpg" alt="Seafood" style="height:80%; width:100%">
+		  </div>
+		  <div class="column">
+		    <img src="seafood3.jpg" alt="Seafood" style="height:80%; width:100%">
+		  </div>
+		</div>
           <div class="menu-group">
             <%
             out.println(Menu.getMenu("Seafood"));
@@ -224,6 +267,8 @@ function hidePopup() {
   });
   </script>
   
-  
+ <footer>
+ 	<p>Team 35</p>
+ </footer>
 </body>
 </html>
