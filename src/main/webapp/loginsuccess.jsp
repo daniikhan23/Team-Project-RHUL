@@ -18,7 +18,7 @@
 
 <div class="container">
   <div class="text">
-    <h1>Welcome to the Admin page</h1>
+    <h1>Welcome to the Admin Page</h1>
   </div>
 </div>
 

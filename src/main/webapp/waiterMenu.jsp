@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head> 
-<title>Welcome to the restaurant webpage</title>
+<title>Waiter Menu</title>
 <link rel="stylesheet" href="Restaurant Style menu.css">
 </head>
 <body>
