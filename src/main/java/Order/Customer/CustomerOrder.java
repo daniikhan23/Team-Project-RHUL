@@ -49,6 +49,24 @@ public class CustomerOrder extends HttpServlet{
 				e.printStackTrace();
 			}
         }
+		else if (request.getParameter("helpDropdown") != null) {
+		  String table = request.getParameter("helpDropdown");
+		  
+		  if (table != null) {
+		    tableNo = Integer.parseInt(table);
+		  }
+
+		  System.out.println("table " + table);
+		  
+		  try {
+        sethelp(tableNo);
+      } catch (ClassNotFoundException | SQLException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
+		  
+		  response.sendRedirect("menu.jsp");
+		}
 		
 		else {
 				String table = request.getParameter("myDropdown");
