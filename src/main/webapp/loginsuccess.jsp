@@ -12,49 +12,47 @@
 <div class="header">
   <a href="#default" class="logo">Restaurant</a>
   <div class="header-right">
-    <a href="./Restaurant Home Page.html">Home</a>
-    <a href="menu.jsp">Order</a>
-    <a href="Restaurant Contact.html">Contact</a>
-    <a class="active" href="Restaurant About.html">About</a>
+    <a href="login.jsp">Log out</a>
   </div>
 </div>
 
 <div class="container">
   <div class="text">
-    <h1>Welcome to the admin webpage</h1>
-    <p>Here you get full access to everything on the website.</p>
+    <h1>Welcome to the Admin page</h1>
   </div>
 </div>
 
-<div class="container">
-  <div class="text">
-    <h1>Menu Page</h1>
-    <div class = "links">
-    <a href="menu.jsp">Order</a>
-	</div>
-  </div>
+<div class="links">
+   	<a href="Restaurant Home Page.html">Home</a>
 </div>
 
-<div class="container">
-  <div class="text">
-    <h1>Kitchen Page</h1>
-    <div class = "links">
-    <a href="kitchen.jsp">Kitchen</a>
-	</div>
-  </div>
+<div class="links">
+   	<a href="Restaurant Contact.html">Contact</a>
 </div>
 
-<div class="container">
-  <div class="text">
-    <h1>Waiter Menu Page</h1>
-    <div class = "links">
-    <a href="waiterMenu.jsp">Waiter Menu</a>
-	</div>
-  </div>
+<div class="links">
+   	<a href="Restaurant About.html">About Us</a>
+</div>
+
+<div class="links">
+   	<a href="menu.jsp">Restaurant Menu</a>
+</div>
+
+<div class="links">
+   	<a href="waiterMenu.jsp">Waiter Menu</a>
+</div>
+
+<div class="links">
+   	<a href="waiterPage.jsp">Waiter Page</a>
+</div>
+
+<div class="links">
+   	<a href="Kitchen.jsp">Kitchen Section</a>
 </div>
 
 <footer>
   <p>Team 35</p>
 </footer>
+
 </body>
 </html>
