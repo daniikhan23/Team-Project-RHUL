@@ -130,7 +130,7 @@ CustomerOrder Order = new CustomerOrder();
 
 </div>
 
-<div class="callingsupport">
+<div class="submittingbutton">
   <button onclick="showHelp()">Call Staff</button>
   <div id="help" class="modal">
     <div class="modal-content">
