@@ -107,5 +107,16 @@
 	  
   </servlet-mapping>
   
+    <servlet>
+    <servlet-name>menuupdate</servlet-name>
+    <servlet-class>Menu.ViewMenu.MenuData</servlet-class>
+  </servlet>
+  
+    <servlet-mapping>
+    <servlet-name>menuupdate</servlet-name>
+    
+    <url-pattern>/menuupdate</url-pattern>
+    
+  </servlet-mapping>
   
 </web-app>

@@ -8,6 +8,7 @@
 <head> 
 <title>Welcome to the restaurant webpage</title>
 <link rel="stylesheet" href="Restaurant Style menu.css">
+<link rel="stylesheet" href="Restaurant Style.css">
 </head>
 <body>
 
@@ -31,13 +32,15 @@
 	</div>
 	
 	<div class="update">
+	  <form action="menuupdate" method="post">
 	  <button class="button" type="button" id="update-button">Update Stock</button> 
-	  <select name="Item" id="stock-item">
+	  <select name="item-update" id="item-update">
     <%
     out.println(Menu.fillItemList());
     %>
     </select>
-    <input type="text" name="stock" id="stock-field" placeholder="Stock">
+    <input type="text" name="stock-field" id="stock-field" placeholder="Stock">
+    </form>
 	</div>
 
 	<div class="container">

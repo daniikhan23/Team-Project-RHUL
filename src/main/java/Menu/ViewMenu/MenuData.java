@@ -10,9 +10,30 @@ import java.util.Map;
 
 import DB.connection.Database;
 import Order.Customer.CustomerOrder;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 public class MenuData {
+	public String item,stock;
 	
+ protected void doPost(HttpServletRequest request, HttpServletResponse response)
+     throws ServletException, IOException {
+   System.out.println("reached");
+   if (request.getParameter("item-update") != null && request.getParameter("stock-field") != null) {
+     item = request.getParameter("item-update");
+     stock = request.getParameter("stock-field");
+   }
+   
+   try {
+       updateStock(item,stock);
+     } catch (ClassNotFoundException | SQLException | IOException e) {
+       // TODO Auto-generated catch block
+       e.printStackTrace();
+     }
+   response.sendRedirect("waiterMenu.jsp");
+ }
+ 
 	public String getMenu(String Category) throws SQLException, IOException, ClassNotFoundException {
 	    String sql = "SELECT mt.ItemCode, mt.Name, mt.Cost, i.Name " +
                 "FROM MenuTable mt " +
@@ -97,5 +118,7 @@ public class MenuData {
 		    String sql = "UPDATE MenuTable SET Stock = "+ Integer.parseInt(Stock) + " WHERE Name = " + item + ";";
 		    st.executeQuery(sql);
 		  }
+		  
+		  
 
 }
