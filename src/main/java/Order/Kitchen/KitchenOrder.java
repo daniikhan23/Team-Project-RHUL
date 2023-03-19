@@ -10,47 +10,47 @@ import java.util.List;
 import DB.connection.Database;
 
 public class KitchenOrder {
-	
-	
+
+
 	public void SendOrder() {
 		//Send order to waiter after finishing
 	}
-	
+
 	public void SendOrder(String item, int OrderNO) {
 		//Send specific item to waiter
 	}
-	
+
 	public void SendMessage(String Message) {
 		//TEXT for DB send to waiter side
 	}
-	
+
 	public void GetMessage() {
 		//get message from waiter
 	}
-	
+
 	public String getOrder() throws SQLException, ClassNotFoundException {
 		String AllOrders = "SELECT DISTINCT OrderNo,tableno FROM OrderTable WHERE CompletePhase > 0 ORDER BY OrderNO;";
-		
+
 		Connection connection = Database.connectToDatabase();
 		Statement statement = connection.createStatement();
-		
+
 
 		ResultSet OrderNo = statement.executeQuery(AllOrders);
 		String frontEndView = "";
-		List<Integer> Orderlist = new ArrayList<Integer>();
-		
+		List<Integer> Orderlist = new ArrayList<>();
+
 		while (OrderNo.next()) {
 			Orderlist.add(OrderNo.getInt(1));
 			Orderlist.add(OrderNo.getInt(2));
 		}
-		
+
 		System.out.println("full order: " +Orderlist);
 
-		
+
 		for (int i = 0; i< Orderlist.size(); i+=2) {
 			String itemsSQL = "SELECT orderItem FROM OrderTable WHERE OrderNo = "+ Orderlist.get(i)+";";
 			ResultSet ItemOrder = statement.executeQuery(itemsSQL);
-			
+
 			String container = "<button style = \"color:"+getcompleteness(Orderlist.get(i))+"; \"class=\"collapsible\">Order #"+Orderlist.get(i)+ "      Table:"+Orderlist.get(i+1)+"</button>"+
 					"<div class=\"content\">\r\n"
 					+ "<ul>";
@@ -69,9 +69,9 @@ public class KitchenOrder {
 			container += "<input type=\"submit\" name=\"Cancel Order\" value=\"Cancel Order\" id=\"cancelorder\"/>"+"\n";
 			container += "<input type= \"hidden\" name=\"OrderCancel\" value=\"" + Orderlist.get(i)+ "\">";
 			container += "</form>";
-			
-		
-			
+
+
+
 			container += "<button onclick = \"finishedorder("+Orderlist.get(i)+")\">Finished Order</button></div>";
 			frontEndView += container;
 		}
@@ -80,11 +80,11 @@ public class KitchenOrder {
 	public String getcompleteness(int order) throws ClassNotFoundException, SQLException {
 		Connection connection = Database.connectToDatabase();
 		Statement statement = connection.createStatement();
-		
+
 		String SQL = "SELECT CompletePhase FROM ordertable WHERE orderno = "+order+" ORDER BY CompletePhase DESC;";
 		ResultSet rs = statement.executeQuery(SQL);
 		rs.next();
-		
+
 		if (rs.getInt(1) == 3) {
 			String sql = "SELECT CompletePhase FROM ordertable WHERE orderno = "+order+" ORDER BY CompletePhase ASC;";
 			ResultSet testcase = statement.executeQuery(sql);
@@ -106,15 +106,15 @@ public class KitchenOrder {
 			return "black";
 		}
 	}
-	
+
 	public String getcompleteness(int order, String item) throws ClassNotFoundException, SQLException {
 		Connection connection = Database.connectToDatabase();
 		Statement statement = connection.createStatement();
-		
+
 		String SQL = "SELECT CompletePhase FROM ordertable WHERE orderno = "+order+" AND orderItem = '"+item+"';";
 		ResultSet rs = statement.executeQuery(SQL);
 		rs.next();
-		
+
 		if (rs.getInt(1) == 3) {
 			return "green";
 		}

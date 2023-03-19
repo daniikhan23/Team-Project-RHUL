@@ -1,0 +1,177 @@
+body { 
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {text-align: center;}
+p {text-align: center;}
+
+footer {
+  text-align: center;
+  padding: 3px;
+  background-color: red;
+  color: black;
+}
+
+.header {
+	font-family: gill sans, sans-serif;
+	font-style: italic;
+	letter-spacing: 3px;
+	overflow: hidden;
+    padding: 20px 10px;
+    background-color: rgb(255, 255, 128);
+}
+
+.header a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px; 
+  line-height: 25px;
+  border-radius: 4px;
+}
+
+.header a.logo {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.header a:hover {
+  background-color: rgb(255, 128, 0);
+  color: black;
+}
+
+.header a.active {
+  background-color: #ff0000;
+  color: black;
+}
+
+.header-right {
+  float: right;
+}
+
+img {
+  border-radius: 50px;
+  max-width: 100%
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.image1 {
+  flex-basis: 30%
+}
+
+.image2 {
+  flex-basis: 30%;
+  order: 2;
+}
+
+.text {
+  font-size: 20px;
+  padding-left: 20px;
+}
+
+.button {
+  overflow: hidden;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px; 
+  margin: 4px 2px;
+  background-color: #3a3a3a;
+	padding: 7px;
+	border: none;
+	border-radius: 5px;
+	color: white;
+	font-weight: bold;
+	outline: none;
+}
+
+
+.tableno {
+  position:relative; right:85%;
+}
+
+.submittingbutton{
+	position:relative; left: 85%;
+}
+
+.menu {
+	font-family: sans-serif;
+    font-size: 14px;
+}
+
+.menu-group-heading {
+    margin: 0;
+    padding-bottom: 1em;
+    border-bottom: 2px solid #ccc;
+}
+
+.menu-group {
+	display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5em;
+    padding: 1.5em;
+}
+
+.menu-item {
+    display: flex;
+}
+
+.menu-item-image {
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+    object-fit: cover;
+    margin-right: 1.5em;
+}
+
+.menu-item-text{
+    flex-grow: 1;
+}
+
+.menu-item-heading{
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+}
+
+.menu-item-name{
+    margin-right: 1.5em;
+}
+
+.menu-item-description{
+    font-family: 'Times New Roman', Times, serif;
+    line-height: 1.6;
+}
+
+@media screen and (min-width: 992px) {
+    .menu {
+        font-size: 16px;
+    }
+
+    .menu-group {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .menu-item-image {
+        width: 125px;
+        height: 125px;
+    }
+}
+
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 33.33%;
+  padding: 5px;
+}

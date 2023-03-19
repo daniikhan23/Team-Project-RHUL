@@ -10,7 +10,7 @@ import Login.Bean.LoginBean;
 
 
 public class LoginDatabase {
-	
+
 
     public boolean validate(LoginBean loginBean) throws ClassNotFoundException {
         boolean status = false;
@@ -26,13 +26,13 @@ public class LoginDatabase {
         		ResultSet rs = statement.executeQuery(loginsql);
         		status = rs.next();
         		System.out.println(status);
-        } 
+        }
     catch(SQLException e) {
     	printSQLException(e);
         }
         return status;
     }
-    
+
     public String plevel(LoginBean loginBean) throws ClassNotFoundException, SQLException {
 		Connection connection = Database.connectToDatabase();
 		Statement statement = connection.createStatement();
@@ -47,8 +47,8 @@ public class LoginDatabase {
 		String level = rs.getString(1);
 		return level;
     }
-    
-    
+
+
     private void printSQLException(SQLException ex) {
         for (Throwable e: ex) {
             if (e instanceof SQLException) {
