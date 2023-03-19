@@ -32,6 +32,7 @@ public class Database {
 		statement.execute("DROP TABLE IF EXISTS StaffTable;");
 		statement.execute("DROP TABLE IF EXISTS OrderTable;");
 		statement.execute("DROP TABLE IF EXISTS TableNO;");
+		statement.execute("DROP TABLE IF EXISTS messagingtable;");
 
 		String Ingredients ="""
 				CREATE TABLE Ingredients (

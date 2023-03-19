@@ -130,6 +130,62 @@ CustomerOrder Order = new CustomerOrder();
 
 </div>
 
+<div class="submittingbutton">
+  <button onclick="showHelp()">Call Staff</button>
+  <div id="help" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="hideHelp()">&times;</span>
+      <h1>Request for help</h1>
+      <form action="CustomerOrderItem" method="post">
+        <div class="dropdown">
+            <select id="helpDropdown" name = "helpDropdown">
+            <option value="0">Table Number?</option>
+            <option value="1">Table 1</option>
+            <option value="2">Table 2</option>
+            <option value="3">Table 3</option>
+            <option value="4">Table 4</option>
+            <option value="5">Table 5</option>
+            <option value="6">Table 6</option>
+            <option value="7">Table 7</option>
+            <option value="8">Table 8</option>
+            <option value="9">Table 9</option>
+           <option value="10">Table 10</option>
+            </select>
+          </div>
+        <p>Once you confirm, a staff member will be with you shortly.</p>
+        <input class = button type="submit" name="Yes" value="Yes" id="helptable"/>
+      </form>
+      <button onclick="hideHelp()">No</button>
+    </div>
+  </div>
+</div>
+<script>
+const help = document.getElementById("help");
+function showHelp() {
+    help.style.display = "block";
+}
+function hideHelp() {
+    help.style.display = "none";
+}
+
+// Get the popup element
+var popup = document.querySelector(".modal");
+
+// Show the popup
+function showPopup() {
+    popup.style.display = "block";
+}
+
+// Confirm the action
+function confirmAction() {
+    // Do something (e.g. delete a record)
+    console.log("Action confirmed");
+
+    // Hide the popup
+    hidePopup();
+}
+</script>
+
 	<div class="item Starter">
     <div class="container">
       <div class="menu">

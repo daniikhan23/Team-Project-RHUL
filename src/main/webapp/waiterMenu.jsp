@@ -15,28 +15,22 @@
 	System.out.println("adding staff menu");
 	MenuData Menu = new MenuData();
 	%>
-	<div class="header">
-		<a href="#default" class="logo">Restaurant</a>
-		<div class="header-right">
-			<a href="./Restaurant Home Page.html">Home</a> <a class="active"
-				href="./menu.jsp">Order</a> <a href="#contact">Contact</a> <a
-				href="#about">About</a>
-		</div>
-	</div>
+<div class="header">
+  <a href="#default" class="logo">Restaurant</a>
+  <div class="header-right">
+    <a href="./waiterPage.jsp">Waiter Page</a> 
+    <a class="active" href="./waiterMenu.jsp">Order</a> 
+    <a href="#contact">Contact</a> 
+    <a href="#about">About</a> 
+    <a class="logout" href="./login.jsp">Log Out</a>
+  </div>
+</div>
 
 	<div class="submit">	  
 		<button class="button" type="button">Submit Order</button>
 	</div>
 	
-	 <div class="order">
-    <button class="button" type="button" id="update-button">Add to order</button> 
-    <select name="Item" id="order-item">
-    <%
-    out.println(Menu.fillItemList());
-    %>
-    </select>
-    <input type="text" name="stock" id="order-field" placeholder="Quantity">
-  </div>
+
 	
 	<div class="update">
 	  <button class="button" type="button" id="update-button">Update Stock</button> 
