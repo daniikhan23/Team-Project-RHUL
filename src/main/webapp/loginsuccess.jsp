@@ -22,33 +22,15 @@
   </div>
 </div>
 
-<div class="links">
-   	<a href="Restaurant Home Page.html">Home</a>
-</div>
-
-<div class="links">
-   	<a href="Restaurant Contact.html">Contact</a>
-</div>
-
-<div class="links">
-   	<a href="Restaurant About.html">About Us</a>
-</div>
-
-<div class="links">
-   	<a href="menu.jsp">Restaurant Menu</a>
-</div>
-
-<div class="links">
-   	<a href="waiterMenu.jsp">Waiter Menu</a>
-</div>
-
-<div class="links">
-   	<a href="waiterPage.jsp">Waiter Page</a>
-</div>
-
-<div class="links">
-   	<a href="Kitchen.jsp">Kitchen Section</a>
-</div>
+<div class="button-group">
+	<a href="Restaurant Home Page.html" class="button">Home</a>
+	<a href="Restaurant Contact.html" class="button">Contact</a>
+	<a href="Restaurant About.html" class="button">About Us</a>
+    <a href="menu.jsp" class="button">Restaurant Menu Page</a>
+    <a href="waiterMenu.jsp" class="button">Waiter Menu</a>
+    <a href="waiterPage.jsp" class="button">Waiter Page</a>
+    <a href="Kitchen.jsp" class="button">Kitchen Section</a>
+ </div>
 
 <footer>
   <p>Team 35</p>

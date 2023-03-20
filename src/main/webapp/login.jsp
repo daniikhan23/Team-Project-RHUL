@@ -27,10 +27,8 @@
    </table>
    <input type="submit" value="Submit" id="login-submit"/>
    
-    <div class="button">
+    <div class="button-group">
       <a href="menu.jsp" class="button">Customer</a>
-    </div>
-    <div class="button">
       <a href="signup.jsp" class="button">Sign Up</a>
     </div>
   </form>

@@ -100,3 +100,31 @@ a{
 	font-family: gill sans, sans-serif;
 	font-weight: bold;
 }
+
+.button {
+	display: block;
+	margin: 0 auto;
+	align-items: center;
+	justify-content: center;
+	background-color: #008CBA;
+	border: 1px solid black;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	font-size: 16px;
+	cursor: pointer;
+	width: 150px;
+	display: block;
+	border-radius: 8px;
+}
+
+.button:hover {
+  background-color: #1cfef0;
+}
+
+.button:active {
+  background-color: #1cfef0;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
