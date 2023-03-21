@@ -129,18 +129,17 @@ public class Database {
 	
 	
 	public static Connection connectToDatabase() throws ClassNotFoundException {
-		//String user = "postgres"; //for offline postres
-		//String password = "ooquie";  //for offline postres
+		String user = "postgres"; //for offline postres
+		String password = "ooquie";  //for offline postres
 
-		String user = "group35";
-		String password = "eibahv";
+		//String user = "group35";
+		//String password = "eibahv";
 		String database = "localhost";
 		Connection connection = null;
 		try {
 			Class.forName("org.postgresql.Driver");
 			String protocol = "jdbc:postgresql://";
-			//String dbName = "/postgres";    //offline postres
-			String dbName = "/CS2810/group35";
+			String dbName = "/postgres";    //offline postres
 			String fullURL = protocol + database + dbName;
 			connection = DriverManager.getConnection(fullURL, user, password);
 			return connection;
