@@ -147,11 +147,16 @@ public class waiterOrder extends HttpServlet{
 	
 	public void add(String item, int cost, String Category) throws ClassNotFoundException, SQLException {
 		Connection connection = Database.connectToDatabase();
-		Statement statement = connection.createStatement();
 		
-		String sql = "INSERT INTO MenuTable VALUES("+getprimarykey()+", '"+item+"', "+cost+", '"+ Category+"');";
-		System.out.println(sql);
-		statement.execute(sql);
+		String sql = "INSERT INTO MenuTable VALUES(?, ?, ?, ?);";
+		PreparedStatement ps = connection.prepareStatement(sql);
+		ps.setInt(1, getprimarykey());
+		ps.setString(2, item);
+		ps.setInt(3, cost);
+		ps.setString(4, Category);
+		System.out.println(ps);
+		
+		ps.executeUpdate();
 	}
 	
 	public int getprimarykey() throws SQLException, ClassNotFoundException {
