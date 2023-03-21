@@ -79,13 +79,7 @@ CustomerOrder Order = new CustomerOrder();
       }
     </script>
 
-    <button class="requestbutton" onclick="changeColor()">Click me</button>
-    <% if (active) { 
-     %>
-      <script>
-        document.querySelector(".requestbutton").classList.add("active");
-      </script>
-    <% } %>
+
     
 <div class = "submittingbutton">
     <button type="" onclick="showModal()">Order Now</button>
