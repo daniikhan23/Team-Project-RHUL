@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.tomcat.jakartaee.commons.lang3.StringEscapeUtils;
+
 import DB.connection.Database;
 import Order.Customer.CustomerOrder;
 import jakarta.servlet.ServletException;
@@ -74,12 +76,12 @@ public class MenuData {
 		                    "<span>"+ CustomerOrder.numberOfitem(name, 1)+"  </span>"+
 		                    "<input style = \"background-color:"+colour+" \" type=\"submit\" name=\"-\" value=\"-\" id=\"remove-submit\"/>"+"\n"+
 		                    "<input style = \"background-color:"+colour+" \" type=\"submit\" name=\"+\" value=\"+\" id=\"add-submit\"/>"+"\n"+
-		                    "<input type= \"hidden\" name=\"MenuItem\" value=\"" + name+ "\">"+"\n"+
-		                        "<span class=\"menu-item-name\">"+name+"</span>"+ "\n"+
+		                    "<input type= \"hidden\" name=\"MenuItem\" value=\"" + StringEscapeUtils.escapeHtml4(name) + "\">"+"\n"+
+		                        "<span class=\"menu-item-name\">"+StringEscapeUtils.escapeHtml4(name)+"</span>"+ "\n"+
 		                        "<span class=\"menu-item-price\">£"+items.get(name).get(0)+"</span>"+ "\n"+
 		                    "</form>"+"\n"+
 		                    "</h3>"+ "\n"+
-		                    "<span class=\"menu-item-ingredient\" style='margin-left: 9em; margin-top:-1em;'>" + ingredients + "</span>\n" +"</span>"+ 
+		                    "<span class=\"menu-item-ingredient\" style='margin-left: 9em; margin-top:-1em;'>" + StringEscapeUtils.escapeHtml4(ingredients) + "</span>\n" +"</span>"+ 
 		                "</div>"+ "\n"+
 		                    
 		            "</div>" +"\n";
@@ -106,7 +108,8 @@ public class MenuData {
 		  ResultSet rs = st.executeQuery(sql);
 		  String items = "";
 		  while (rs.next()) {
-		    items += "<option value=\"" + rs.getString(1) + "\">"+rs.getString(1)+"</option>";
+			String item = StringEscapeUtils.escapeHtml4(rs.getString(1));
+		    items += "<option value=\"" + item + "\">"+item+"</option>";
 		  }
 		  return items;
 		  }
