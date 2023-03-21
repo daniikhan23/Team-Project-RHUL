@@ -6,8 +6,37 @@ body {
   background-image: linear-gradient(to bottom right, rgb(255, 128, 128), yellow);
 }
 
-h1 {text-align: center;}
-p {text-align: center;}
+h1 {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: white;
+	font-family: optima, sans-serif;
+	font-style: italic;
+	font-size: 5vmin;
+	font-weight: 900;
+	text-shadow: 0px 0px 5px #000000, 0px 0px 10px #b393d3, 0px 0px 10px #000000,
+    0px 0px 20px #000000;
+}
+
+p {
+	text-align: center;
+	font-size: 1em;
+	font-family: Courier;
+	font-weight: 900;
+	font-style: oblique;
+	color: #412535;
+	text-decoration: wavy;
+	line-height: 1;
+	word-spacing: 5px;
+	letter-spacing: 5px;
+	background-image: linear-gradient(to right, #000000, #602d2d);
+	background-size: 250px;
+	background-repeat: repeat;
+	color: transparent;
+	background-clip: text;
+	-webkit-background-clip: text;
+}
 
 footer {
   text-align: center;
@@ -110,7 +139,8 @@ img {
 }
 
 .menu {
-	font-family: sans-serif;
+	font-family: gill sans, sans-serif;
+	font-style: italic;
     font-size: 14px;
 }
 
