@@ -94,10 +94,12 @@ public class MenuData {
 
 		  public void updateStock(String item, String Stock) throws SQLException, IOException, ClassNotFoundException {
 		    Connection connection = Database.connectToDatabase();
-		    Statement st = connection.createStatement();
-
-		    String sql = "UPDATE MenuTable SET Stock = "+ Integer.parseInt(Stock) + " WHERE Name = " + item + ";";
-		    st.executeQuery(sql);
+		    
+		    String sql = "UPDATE MenuTable SET Stock = ? WHERE Name = ?;";
+		    PreparedStatement ps = connection.prepareStatement(sql);
+		    ps.setInt(1, Integer.parseInt(Stock));
+		    ps.setString(2, item);
+		    ps.executeUpdate();
 		  }
 
 }
