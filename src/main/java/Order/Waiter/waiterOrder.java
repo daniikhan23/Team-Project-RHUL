@@ -148,6 +148,7 @@ public class waiterOrder extends HttpServlet{
 		Statement statement = connection.createStatement();
 		
 		String sql = "INSERT INTO MenuTable VALUES("+getprimarykey()+", '"+item+"', "+cost+", '"+ Category+"');";
+		System.out.println(sql);
 		statement.execute(sql);
 	}
 	

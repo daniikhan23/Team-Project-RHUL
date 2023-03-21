@@ -1,15 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
  pageEncoding="ISO-8859-1"%>
-<%@page import="Login.Database.*"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Login Success</title>
+<link rel="stylesheet" href="login.css">
 </head>
 <body>
- <div align="center">
-  <h1>You have logined successfully</h1>
- </div>
+	<h1>Employee Registered Successfully!</h1>
 </body>
 </html>
