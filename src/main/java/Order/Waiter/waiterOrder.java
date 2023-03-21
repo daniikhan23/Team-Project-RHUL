@@ -2,6 +2,7 @@ package Order.Waiter;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -187,11 +188,12 @@ else if (request.getParameter("table") != null) {
 	 */
 	public void remove(String item) throws ClassNotFoundException, SQLException {
 		Connection connection = Database.connectToDatabase();
-		Statement statement = connection.createStatement();
-
-		String sql = "DELETE FROM MenuTable WHERE Name = '"+item+"';";
-
-		statement.execute(sql);
+		
+		String sql = "DELETE FROM MenuTable WHERE Name = ?;";
+		PreparedStatement ps = connection.prepareStatement(sql);
+		ps.setString(1, item);
+		
+		ps.executeUpdate();
 	}
 
 	/*

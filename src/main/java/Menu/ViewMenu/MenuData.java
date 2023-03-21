@@ -17,12 +17,12 @@ import Order.Customer.CustomerOrder;
 public class MenuData {
 
 	public String getMenu(String Category) throws SQLException, IOException, ClassNotFoundException {
+		// Only called with constant values for Category so no risk of injection
 	    String sql = "SELECT mt.ItemCode, mt.Name, mt.Cost, i.Name " +
                 "FROM MenuTable mt " +
                 "JOIN MenuItemIngredients mti ON mt.ItemCode = mti.ItemCode " +
                 "JOIN Ingredients i ON mti.IngredientID = i.IngredientID " +
                 "WHERE mt.Category = '" + Category + "';";
-
 
 		Connection connection = Database.connectToDatabase();
 		Statement st = connection.createStatement();
