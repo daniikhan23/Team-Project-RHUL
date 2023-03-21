@@ -1,6 +1,9 @@
 body { 
   margin: 0;
+  overflow-x: hidden;
   font-family: Arial, Helvetica, sans-serif;
+  background-color: rgb(255, 128, 128); /* For browsers that do not support gradients */
+  background-image: linear-gradient(to bottom right, rgb(255, 128, 128), yellow);
 }
 
 h1 {text-align: center;}
@@ -81,11 +84,10 @@ img {
 .button {
   overflow: hidden;
   text-align: center;
-  padding: 12px;
   text-decoration: none;
   font-size: 18px; 
   margin: 4px 2px;
-  background-color: #3a3a3a;
+  background-color: rgb(255, 0, 0);
 	padding: 7px;
 	border: none;
 	border-radius: 5px;
@@ -94,6 +96,10 @@ img {
 	outline: none;
 }
 
+.container {
+  margin: 3%;
+  display: flex;
+}
 
 .tableno {
   position:relative; right:85%;
