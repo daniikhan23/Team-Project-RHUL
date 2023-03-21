@@ -2,6 +2,7 @@ package Order.Waiter;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -60,6 +61,7 @@ public class waiterOrder extends HttpServlet{
 		  try {
 		    connection = Database.connectToDatabase();
 		    statement = connection.createStatement();
+		    // probably sql injection if it actually worked... will fix when working code is merged
 		    String SQL = "INSERT INTO TableNO (help) VALUES (0) WHERE TableNO = "+help+";";
 		    ResultSet rs = statement.executeQuery(SQL);
 		  } catch (SQLException | ClassNotFoundException e) {
@@ -136,19 +138,26 @@ public class waiterOrder extends HttpServlet{
 	
 	public void remove(String item) throws ClassNotFoundException, SQLException {
 		Connection connection = Database.connectToDatabase();
-		Statement statement = connection.createStatement();
 		
-		String sql = "DELETE FROM MenuTable WHERE Name = '"+item+"';";
+		String sql = "DELETE FROM MenuTable WHERE Name = ?;";
+		PreparedStatement ps = connection.prepareStatement(sql);
+		ps.setString(1, item);
 		
-		statement.execute(sql);
+		ps.executeUpdate();
 	}
 	
 	public void add(String item, int cost, String Category) throws ClassNotFoundException, SQLException {
 		Connection connection = Database.connectToDatabase();
-		Statement statement = connection.createStatement();
 		
-		String sql = "INSERT INTO MenuTable VALUES("+getprimarykey()+", '"+item+"', "+cost+", '"+ Category+"');";
-		statement.execute(sql);
+		String sql = "INSERT INTO MenuTable VALUES(?, ?, ?, ?);";
+		PreparedStatement ps = connection.prepareStatement(sql);
+		ps.setInt(1, getprimarykey());
+		ps.setString(2, item);
+		ps.setInt(3, cost);
+		ps.setString(4, Category);
+		System.out.println(ps);
+		
+		ps.executeUpdate();
 	}
 	
 	public int getprimarykey() throws SQLException, ClassNotFoundException {
