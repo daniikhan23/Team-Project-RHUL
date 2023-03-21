@@ -61,6 +61,7 @@ public class waiterOrder extends HttpServlet{
 		  try {
 		    connection = Database.connectToDatabase();
 		    statement = connection.createStatement();
+		    // probably sql injection if it actually worked... will fix when working code is merged
 		    String SQL = "INSERT INTO TableNO (help) VALUES (0) WHERE TableNO = "+help+";";
 		    ResultSet rs = statement.executeQuery(SQL);
 		  } catch (SQLException | ClassNotFoundException e) {
