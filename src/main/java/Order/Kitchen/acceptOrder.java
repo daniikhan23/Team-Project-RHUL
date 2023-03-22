@@ -17,12 +17,13 @@ public class acceptOrder  extends HttpServlet{
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 		    throws ServletException, IOException {
 
-			if (request.getParameter("Acceptorder") != null) {
+			if (request.getParameter("Acceptitem") != null) {
 				String table = request.getParameter("Acceptorder");
-				int Table = Integer.parseInt(table);
+				String item = request.getParameter("Acceptitem");
 				AlterOrder order = new AlterOrder();
+				int Table = Integer.parseInt(table);
 				try {
-					order.acceptorder(Table);
+					order.sendoffItem(Table, item);
 				} catch (ClassNotFoundException | SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -31,11 +32,10 @@ public class acceptOrder  extends HttpServlet{
 			}
 			else {
 				String table = request.getParameter("Acceptorder");
-				String item = request.getParameter("Acceptitem");
 				AlterOrder order = new AlterOrder();
 				int Table = Integer.parseInt(table);
 				try {
-					order.cancelitem(Table, item);
+					order.sendoffOrder(Table);
 				} catch (ClassNotFoundException | SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

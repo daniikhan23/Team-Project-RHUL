@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="Order.Kitchen.KitchenOrder" %>
+<%@ page import="Order.Kitchen.Messages" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,13 +12,41 @@
   <meta http-equiv="refresh" content="30">
 </head>
 <body>
-<%KitchenOrder Order = new KitchenOrder(); %>
+<%KitchenOrder KOrder = new KitchenOrder(); %>
 <div class="header">
   <a href="#default" class="logo">Restaurant</a>
   <div class="header-right">
     <a href="login.jsp">LOG OUT</a>
   </div>
 </div>
+
+
+  <div id="countdown"></div>
+  <button id="pauseButton" onclick="toggleRefresh()">Pause Refresh</button>
+  
+  <script>
+    var seconds = 10;
+    var refreshInterval = setInterval(countdown, 1000);
+
+    function countdown() {
+      seconds--;
+      document.getElementById("countdown").innerHTML = "Refreshing page: " + seconds;
+      if (seconds == 0) {
+        location.reload();
+      }
+    }
+
+    function toggleRefresh() {
+      var button = document.getElementById("pauseButton");
+      if (button.innerHTML == "Pause Refresh") {
+        clearInterval(refreshInterval);
+        button.innerHTML = "Resume Refresh";
+      } else {
+        refreshInterval = setInterval(countdown, 1000);
+        button.innerHTML = "Pause Refresh";
+      }
+    }
+  </script>
 <div class="box-style">
 <div class="container">
   <div class="text">
@@ -35,16 +64,16 @@ Enter text here...
 <div class="box-style-2">
 <div class="container">
   <div class="text">
-    <h1>Msg from kitchen</h1>
+    <h1>Msg from waiter</h1>
     <textarea id="freeform" name="freeform" rows="4" cols="30">
-
+	<%out.println(Order.Kitchen.Messages.getMessage()); %>
 </textarea>
   </div>
   
   <div>
     <div class ="text">
-    <form action="Messaging" method="post">
-    <h1 >Msg to Kitchen</h1>
+    <form action="KMessaging" method="post">
+    <h1 >Msg to Waiter</h1>
     
     <textarea id="Message" name="Message" rows="4" cols="30">
 
@@ -57,7 +86,7 @@ Enter text here...
 </div>
 </div>
 
-<%out.println(Order.getOrder()); %>
+<%out.println(KOrder.getOrder()); %>
 
 <script>
   var coll = document.getElementsByClassName("collapsible");

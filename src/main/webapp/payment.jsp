@@ -7,7 +7,8 @@
 <head>
   <title>Payment</title>
   <link rel="stylesheet" href="payment.css" />
-
+  <link rel="stylesheet" href="Payment .css" />
+  <link rel="stylesheet" href="Restaurant Style menu updated.css">
 </head>
 <body>
 <div class="header">
@@ -38,17 +39,24 @@ double totalCost = Order.totalcost(1); //need to change for specific table
   <button class="order-more-button">Order More</button>
 </a></p>
 <div class="image-container">
-  <div class="image">
-    <img src="https://picsum">
-  </div>
-</div>  
-<div class="payment-container">
-  <p class="amount-due">Amount Due: £<span class="total-cost-amount"><%= totalCost %></span></p>
+    <form>
+      <h1>Payment Details</h1>
+      <label for="name">Name on Card:</label>
+      <input type="text" id="name" name="name"><br><br>
+      <label for="card">Card Number:</label>
+      <input type="text" id="card" name="card"><br><br>
+      <label for="expiry">Expiration Date:</label>
+      <input type="text" id="expiry" name="expiry"><br><br>
+      <label for="cvv">CVV:</label>
+      <input type="text" id="cvv" name="cvv"><br><br>
+	  <p class="amount-due">Amount Due: £<span class="total-cost-amount"><%= totalCost %></span></p>
   
   <button class="pay-contactless-button" onclick="payContactless()">Pay Contactless</button>
   
-</div>
-</div>
+    </form>
+
+  </div>
+</div>  
 
 
 

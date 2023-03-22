@@ -145,7 +145,7 @@ else if (request.getParameter("table") != null) {
 					"<div class=\"content\">\r\n"
 					+ "<ul>";
 			while (ItemOrder.next()) {
-				container += "<li style = \" background-color = "+getcompleteness(Orderlist.get(i), ItemOrder.getString(1))+"\">"+ ItemOrder.getString(1);
+				container += "<li style = \" color : "+getcompleteness(Orderlist.get(i), ItemOrder.getString(1))+"\">"+ ItemOrder.getString(1);
 				container += "<form action=\"cancelorder\" method=\"post\">";
 				container += "<input type=\"submit\" name=\"Cancel Item\" value=\"Cancel Item\" id=\"cancelorder\"/>";
 				container += "<input type= \"hidden\" name=\"OrderCancel\" value=\"" + Orderlist.get(i)+ "\">";

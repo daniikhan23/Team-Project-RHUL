@@ -35,7 +35,7 @@ public class acceptOrder  extends HttpServlet{
 				AlterOrder order = new AlterOrder();
 				int Table = Integer.parseInt(table);
 				try {
-					order.cancelitem(Table, item);
+					order.acceptitem(Table, item);
 				} catch (ClassNotFoundException | SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

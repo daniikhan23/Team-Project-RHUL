@@ -107,5 +107,32 @@
 	  
   </servlet-mapping>
   
+              <servlet>
+	  <servlet-name>KMessaging</servlet-name>
+	  <servlet-class>Order.Kitchen.Messages</servlet-class>
+  </servlet>
+  
+  
+  <servlet-mapping>
+	  <servlet-name>KMessaging</servlet-name>
+	  
+	  <url-pattern>/KMessaging</url-pattern>
+	  
+  </servlet-mapping>
+  
+  
+                <servlet>
+	  <servlet-name>sendoff</servlet-name>
+	  <servlet-class>Order.Kitchen.acceptOrder</servlet-class>
+  </servlet>
+  
+  
+  <servlet-mapping>
+	  <servlet-name>sendoff</servlet-name>
+	  
+	  <url-pattern>/sendoff</url-pattern>
+	  
+  </servlet-mapping>
+  
   
 </web-app>
