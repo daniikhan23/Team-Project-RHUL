@@ -13,7 +13,7 @@
 </head>
 <body>
 <div class="header">
-  <a href="#default" class="logo">diez libras de suciedad</a>
+  <a href="#default" class="logo">Diez Libras De Suciedad</a>
   <div class="header-right">
     <a href="./Restaurant Home Page.html">Home</a>
 	<a class="active" href="./menu.jsp">Order</a>

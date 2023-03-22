@@ -16,7 +16,7 @@
   align-items: center;
   box-sizing: border-box;
   position: absolute;
-  top: 5%;
+  top: 2%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -96,14 +96,24 @@
 .pay-contactless-button {
   
   padding: 10px 20px;
-  background-color: red;
+  background-color: #b81717;
   color: white;
   border: none;
+  text-align: center;
+  align-items: center;
+  margin: 0;
+  position: absolute;
+  left: 40%;
 }
 
 .pay-contactless-button:hover {
-  background-color: #006400;
-  cursor: pointer;
+  background-color: #fe721c;
+}
+
+.pay-contactless-button:active {
+  background-color: #fe721c;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }
 
 .thank-you-message {
