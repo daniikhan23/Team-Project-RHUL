@@ -7,7 +7,6 @@
 <html>
 <head>
   <title>The Restaurant Menu</title>
-  <link rel="stylesheet" href="DropDown.css" />
   <link rel="stylesheet" href="Restaurant Style menu updated.css">
   <link rel="stylesheet" href="SubmitOrder.css" />
   
@@ -96,21 +95,7 @@ CustomerOrder Order = new CustomerOrder();
 
         <h2>Would you like to place the order?</h2>
         <form action= "CustomerOrderItem" method="post">
-   <div class="dropdown">
-      <select id="myDropdown" name = "myDropdown">
-        <option value="0">Table Number?</option>
-        <option value="1">Table 1</option>
-        <option value="2">Table 2</option>
-        <option value="3">Table 3</option>
-        <option value="4">Table 4</option>
-        <option value="5">Table 5</option>
-        <option value="6">Table 6</option>
-        <option value="7">Table 7</option>
-        <option value="8">Table 8</option>
-        <option value="9">Table 9</option>
-        <option value="10">Table 10</option>
-      </select>
-    </div>
+
         <p>This action cannot be undone.</p>
           
    		  <input class = button type="submit" name="Yes" value="Yes" id="OrderTable"/>

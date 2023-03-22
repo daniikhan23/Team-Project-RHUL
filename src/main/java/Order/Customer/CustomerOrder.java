@@ -69,16 +69,21 @@ public class CustomerOrder extends HttpServlet{
 			  response.sendRedirect("menu.jsp");
 			}
 
+		else if (request.getParameter("myDropdown") != null) {
+			
+			String table = request.getParameter("myDropdown");
+			tableNo = Integer.parseInt(table);
+			try {
+				addToOrderTable(tableNo);
+				response.sendRedirect("CompletionBar.html");
+			} catch (ClassNotFoundException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
 		else {
-				String table = request.getParameter("myDropdown");
-				if (table != null) {
-					  tableNo = Integer.parseInt(table);
-					}
 
-					if (tableNo == 0) {
-
-					System.out.println("cannot do");
-				}
 				System.out.println("Added currentordertable to ordertable");
 
 				response.sendRedirect("payment.jsp");
