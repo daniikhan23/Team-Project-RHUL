@@ -19,7 +19,7 @@
   %>
   
 <div class="header">
-	<a href="#default" class="logo">Restaurant</a>
+	<a href="#default" class="logo">Diez Libras De Suciedad</a>
 	<div class="header-right">
 		<a class="logout" href="./login.jsp">Log Out</a>
 	</div>

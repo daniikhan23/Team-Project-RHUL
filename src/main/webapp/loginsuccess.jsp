@@ -10,7 +10,7 @@
 </head>
 <body>
 <div class="header">
-  <a href="#default" class="logo">Restaurant</a>
+  <a href="#default" class="logo">Diez Libras De Suciedad</a>
   <div class="header-right">
     <a href="login.jsp">Log out</a>
   </div>
