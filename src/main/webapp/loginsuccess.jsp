@@ -2,14 +2,57 @@
  pageEncoding="ISO-8859-1"%>
 <%@page import="Login.Database.*"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+  <meta charset="UTF-8">
+  <title>Admin Webpage</title>
+  <link rel="stylesheet" href="loginsuccess.css">
 </head>
 <body>
- <div align="center">
-  <h1>You have logined successfully</h1>
- </div>
+<div class="header">
+  <a href="#default" class="logo">Restaurant</a>
+  <div class="header-right">
+    <a href="login.jsp">Log out</a>
+  </div>
+</div>
+
+<div class="container">
+  <div class="text">
+    <h1>Welcome to the Admin Page</h1>
+  </div>
+</div>
+
+<div class="links">
+   	<a href="Restaurant Home Page.html">Home</a>
+</div>
+
+<div class="links">
+   	<a href="Restaurant Contact.html">Contact</a>
+</div>
+
+<div class="links">
+   	<a href="Restaurant About.html">About Us</a>
+</div>
+
+<div class="links">
+   	<a href="menu.jsp">Restaurant Menu</a>
+</div>
+
+<div class="links">
+   	<a href="waiterMenu.jsp">Waiter Menu</a>
+</div>
+
+<div class="links">
+   	<a href="waiterPage.jsp">Waiter Page</a>
+</div>
+
+<div class="links">
+   	<a href="Kitchen.jsp">Kitchen Section</a>
+</div>
+
+<footer>
+  <p>Team 35</p>
+</footer>
+
 </body>
 </html>

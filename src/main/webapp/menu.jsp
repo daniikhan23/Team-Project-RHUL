@@ -9,11 +9,12 @@
   <title>The Restaurant Menu</title>
   <link rel="stylesheet" href="Restaurant Style menu updated.css">
   <link rel="stylesheet" href="SubmitOrder.css" />
+  <link rel="stylesheet" href="DropDown.css" />
   
   
       <style>
       .requestbutton {
-        background-color: green;
+        background-color: red;
         color: white;
         padding: 10px 20px;
         border: none;
@@ -21,10 +22,10 @@
         cursor: pointer;
       }
       .requestbutton:hover {
-        background-color: darkgreen;
+        background-color: green;
       }
       .requestbutton.active {
-        background-color: red;
+        background-color: yellow;
       }
     </style>
 </head>
@@ -61,17 +62,7 @@ CustomerOrder Order = new CustomerOrder();
       boolean active = false;
     %>
     <script>
-      function changeColor() {
-        var btn = document.querySelector(".requestbutton");
-        btn.classList.add("active");
 
-        
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", "CustomerOrderItem", true);
-        xhr.send();
-      }
-      
-      
       const form = document.querySelector('form');
       form.addEventListener('submit', (e)) => {
     	  e.preventDefault();
@@ -255,6 +246,7 @@ function confirmAction() {
           <h2 class="menu-group-heading">
               Seafood
           </h2>
+          
           <div class="row">
 		  <div class="column">
 		    <img src="seafood.jpg" alt="Seafood" style="height:80%; width:100%">

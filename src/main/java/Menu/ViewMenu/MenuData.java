@@ -48,7 +48,6 @@ public class MenuData {
 		   	List<String> ingredientList = items.get(name);
 		   	String ingredients = String.join(", ", ingredientList.subList(1, ingredientList.size()));
 
-
 			categoryMenu += "<div class=\"menu-item\">"+ "\n"+
 		                "<div class=\"menu-item-text\">"+ "\n"+
 		                    "<h3 class=\"menu-item-heading\">"+ "\n"+
