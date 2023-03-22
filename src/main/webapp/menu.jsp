@@ -7,9 +7,9 @@
 <html>
 <head>
   <title>The Restaurant Menu</title>
-  <link rel="stylesheet" href="Restaurant Style menu updated.css">
-  <link rel="stylesheet" href="SubmitOrder.css" />
   <link rel="stylesheet" href="DropDown.css" />
+  <link rel="stylesheet" href="Restaurant Style menu.css">
+  <link rel="stylesheet" href="SubmitOrder.css" />
   
   
       <style>
@@ -43,7 +43,7 @@ CustomerOrder Order = new CustomerOrder();
     <a href="./Restaurant Home Page.html">Home</a>
 	<a class="active" href="./menu.jsp">Order</a>
     <a href="Restaurant Contact.html">Contact</a>
-    <a href="Restaurant About.jsp">About</a>
+    <a href="Restaurant About.html">About</a>
   </div>
 </div>
 	
@@ -62,14 +62,30 @@ CustomerOrder Order = new CustomerOrder();
       boolean active = false;
     %>
     <script>
+      function changeColor() {
+        var btn = document.querySelector(".requestbutton");
+        btn.classList.add("active");
 
+        
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "CustomerOrderItem", true);
+        xhr.send();
+      }
+      
+      
       const form = document.querySelector('form');
       form.addEventListener('submit', (e)) => {
     	  e.preventDefault();
       }
     </script>
 
-
+    <button class="requestbutton" onclick="changeColor()">Click me</button>
+    <% if (active) { 
+     %>
+      <script>
+        document.querySelector(".requestbutton").classList.add("active");
+      </script>
+    <% } %>
     
 <div class = "submittingbutton">
     <button type="" onclick="showModal()">Order Now</button>
@@ -86,7 +102,21 @@ CustomerOrder Order = new CustomerOrder();
 
         <h2>Would you like to place the order?</h2>
         <form action= "CustomerOrderItem" method="post">
-
+   <div class="dropdown">
+      <select id="myDropdown" name = "myDropdown">
+        <option value="0">Table Number?</option>
+        <option value="1">Table 1</option>
+        <option value="2">Table 2</option>
+        <option value="3">Table 3</option>
+        <option value="4">Table 4</option>
+        <option value="5">Table 5</option>
+        <option value="6">Table 6</option>
+        <option value="7">Table 7</option>
+        <option value="8">Table 8</option>
+        <option value="9">Table 9</option>
+        <option value="10">Table 10</option>
+      </select>
+    </div>
         <p>This action cannot be undone.</p>
           
    		  <input class = button type="submit" name="Yes" value="Yes" id="OrderTable"/>
@@ -99,62 +129,6 @@ CustomerOrder Order = new CustomerOrder();
 
 
 </div>
-
-<div class="submittingbutton">
-  <button onclick="showHelp()">Call Staff</button>
-  <div id="help" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="hideHelp()">&times;</span>
-      <h1>Request for help</h1>
-      <form action="CustomerOrderItem" method="post">
-        <div class="dropdown">
-            <select id="helpDropdown" name = "helpDropdown">
-            <option value="0">Table Number?</option>
-            <option value="1">Table 1</option>
-            <option value="2">Table 2</option>
-            <option value="3">Table 3</option>
-            <option value="4">Table 4</option>
-            <option value="5">Table 5</option>
-            <option value="6">Table 6</option>
-            <option value="7">Table 7</option>
-            <option value="8">Table 8</option>
-            <option value="9">Table 9</option>
-           <option value="10">Table 10</option>
-            </select>
-          </div>
-        <p>Once you confirm, a staff member will be with you shortly.</p>
-        <input class = button type="submit" name="Yes" value="Yes" id="helptable"/>
-      </form>
-      <button onclick="hideHelp()">No</button>
-    </div>
-  </div>
-</div>
-<script>
-const help = document.getElementById("help");
-function showHelp() {
-    help.style.display = "block";
-}
-function hideHelp() {
-    help.style.display = "none";
-}
-
-// Get the popup element
-var popup = document.querySelector(".modal");
-
-// Show the popup
-function showPopup() {
-    popup.style.display = "block";
-}
-
-// Confirm the action
-function confirmAction() {
-    // Do something (e.g. delete a record)
-    console.log("Action confirmed");
-
-    // Hide the popup
-    hidePopup();
-}
-</script>
 
 	<div class="item Starter">
     <div class="container">
@@ -246,7 +220,6 @@ function confirmAction() {
           <h2 class="menu-group-heading">
               Seafood
           </h2>
-          
           <div class="row">
 		  <div class="column">
 		    <img src="seafood.jpg" alt="Seafood" style="height:80%; width:100%">
