@@ -1,7 +1,16 @@
+<%@page import="jakarta.servlet.jsp.SkipPageException"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 
 <%@ page import="Menu.ViewMenu.MenuData"%>
+
+<%
+String plevel = (String)session.getAttribute("plevel");
+if (plevel != "admin" && plevel != "waiter") {
+	out.print("<h1>403 Forbidden</h1>");
+	throw new SkipPageException();
+}
+%>
 
 <!DOCTYPE html>
 <html>
@@ -48,7 +57,7 @@
 			<h2 class="menu-group-heading">Starter</h2>
 			<div class="menu-group">
 				<%
-				out.println(Menu.getMenu("Starter"));
+				out.println(Menu.getMenu("Starter", ""));
 				%>
 
 			</div>
@@ -61,7 +70,7 @@
 			<h2 class="menu-group-heading">Burger</h2>
 			<div class="menu-group">
 				<%
-				out.println(Menu.getMenu("Burger"));
+				out.println(Menu.getMenu("Burger", ""));
 				%>
 
 			</div>
@@ -74,7 +83,7 @@
 			<h2 class="menu-group-heading">pizza</h2>
 			<div class="menu-group">
 				<%
-				out.println(Menu.getMenu("Pizza"));
+				out.println(Menu.getMenu("Pizza", ""));
 				%>
 			</div>
 
@@ -86,7 +95,7 @@
 			<h2 class="menu-group-heading">Seafood</h2>
 			<div class="menu-group">
 				<%
-				out.println(Menu.getMenu("Seafood"));
+				out.println(Menu.getMenu("Seafood", ""));
 				%>
 			</div>
 		</div>
