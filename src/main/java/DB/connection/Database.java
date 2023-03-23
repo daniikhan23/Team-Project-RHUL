@@ -159,7 +159,7 @@ public class Database {
 			Class.forName("org.postgresql.Driver");
 			String protocol = "jdbc:postgresql://";
 			String dbName = "/postgres";    //offline postres
-			//String dbName = "CS2810%2fgroup35";
+			//String dbName = "/CS2810/group35";
 			String fullURL = protocol + database + dbName;
 			connection = DriverManager.getConnection(fullURL, user, password);
 			return connection;
