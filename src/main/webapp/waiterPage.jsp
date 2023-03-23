@@ -3,6 +3,15 @@
 	
 <%@ page import="Menu.ViewMenu.MenuData"%>
 <%@ page import="Order.Waiter.waiterOrder" %>
+<%@ page import="Order.Waiter.Messages" %>
+
+<%
+String plevel = (String)session.getAttribute("plevel");
+if (plevel != "admin" && plevel != "waiter") {
+	out.print("<h1>403 Forbidden</h1>");
+	throw new SkipPageException();
+}
+%>
 
 <!DOCTYPE html>
 <html>
@@ -89,10 +98,23 @@
   <div class="text">
     <h1>Customer help</h1>
     <div class="table-group" style="width:100%">
-      <button onclick = helping(1) style="width:25%; background-color: <% out.println(order.checkCustomer(1)); %>;">Table 1</button>
-      <button style="width:25%; background-color: <% out.println(order.checkCustomer(2)); %>">Table 2</button>
-      <button style="width:25%; background-color: <% out.println(order.checkCustomer(3)); %>">Table 3</button>
-      <button style="width:25%; background-color: <% out.println(order.checkCustomer(4)); %>">Table 4</button>
+      <form action=menuChange method="post">
+        <input type="hidden" class="table" name="table" value=1>
+        <button style="width:25%; background-color: <% out.println(order.checkCustomer(1)); %>;">Table 1</button>
+      </form>
+      <form action=menuChange method="post">
+        <input type="hidden" class="table" name="table" value=2>
+        <button style="width:25%; background-color: <% out.println(order.checkCustomer(2)); %>">Table 2</button>
+      </form>  
+      <form action=menuChange method="post">
+        <input type="hidden" class="table" name="table" value=3>
+        <button style="width:25%; background-color: <% out.println(order.checkCustomer(3)); %>">Table 3</button>
+      </form>
+      <form action=menuChange method="post">
+        <input type="hidden" class="table" name="table" value=4>
+        <button style="width:25%; background-color: <% out.println(order.checkCustomer(4)); %>">Table 4</button>
+      </form>
+
     </div>
     <div class="table-group" style="width:100%">
       <button style="width:25%; background-color: <% out.println(order.checkCustomer(5)); %>">Table 5</button>
@@ -101,8 +123,15 @@
       <button style="width:25%; background-color: <% out.println(order.checkCustomer(8)); %>">Table 8</button>
     </div>
     <div class="table-group" style="width:100%">
-      <button style="width:50%; background-color: <% out.println(order.checkCustomer(9)); %>">Table 9</button>
-      <button style="width:50%; background-color: <% out.println(order.checkCustomer(10)); %>">Table 10</button>
+      <form action=menuChange method="post">
+        <input type="hidden" class="table" name="table" value=9>
+        <button style="width:50%; background-color: <% out.println(order.checkCustomer(9)); %>">Table 9</button>
+      </form>
+      <form action=menuChange method="post">
+        <input type="hidden" class="table" name="table" value=10>
+        <button style="width:50%; background-color: <% out.println(order.checkCustomer(10)); %>">Table 10</button>
+      </form>
+
     </div>
 
   </div>

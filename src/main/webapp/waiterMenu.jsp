@@ -1,13 +1,23 @@
+<%@page import="jakarta.servlet.jsp.SkipPageException"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 
 <%@ page import="Menu.ViewMenu.MenuData"%>
+
+<%
+String plevel = (String)session.getAttribute("plevel");
+if (plevel != "admin" && plevel != "waiter") {
+	out.print("<h1>403 Forbidden</h1>");
+	throw new SkipPageException();
+}
+%>
 
 <!DOCTYPE html>
 <html>
 <head> 
 <title>Waiter Menu</title>
 <link rel="stylesheet" href="Restaurant Style menu.css">
+<link rel="stylesheet" href="Restaurant Style.css">
 </head>
 <body>
 
@@ -28,24 +38,16 @@
 		<button class="button" type="button">Submit Order</button>
 	</div>
 	
-	 <div class="order">
-    <button class="button" type="button" id="update-button">Add to order</button> 
-    <select name="Item" id="order-item">
-    <%
-    out.println(Menu.fillItemList());
-    %>
-    </select>
-    <input type="text" name="stock" id="order-field" placeholder="Quantity">
-  </div>
-	
 	<div class="update">
+	  <form action="menuupdate" method="post">
 	  <button class="button" type="button" id="update-button">Update Stock</button> 
-	  <select name="Item" id="stock-item">
+	  <select name="item-update" id="item-update">
     <%
     out.println(Menu.fillItemList());
     %>
     </select>
-    <input type="text" name="stock" id="stock-field" placeholder="Stock">
+    <input type="text" name="stock-field" id="stock-field" placeholder="Stock">
+    </form>
 	</div>
 
 	<div class="container">
@@ -53,7 +55,7 @@
 			<h2 class="menu-group-heading">Starter</h2>
 			<div class="menu-group">
 				<%
-				out.println(Menu.getMenu("Starter"));
+				out.println(Menu.getMenu("Starter", ""));
 				%>
 
 			</div>
@@ -66,7 +68,7 @@
 			<h2 class="menu-group-heading">Burger</h2>
 			<div class="menu-group">
 				<%
-				out.println(Menu.getMenu("Burger"));
+				out.println(Menu.getMenu("Burger", ""));
 				%>
 
 			</div>
@@ -79,7 +81,7 @@
 			<h2 class="menu-group-heading">pizza</h2>
 			<div class="menu-group">
 				<%
-				out.println(Menu.getMenu("Pizza"));
+				out.println(Menu.getMenu("Pizza", ""));
 				%>
 			</div>
 
@@ -91,7 +93,7 @@
 			<h2 class="menu-group-heading">Seafood</h2>
 			<div class="menu-group">
 				<%
-				out.println(Menu.getMenu("Seafood"));
+				out.println(Menu.getMenu("Seafood", ""));
 				%>
 			</div>
 		</div>

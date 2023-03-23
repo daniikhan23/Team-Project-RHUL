@@ -19,18 +19,12 @@ public class CustomerOrder extends HttpServlet{
 
 	private static final long serialVersionUID = 6655222004307163766L;
 	public int tableNo;
-
-	@Override
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 		    throws ServletException, IOException {
-
-		String name = request.getParameter("MenuItem");
-		String table = request.getParameter("myDropdown");
-		this.tableNO = Integer.parseInt(table);
-		if (this.tableNO == 0) {
-			System.out.println("cannot do");
-		}
 		
+		String name = request.getParameter("MenuItem");
+
 		if (request.getParameter("-") != null) {
 			System.out.println("removed item"+name);
 			try {
@@ -136,7 +130,7 @@ public class CustomerOrder extends HttpServlet{
 	public static void addToOrderTable(int tableNO) throws ClassNotFoundException, SQLException {
 		Connection connection = Database.connectToDatabase();
 		Statement statement = connection.createStatement();
-
+		
 		String sql = "INSERT INTO OrderTable VALUES";
 		ResultSet OrderNo = statement.executeQuery("SELECT OrderNO FROM OrderTable ORDER BY OrderNO DESC;");
 		int NewOrderNo;
@@ -163,8 +157,8 @@ public class CustomerOrder extends HttpServlet{
 		statement.execute(FinishedS);
 		CurrentOrder();
 	}
-
-
+	
+	
 	public static int addpnum(String table) throws SQLException, ClassNotFoundException {
 		Connection connection = Database.connectToDatabase();
 		Statement statement = connection.createStatement();

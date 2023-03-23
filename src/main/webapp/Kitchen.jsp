@@ -1,7 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="Order.Kitchen.KitchenOrder" %>
-<%@ page import="Order.Kitchen.Messages" %>
+
+<%
+String plevel = (String)session.getAttribute("plevel");
+if (plevel != "admin" && plevel != "kitchen") {
+	out.print("<h1>403 Forbidden</h1>");
+	throw new SkipPageException();
+}
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -32,6 +32,11 @@
 <body>
 
 <%
+
+String filterValue = request.getParameter("filterValue");
+if (filterValue == null) {
+    filterValue = "None"; // set a default value here
+}
 System.out.println("adding menu");
 MenuData Menu = new MenuData();
 CustomerOrder Order = new CustomerOrder();
@@ -48,18 +53,26 @@ CustomerOrder Order = new CustomerOrder();
 </div>
 	
 <div class="dropdown">
-    <label for="filter">Filter by:</label>
-    <select id="filter">
-      <option value="all">All</option>
-      <option value="Starter">Starter</option>
-      <option value="Burger">Burger</option>
-      <option value="Pizza">Pizza</option>
-      <option value="Seafood">Seafood</option>
+    <label for="filter">Filter by Allergy/Preference:</label>
+   <select id="filter" onchange="updateFilterValue()">
+     <option value="None" <% if (filterValue == null || filterValue.equals("None")) { out.print("selected"); } %>>None</option>
+        <option value="Gluten" <% if (filterValue != null && filterValue.equals("Gluten")) { out.print("selected"); } %>>Gluten Free</option>
+        <option value="Shellfish" <% if (filterValue != null && filterValue.equals("Shellfish")) { out.print("selected"); } %>>No Shellfish</option>
+        <option value="Vegetable" <% if (filterValue != null && filterValue.equals("Vegetable")) { out.print("selected"); } %>>No vegetables</option>
+        <option value="Dairy" <% if (filterValue != null && filterValue.equals("Dairy")) { out.print("selected"); } %>>Dairy Free</option>
+        <option value="Poultry" <% if (filterValue != null && filterValue.equals("Poultry")) { out.print("selected"); } %>>No Poultry</option>
+        <option value="Red Meat" <% if (filterValue != null && filterValue.equals("Red Meat")) { out.print("selected"); } %>>No Red Meat</option>
+        
+ 
     </select>
-    
   </div>
     <%!
       boolean active = false;
+    String Starter;
+    String Burger;
+    String Pizza;
+    String Seafood;
+    
     %>
     <script>
       function changeColor() {
@@ -79,7 +92,7 @@ CustomerOrder Order = new CustomerOrder();
       }
     </script>
 
-    <button class="requestbutton" onclick="changeColor()">Click me</button>
+    <button class="requestbutton" style="margin-left: 75px;" onclick="changeColor()">Select Filter</button>
     <% if (active) { 
      %>
       <script>
@@ -130,6 +143,62 @@ CustomerOrder Order = new CustomerOrder();
 
 </div>
 
+<div class="submittingbutton">
+  <button onclick="showHelp()">Call Staff</button>
+  <div id="help" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="hideHelp()">&times;</span>
+      <h1>Request for help</h1>
+      <form action="CustomerOrderItem" method="post">
+        <div class="dropdown">
+            <select id="helpDropdown" name = "helpDropdown">
+            <option value="0">Table Number?</option>
+            <option value="1">Table 1</option>
+            <option value="2">Table 2</option>
+            <option value="3">Table 3</option>
+            <option value="4">Table 4</option>
+            <option value="5">Table 5</option>
+            <option value="6">Table 6</option>
+            <option value="7">Table 7</option>
+            <option value="8">Table 8</option>
+            <option value="9">Table 9</option>
+            <option value="10">Table 10</option>
+            </select>
+          </div>
+        <p>Once you confirm, a staff member will be with you shortly.</p>
+        <input class = button type="submit" name="Yes" value="Yes" id="helptable"/>
+      </form>
+      <button onclick="hideHelp()">No</button>
+    </div>
+  </div>
+</div>
+<script>
+const help = document.getElementById("help");
+function showHelp() {
+    help.style.display = "block";
+}
+function hideHelp() {
+    help.style.display = "none";
+}
+
+// Get the popup element
+var popup = document.querySelector(".modal");
+
+// Show the popup
+function showPopup() {
+    popup.style.display = "block";
+}
+
+// Confirm the action
+function confirmAction() {
+    // Do something (e.g. delete a record)
+    console.log("Action confirmed");
+
+    // Hide the popup
+    hidePopup();
+}
+</script>
+
 	<div class="item Starter">
     <div class="container">
       <div class="menu">
@@ -149,8 +218,9 @@ CustomerOrder Order = new CustomerOrder();
 		</div> 
         <div class="menu-group">
         
-            <%
-            out.println(Menu.getMenu("Starter"));
+           <% 
+            Starter=Menu.getMenu("Starter", filterValue); // pass the selected filter value to the getMenu() function
+            out.println(Starter);
             %>
 
         </div>
@@ -178,7 +248,8 @@ CustomerOrder Order = new CustomerOrder();
 		</div> 
           <div class="menu-group">
             <%
-            out.println(Menu.getMenu("Burger"));
+            Burger=Menu.getMenu("Burger",filterValue);
+            out.println(Burger);
             %>
 
           </div>
@@ -206,7 +277,8 @@ CustomerOrder Order = new CustomerOrder();
 		</div>
           <div class="menu-group">
             <%
-            out.println(Menu.getMenu("Pizza"));
+            Pizza=Menu.getMenu("Pizza",filterValue);
+            out.println(Pizza);
             %>
           </div>
   
@@ -233,7 +305,9 @@ CustomerOrder Order = new CustomerOrder();
 		</div>
           <div class="menu-group">
             <%
-            out.println(Menu.getMenu("Seafood"));
+           
+            Seafood=Menu.getMenu("Seafood",filterValue);
+            out.println(Seafood);
             %>
           </div>
           </div>
@@ -247,26 +321,26 @@ function hidePopup() {
     popup.style.display = "none";
 }
 	</script>
-	
-  <script>
-  const filterSelect = document.getElementById("filter");
+	<script>
   const items = document.querySelectorAll(".item");
-
-  filterSelect.addEventListener("change", (event) => {
-    const selectedValue = event.target.value;
-
     items.forEach((item) => {
-      if (selectedValue === "all") {
-        item.hidden = false;
-      } else if (item.classList.contains(selectedValue)) {
-        item.hidden = false;
-      } else {
+    	if (item.innerText.length<=8) {
         item.hidden = true;
+      } else {
+        item.hidden = false;
       }
     });
-  });
   </script>
-  
+	<script>
+function updateFilterValue() {
+  var filterValue = document.getElementById("filter").value;
+  var newUrl = window.location.href.split("?")[0] + "?filterValue=" + filterValue;
+  window.history.pushState({path:newUrl},'',newUrl);
+  document.getElementById("filter").value = filterValue;
+  location.reload();
+}
+</script>
+
  <footer>
  	<p>Team 35</p>
  </footer>
