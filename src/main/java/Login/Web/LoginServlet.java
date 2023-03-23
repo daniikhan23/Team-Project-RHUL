@@ -9,6 +9,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 
 public class LoginServlet extends HttpServlet {
@@ -34,22 +35,22 @@ public class LoginServlet extends HttpServlet {
 
         try {
             if ( LoginDatabase.validate(loginBean)) {
-                //HttpSession session = request.getSession();
-                // session.setAttribute("username",username);
+                HttpSession session = request.getSession();
             	System.out.println(LoginDatabase.plevel(loginBean));
             	if (LoginDatabase.plevel(loginBean).equals("admin")) {
+            		session.setAttribute("plevel", "admin");
             		response.sendRedirect("loginsuccess.jsp");
             	}
             	if (LoginDatabase.plevel(loginBean).equals("waiter")) {
+            		session.setAttribute("plevel", "waiter");
             		response.sendRedirect("waiterPage.jsp");
             	}
 
             	if (LoginDatabase.plevel(loginBean).equals("kitchen")) {
+            		session.setAttribute("plevel", "kitchen");
             		response.sendRedirect("Kitchen.jsp");
             	}
             } else {
-                //HttpSession session = request.getSession();
-                //session.setAttribute("user", username);
                 response.sendRedirect("login.jsp");
             }
         } catch (ClassNotFoundException e) {
