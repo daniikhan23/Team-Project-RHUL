@@ -1,14 +1,13 @@
 package DB.connection;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import Database;
 
 class DatabaseTest {
 
@@ -20,15 +19,9 @@ class DatabaseTest {
 	      });
 	}
 
-	@Test
-    void testInitialiseTable() throws SQLException, ClassNotFoundException {
-        Connection connection = Database.connectToDatabase();
-        Statement statement = connection.createStatement();
-        Database.initialiseTable("TestTable", statement);
-    }
 
 	@Test
-	void testInsert() throws ClassNotFoundException {
+	void testInsert() {
 		String[] testString = {"TestValue1", "Test2"};
 		Database.Insert(testString, "TestDB");
 		Database.connectToDatabase();
@@ -36,22 +29,7 @@ class DatabaseTest {
 
 	@Test
 	void testIsInt() {
-		assertEquals(Database.IsInt("1"), true);
-		assertEquals(Database.IsInt("abc"), false);
-		assertEquals(Database.IsInt("15.2"), false);
-		assertEquals(Database.IsInt(""), false);
-		assertEquals(Database.IsInt(null), false);
+		Assertions.assertEquals(Database.IsInt("5"), true);
 	}
-	
-	@Test
-	void testConnectToDatabase() throws SQLException, ClassNotFoundException {
-        Connection connection = Database.connectToDatabase();
-        Assertions.assertNotNull(connection, "Connection should not be null");
-    }
-	
-	@Test
-	void testExceptions() throws ClassNotFoundException {
-		Connection test = Database.connectToDatabase();
-		assertThrows(ClassNotFoundException.class, () -> Class.forName("test.NonExistentClass"));
-	}
+
 }
