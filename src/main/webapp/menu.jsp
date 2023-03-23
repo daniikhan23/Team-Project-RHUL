@@ -41,12 +41,12 @@ CustomerOrder Order = new CustomerOrder();
   <a href="#default" class="logo">Restaurant</a>
   <div class="header-right">
     <a href="./Restaurant Home Page.html">Home</a>
-	<a class="active" href="./menu.jsp">Order</a>
+  <a class="active" href="./menu.jsp">Order</a>
     <a href="Restaurant Contact.html">Contact</a>
     <a href="Restaurant About.jsp">About</a>
   </div>
 </div>
-	
+  
 <div class="dropdown">
     <label for="filter">Filter by:</label>
     <select id="filter">
@@ -65,7 +65,7 @@ CustomerOrder Order = new CustomerOrder();
 
       const form = document.querySelector('form');
       form.addEventListener('submit', (e)) => {
-    	  e.preventDefault();
+        e.preventDefault();
       }
     </script>
 
@@ -89,12 +89,15 @@ CustomerOrder Order = new CustomerOrder();
 
         <p>This action cannot be undone.</p>
           
-   		  <input class = button type="submit" name="Yes" value="Yes" id="OrderTable"/>
-  		  </form>
+        <input class = button type="submit" name="Yes" value="Yes" id="OrderTable"/>
+        </form>
         <button onclick="hidePopup()">No</button>
       </div> 
     </div>
     <script src="SubmitOrder.js"></script>
+
+
+
 </div>
 
 <div class="submittingbutton">
@@ -153,23 +156,23 @@ function confirmAction() {
 }
 </script>
 
-	<div class="item Starter">
+  <div class="item Starter">
     <div class="container">
       <div class="menu">
         <h2 class="menu-group-heading">
             Starter
         </h2>
          <div class="row">
-		  <div class="column">
-		    <img src="starters.png" alt="Starters" style="height:80%; width:100%">
-		  </div>
-		  <div class="column">
-		    <img src="starters2.jpg" alt="Starters" style="height:80%; width:100%">
-		  </div>
-		  <div class="column">
-		    <img src="starters3.jpg" alt="Starters" style="height:80%; width:100%">
-		  </div>
-		</div> 
+      <div class="column">
+        <img src="starters.png" alt="Starters" style="height:80%; width:100%">
+      </div>
+      <div class="column">
+        <img src="starters2.jpg" alt="Starters" style="height:80%; width:100%">
+      </div>
+      <div class="column">
+        <img src="starters3.jpg" alt="Starters" style="height:80%; width:100%">
+      </div>
+    </div> 
         <div class="menu-group">
         
             <%
@@ -179,7 +182,7 @@ function confirmAction() {
         </div>
         </div>
       </div>
-	</div>
+  </div>
 
 
    <div class="item Burger">
@@ -189,16 +192,16 @@ function confirmAction() {
               Burger
           </h2>
           <div class="row">
-		  <div class="column">
-		    <img src="burgers.jpg" alt="Burgers" style="height:80%; width:100%">
-		  </div>
-		  <div class="column">
-		    <img src="burgers2.jpg" alt="Burgers" style="height:80%; width:100%">
-		  </div>
-		  <div class="column">
-		    <img src="burgers3.jpg" alt="Burgers" style="height:80%; width:100%">
-		  </div>
-		</div> 
+      <div class="column">
+        <img src="burgers.jpg" alt="Burgers" style="height:80%; width:100%">
+      </div>
+      <div class="column">
+        <img src="burgers2.jpg" alt="Burgers" style="height:80%; width:100%">
+      </div>
+      <div class="column">
+        <img src="burgers3.jpg" alt="Burgers" style="height:80%; width:100%">
+      </div>
+    </div> 
           <div class="menu-group">
             <%
             out.println(Menu.getMenu("Burger"));
@@ -208,25 +211,25 @@ function confirmAction() {
   
           </div>
         </div>
-	</div>
+  </div>
 
-	<div class="item Pizza">
+  <div class="item Pizza">
       <div class="container">
         <div class="menu">
           <h2 class="menu-group-heading">
               Pizza
           </h2>
           <div class="row">
-		  <div class="column">
-		    <img src="pizzas.jpg" alt="Pizzas" style="height:80%; width:100%">
-		  </div>
-		  <div class="column">
-		    <img src="pizzas2.jpg" alt="Pizzas" style="height:80%; width:100%">
-		  </div>
-		  <div class="column">
-		    <img src="pizzas3.jpeg" alt="Pizzas" style="height:80%; width:100%">
-		  </div>
-		</div>
+      <div class="column">
+        <img src="pizzas.jpg" alt="Pizzas" style="height:80%; width:100%">
+      </div>
+      <div class="column">
+        <img src="pizzas2.jpg" alt="Pizzas" style="height:80%; width:100%">
+      </div>
+      <div class="column">
+        <img src="pizzas3.jpeg" alt="Pizzas" style="height:80%; width:100%">
+      </div>
+    </div>
           <div class="menu-group">
             <%
             out.println(Menu.getMenu("Pizza"));
@@ -237,7 +240,7 @@ function confirmAction() {
         </div>
      </div>
 
-	<div class="item Seafood">
+  <div class="item Seafood">
       <div class="container">
         <div class="menu">
           <h2 class="menu-group-heading">
@@ -245,16 +248,16 @@ function confirmAction() {
           </h2>
           
           <div class="row">
-		  <div class="column">
-		    <img src="seafood.jpg" alt="Seafood" style="height:80%; width:100%">
-		  </div>
-		  <div class="column">
-		    <img src="seafood2.jpg" alt="Seafood" style="height:80%; width:100%">
-		  </div>
-		  <div class="column">
-		    <img src="seafood3.jpg" alt="Seafood" style="height:80%; width:100%">
-		  </div>
-		</div>
+      <div class="column">
+        <img src="seafood.jpg" alt="Seafood" style="height:80%; width:100%">
+      </div>
+      <div class="column">
+        <img src="seafood2.jpg" alt="Seafood" style="height:80%; width:100%">
+      </div>
+      <div class="column">
+        <img src="seafood3.jpg" alt="Seafood" style="height:80%; width:100%">
+      </div>
+    </div>
           <div class="menu-group">
             <%
             out.println(Menu.getMenu("Seafood"));
@@ -262,16 +265,16 @@ function confirmAction() {
           </div>
           </div>
         </div>
-	</div>
-	
-	<script src="DropDown.js"></script>
-	
-	<script>
+  </div>
+  
+  <script src="DropDown.js"></script>
+  
+  <script>
 function hidePopup() {
     popup.style.display = "none";
 }
-	</script>
-	
+  </script>
+  
   <script>
   const filterSelect = document.getElementById("filter");
   const items = document.querySelectorAll(".item");
@@ -292,7 +295,7 @@ function hidePopup() {
   </script>
   
  <footer>
- 	<p>Team 35</p>
+  <p>Team 35</p>
  </footer>
 </body>
 </html>

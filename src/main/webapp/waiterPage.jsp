@@ -67,6 +67,32 @@ if (plevel != "admin" && plevel != "waiter") {
 
 
 
+  <div id="countdown"></div>
+  <button id="pauseButton" onclick="toggleRefresh()">Pause Refresh</button>
+  
+  <script>
+    var seconds = 10;
+    var refreshInterval = setInterval(countdown, 1000);
+
+    function countdown() {
+      seconds--;
+      document.getElementById("countdown").innerHTML = "Refreshing page: " + seconds;
+      if (seconds == 0) {
+        location.reload();
+      }
+    }
+
+    function toggleRefresh() {
+      var button = document.getElementById("pauseButton");
+      if (button.innerHTML == "Pause Refresh") {
+        clearInterval(refreshInterval);
+        button.innerHTML = "Resume Refresh";
+      } else {
+        refreshInterval = setInterval(countdown, 1000);
+        button.innerHTML = "Pause Refresh";
+      }
+    }
+  </script>
 <div class="middle-line"></div>
 <div class="box-style">
 

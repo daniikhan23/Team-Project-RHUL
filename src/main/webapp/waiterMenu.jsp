@@ -2,7 +2,6 @@
 	pageEncoding="ISO-8859-1"%>
 
 <%@ page import="Menu.ViewMenu.MenuData"%>
-<%@ page import="Order.Customer.CustomerOrder" %>
 
 <%
 String plevel = (String)session.getAttribute("plevel");
@@ -24,12 +23,10 @@ if (plevel != "admin" && plevel != "waiter") {
 </head>
 <body>
 
-<%
-System.out.println("adding staff menu");
-MenuData Menu = new MenuData();
-CustomerOrder Order = new CustomerOrder();
-%>
-
+	<%
+	System.out.println("adding staff menu");
+	MenuData Menu = new MenuData();
+	%>
 	<div class="header">
 		<a href="#default" class="logo">Diez Libras De Suciedad</a>
 		<div class="header-right"> 
@@ -50,46 +47,30 @@ CustomerOrder Order = new CustomerOrder();
     </form>
 	</div>
 
-<div class="dropdown">
-    <label for="filter">Filter by:</label>
-    <select id="filter">
-      <option value="all">All</option>
-      <option value="Starter">Starter</option>
-      <option value="Burger">Burger</option>
-      <option value="Pizza">Pizza</option>
-      <option value="Seafood">Seafood</option>
-    </select>
-    
-  </div>
-    <%!
-      boolean active = false;
-    %>
-    <script>
+	<div class="container">
+		<div class="menu">
+			<h2 class="menu-group-heading">Starter</h2>
+			<div class="menu-group">
+				<%
+				out.println(Menu.getMenu("Starter"));
+				%>
 
-      const form = document.querySelector('form');
-      form.addEventListener('submit', (e)) => {
-        e.preventDefault();
-      }
-    </script>
+			</div>
 
+		</div>
+	</div>
 
-    
-<div class = "submittingbutton">
-    <button type="" onclick="showModal()">Order Now</button>
-    <div id="modal" class="modal">
-      <div class="modal-content">
-        <span type="input" class="close" onclick="hideModal()">&times;</span>
-        <h1>Your Cart</h1>
-        <p>Your order details:</p>
-        <ul id="order-details">
-         
-          <% out.println(Order.getCurrentOrder(1)); //need to change for specific table%>
-        </ul>
-        <p class="total">Total: $<% out.println(Order.totalcost(1)); //need to change for specific table%></p>
+	<div class="container">
+		<div class="menu">
+			<h2 class="menu-group-heading">Burger</h2>
+			<div class="menu-group">
+				<%
+				out.println(Menu.getMenu("Burger"));
+				%>
 
-        <h2>Would you like to place the order?</h2>
-        <form action= "CustomerOrderItem" method="post">
+			</div>
 
+<<<<<<< HEAD
         <p>This action cannot be undone.</p>
           
         <input class = button type="submit" name="Yes" value="Yes" id="OrderTable"/>
@@ -241,5 +222,32 @@ function hidePopup() {
  <footer>
   <p>Team 35</p>
  </footer>
+=======
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="menu">
+			<h2 class="menu-group-heading">pizza</h2>
+			<div class="menu-group">
+				<%
+				out.println(Menu.getMenu("Pizza"));
+				%>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="menu">
+			<h2 class="menu-group-heading">Seafood</h2>
+			<div class="menu-group">
+				<%
+				out.println(Menu.getMenu("Seafood"));
+				%>
+			</div>
+		</div>
+	</div>
+>>>>>>> e618acf4485edf8ee8a31aacd46264c680b15703
 </body>
 </html>
