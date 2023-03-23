@@ -70,11 +70,10 @@ public class waiterOrder extends HttpServlet{
 		else if (request.getParameter("table") != null) {
 		  String help = request.getParameter("table");
 		  System.out.println(help);
-		  Connection connection;
-		  Statement statement;
+
 		 try {
-		   connection = Database.connectToDatabase();
-		   statement = connection.createStatement();
+		   Connection connection = Database.connectToDatabase();
+		   Statement statement = connection.createStatement();
 		   String SQL = "UPDATE TableNO SET help = 0 WHERE TableNo = "+help+ ";";
 		   statement.executeQuery(SQL);
 		 } catch (SQLException | ClassNotFoundException e) {
