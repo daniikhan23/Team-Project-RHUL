@@ -2,45 +2,37 @@ package DB.connection;
 
 
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Scanner;
-
+import java.io.*;
+import java.sql.*;
+import java.util.*;
+/*
+ * Used to connect and interact with the DB
+ */
 public class Database {
-
+	/*
+	 * Initialises the DB with all valid tables and inforrmation
+	 */
 	// NOTE: You will need to change some variables from START to END.
 	public static void main(String[] argv) throws SQLException, ClassNotFoundException {
 
 		Connection connection = connectToDatabase();
 		if (connection != null) {
-			System.out.println("Used Database");
+			System.out.println("Reinitialising Database.");
 		} else {
 			System.out.println("ERROR: \tFailed to make connection!");
 			System.exit(1);
 		}
 		// Now we're ready to use the DB. You may add your code below this line.
-
+		
 		Statement statement = connection.createStatement();
-		statement.execute("DROP TABLE IF EXISTS MenuItemIngredients;");
-		statement.execute("DROP TABLE IF EXISTS Ingredients;");
+		
+		System.out.println("Creating relevant tables.");
 
 		statement.execute("DROP TABLE IF EXISTS MenuTable;");
 		statement.execute("DROP TABLE IF EXISTS StaffTable;");
 		statement.execute("DROP TABLE IF EXISTS OrderTable;");
-		statement.execute("DROP TABLE IF EXISTS TableNO;");
-		statement.execute("DROP TABLE IF EXISTS messagingtable;");
-
-		String Ingredients ="""
-				CREATE TABLE Ingredients (
-				  IngredientID SERIAL PRIMARY KEY,
-				  Name VARCHAR(255) NOT NULL,
-				  AllergyType VARCHAR(255) NOT NULL
-				);""";
-
+		statement.execute("DROP TABLE IF EXISTS CurrentOrderTable;");
+		
 		String MenuTable = """
 				CREATE TABLE MenuTable(
 					ItemCode INTEGER NOT NULL,
@@ -61,7 +53,7 @@ public class Database {
 					PRIMARY KEY (StaffID)
 				);
 				""";
-
+		
 		String OrderTable = """
 				CREATE TABLE OrderTable(
 					OrderID INTEGER NOT NULL,
@@ -73,74 +65,63 @@ public class Database {
 					PRIMARY KEY (OrderID)
 				);
 				""";
-
-		String TNoTable = """
-				CREATE TABLE TableNO(
+		
+		String CurrentOrderTable = """
+				CREATE TABLE CurrentOrderTable(
+					OrderID INTEGER NOT NULL,
+					orderItem VARCHAR(256) NOT NULL,
 					TableNo INTEGER NOT NULL,
-					help INTEGER NOT NULL,
-					empty INTEGER NOT NULL,
-					PRIMARY KEY (TableNO)
+					CompletePhase INTEGER NOT NULL,
+					timeStarted TIMESTAMP NOT NULL,
+					PRIMARY KEY (OrderID)
 				);
 				""";
-		String MessagingTable = """
-				CREATE TABLE MessagingTable(
-					MessageNO INTEGER NOT NULL,
-					Message TEXT NOT NULL,
-					PRIMARY KEY (MessageNO)
-				);
-				""";
-		String MenuItemIngredients ="""
-				CREATE TABLE MenuItemIngredients (
-						  MenuItemIngredientID SERIAL PRIMARY KEY,
-						  ItemCode INTEGER NOT NULL,
-						  IngredientID INTEGER NOT NULL,
-						  FOREIGN KEY (ItemCode) REFERENCES MenuTable (ItemCode),
-						  FOREIGN KEY (IngredientID) REFERENCES Ingredients (IngredientID)
-						);""";
-
-		statement.executeUpdate(Ingredients);
+		
+		
 		statement.executeUpdate(MenuTable);
-		statement.executeUpdate(MenuItemIngredients);
 		statement.executeUpdate(StaffTable);
 		statement.executeUpdate(OrderTable);
-		statement.executeUpdate(TNoTable);
-		statement.executeUpdate(MessagingTable);
+		statement.execute(CurrentOrderTable);
+		
 		initialiseTable("MenuTable", statement);
 		initialiseTable("StaffTable", statement);
-		initialiseTable("TableNO", statement);
-		initialiseTable("Ingredients", statement);
-		initialiseTable("MenuItemIngredients", statement);
-		initialiseTable("MessagingTable", statement);
+		
+		
 	}
-
-
+	/*
+	 * initalises the tables with the .txt files 
+	 */
+	
 	public static void initialiseTable(String tableName, Statement statement) throws SQLException {
 	    try{
-	        FileInputStream fis = new FileInputStream(tableName+".txt");
+	        FileInputStream fis = new FileInputStream("src/main/java/DB/connection/"+tableName+".txt");
 	        Scanner sc = new Scanner(fis);
 	        String[] arrOfStr = sc.nextLine().split(",");
 
 	        while (sc.hasNextLine()){
-
+	        	
 	            statement.executeUpdate(Insert(arrOfStr, tableName));
 	            arrOfStr = sc.nextLine().split(",");
-
+	            
 	        }
 	        statement.executeUpdate(Insert(arrOfStr, tableName));
-
+	        
 	        sc.close();
 	    }
 	    catch(IOException e) {
 	      e.printStackTrace();
 	    }
 	}
-
-
+	
+	/*
+	 * 
+	 * Used to insert items into the table
+	 */
 	public static String Insert(String[] arr, String tableName) {
 		String temp = "";
 		String sql = "";
 		for (String a: arr) {
-			if (IsInt(a)) {
+			if (IsInt(a) ==true) {
 				temp += a+",";
 			}
 			else {
@@ -160,9 +141,13 @@ public class Database {
 			return false;
 		}
 	}
-
-
+	/*
+	 * establishes a connection to the DB
+	 * @return  Connection
+	 */
+	
 	public static Connection connectToDatabase() throws ClassNotFoundException {
+		System.out.println("------ Testing PostgreSQL JDBC Connection ------");
 		String user = "postgres"; //for offline postres
 		String password = "ooquie";  //for offline postres
 
@@ -174,6 +159,7 @@ public class Database {
 			Class.forName("org.postgresql.Driver");
 			String protocol = "jdbc:postgresql://";
 			String dbName = "/postgres";    //offline postres
+			//String dbName = "CS2810%2fgroup35";
 			String fullURL = protocol + database + dbName;
 			connection = DriverManager.getConnection(fullURL, user, password);
 			return connection;

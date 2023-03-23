@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class Customer {
 	
-	public String getMenu(String Category) throws SQLException, ClassNotFoundException {
+	public String getMenu(String Category) throws SQLException {
 		String SegmentMenu = "";
 		
 		Connection connection = Database.connectToDatabase();

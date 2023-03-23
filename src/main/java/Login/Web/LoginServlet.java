@@ -3,26 +3,29 @@ package Login.Web;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import Login.Bean.LoginBean;
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
+
 import Login.Database.LoginDatabase;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+import Login.Bean.LoginBean;
 
-
+/*
+ * the login servlet to request and return data to the front end
+ */
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = -5947371781560086598L;
 	private LoginDatabase LoginDatabase;
 
-    @Override
-	public void init() {
+    public void init() {
     	LoginDatabase = new LoginDatabase();
     }
 
-    @Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    /*
+     * condition when the submit button is pressed.
+     * Will get the valid username and password and check if 
+     * its valid and output to the correct location.
+     */
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
 
         String username = request.getParameter("username");
@@ -32,25 +35,25 @@ public class LoginServlet extends HttpServlet {
         loginBean.setPassword(password);
         System.out.println(username);
         System.out.println(password);
-
+        
         try {
             if ( LoginDatabase.validate(loginBean)) {
-                HttpSession session = request.getSession();
+                //HttpSession session = request.getSession();
+                // session.setAttribute("username",username);
             	System.out.println(LoginDatabase.plevel(loginBean));
             	if (LoginDatabase.plevel(loginBean).equals("admin")) {
-            		session.setAttribute("plevel", "admin");
             		response.sendRedirect("loginsuccess.jsp");
             	}
             	if (LoginDatabase.plevel(loginBean).equals("waiter")) {
-            		session.setAttribute("plevel", "waiter");
-            		response.sendRedirect("waiterPage.jsp");
+            		response.sendRedirect("waiterMenu.jsp");
             	}
-
+            	
             	if (LoginDatabase.plevel(loginBean).equals("kitchen")) {
-            		session.setAttribute("plevel", "kitchen");
-            		response.sendRedirect("Kitchen.jsp");
+            		response.sendRedirect("kitchen.jsp");
             	}
             } else {
+                //HttpSession session = request.getSession();
+                //session.setAttribute("user", username);
                 response.sendRedirect("login.jsp");
             }
         } catch (ClassNotFoundException e) {
