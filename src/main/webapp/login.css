@@ -9,7 +9,8 @@ body {
 	display: grid;
 	justify-items: center;
 	align-items: center;
-	background-color: #9ba377;
+	background-color: red; /* For browsers that do not support gradients */
+    background-image: linear-gradient(to bottom right, red, yellow);
 }
 
 .header {
@@ -18,13 +19,18 @@ body {
 	background-color: #9ba377;
 }
 
+#login-header{
+	font-family:gill sans, sans-serif;
+}
+
 #main-holder {
+	font-family:gill sans, sans-serif;
 	width: 70%;
 	height: 70%;
 	display: grid;
 	justify-items: center;
 	align-items: center;
-	background-color: rgb(238, 238, 236);
+	background-color: #fede1c;
 	border-radius: 7px;
 	box-shadow: 0px 0px 5px 2px black;
 }
@@ -69,39 +75,46 @@ body {
 	padding: 0px 0px 5px 5px;
 }
 
-#login-submit {
-	width: 100%;
-	padding: 7px;
-	border: none;
-	border-radius: 5px;
-	color: white;
-	font-weight: bold;
-	background-color: #3a3a3a;
-	cursor: pointer;
-	outline: none;
-}
-
 .text {
   font-size: 20px;
   padding-left: 20px;
 }
 
-.button {
-  overflow: hidden;
-  text-align: center;
-  padding: 12px;
-  text-decoration: none;
-  font-size: 18px; 
-  margin: 4px 2px;
-  background-color: #3a3a3a;
-	padding: 7px;
-	border: none;
-	border-radius: 5px;
+#login-submit{
+	background-color: #b81717;
+	border: 1px solid black;
 	color: white;
-	font-weight: bold;
-	outline: none;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	font-size: 16px;
+	cursor: pointer;
+	width: 216px;
+	display: block;
 }
 
+.button {
+	background-color: #b81717;
+	border: 1px solid black;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	font-size: 16px;
+	cursor: pointer;
+	width: 150px;
+	display: block;
+}
+
+.button:hover {
+  background-color: #fe721c;
+}
+
+.button:active {
+  background-color: #fe721c;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
 
 .submit {
   position:relative; left:90%;

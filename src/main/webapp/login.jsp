@@ -9,6 +9,9 @@
 <link rel="stylesheet" href="login.css">
 </head>
 <body>
+
+
+
  <main id="main-holder">
   <h1 id="login-header">Login</h1>
 
@@ -24,16 +27,12 @@
    </table>
    <input type="submit" value="Submit" id="login-submit"/>
    
-    	
-    <div class="button" style="display:inline-block;">
-      <a href="menu.jsp">Customer</a>
+    <div class="button-group">
+      <a href="menu.jsp" class="button">Customer</a>
+      <a href="signup.jsp" class="button">Sign Up</a>
     </div>
   </form>
 
- <%
- CustomerOrder Order = new CustomerOrder();
- Order.CurrentOrder();
- %>
  </main>
 </body>
 </html>

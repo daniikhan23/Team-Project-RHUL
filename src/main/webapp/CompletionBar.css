@@ -1,0 +1,19 @@
+.status-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    margin: 50px;
+}
+
+.indicator {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    margin: 0 10px;
+}
+
+.active {
+    background-color: #4CAF50;
+}

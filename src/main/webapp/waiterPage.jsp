@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 	
 <%@ page import="Menu.ViewMenu.MenuData"%>
+<%@ page import="Order.Waiter.waiterOrder" %>
 
 <!DOCTYPE html>
 <html>
@@ -14,18 +15,48 @@
   <%
   System.out.println("adding staff menu");
   MenuData Menu = new MenuData();
+  waiterOrder order = new waiterOrder();
   %>
   
 <div class="header">
-	<a href="#default" class="logo">Restaurant</a>
+	<a href="#default" class="logo">Diez Libras De Suciedad</a>
 	<div class="header-right">
-		<a class="active" href="./waiterPage.jsp">Waiter Page</a> 
-		<a href="./waiterMenu.jsp">Order</a> 
-		<a href="#contact">Contact</a> 
-		<a href="#about">About</a> 
 		<a class="logout" href="./login.jsp">Log Out</a>
 	</div>
 </div>
+
+<script>
+  function helping(table) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "http://localhost:8080/cafe/menuChange", true);
+    xhr.send("table=" + table);
+  }
+  
+  function cancelorder(order){
+	  	const formdata = new FormData();
+	  	formdata.append("Order", order);
+	  	
+	  	fetch("cafe/menuChange", {
+	  		method: "POST",
+	  		body: formdata,
+	  		
+	  	})
+  }
+  
+  function acceptorder(order){
+	    var xhr = new XMLHttpRequest();
+	    xhr.open("GET", "http://localhost:8080/cafe/menuChange", true);
+	    xhr.send("id=" + order);
+  }
+  function finishedorder(order){
+	  
+	    var xhr = new XMLHttpRequest();
+	    xhr.open("GET", "http://localhost:8080/cafe/menuChange", true);
+	    xhr.send("id=" + order);
+  }
+</script>
+
+
 
 <div class="middle-line"></div>
 <div class="box-style">
@@ -33,6 +64,7 @@
 <div class="container">
   <div class="text">
   <form action="menuChange" method="post">
+
     <h1>Add/Remove item</h1>
       <div>
     <input type="submit" class="button" value="Add item: " name = "Add item: " id="login-submit"/>
@@ -57,20 +89,20 @@
   <div class="text">
     <h1>Customer help</h1>
     <div class="table-group" style="width:100%">
-      <button style="width:25%">Table 1</button>
-      <button style="width:25%">Table 2</button>
-      <button style="width:25%">Table 3</button>
-      <button style="width:25%">Table 4</button>
+      <button onclick = helping(1) style="width:25%; background-color: <% out.println(order.checkCustomer(1)); %>;">Table 1</button>
+      <button style="width:25%; background-color: <% out.println(order.checkCustomer(2)); %>">Table 2</button>
+      <button style="width:25%; background-color: <% out.println(order.checkCustomer(3)); %>">Table 3</button>
+      <button style="width:25%; background-color: <% out.println(order.checkCustomer(4)); %>">Table 4</button>
     </div>
     <div class="table-group" style="width:100%">
-      <button style="width:25%">Table 5</button>
-      <button style="width:25%">Table 6</button>
-      <button style="width:25%">Table 7</button>
-      <button style="width:25%">Table 8</button>
+      <button style="width:25%; background-color: <% out.println(order.checkCustomer(5)); %>">Table 5</button>
+      <button style="width:25%; background-color: <% out.println(order.checkCustomer(6)); %>">Table 6</button>
+      <button style="width:25%; background-color: <% out.println(order.checkCustomer(7)); %>">Table 7</button>
+      <button style="width:25%; background-color: <% out.println(order.checkCustomer(8)); %>">Table 8</button>
     </div>
     <div class="table-group" style="width:100%">
-      <button style="width:50%">Table 9</button>
-      <button style="width:50%">Table 10</button>
+      <button style="width:50%; background-color: <% out.println(order.checkCustomer(9)); %>">Table 9</button>
+      <button style="width:50%; background-color: <% out.println(order.checkCustomer(10)); %>">Table 10</button>
     </div>
 
   </div>
@@ -81,12 +113,15 @@
 <div class="container">
   <div class="text">
     <h1>Special order notes</h1>
+    <textarea id="freeform" name="freeform" rows="4" cols="50">
+Enter text here...
+</textarea>
   </div>
   
   <div class="text">
     <h1 >Order status</h1>
     
-    <%out.println(Order.GetOrders.basicoutput()); %>
+    <%out.println(order.frontEndView()); %>
 
   </div>
 </div>
@@ -96,11 +131,17 @@
 <div class="container">
   <div class="text">
     <h1>Msg from kitchen</h1>
+    <textarea id="freeform" name="freeform" rows="4" cols="30">
+    No Message...
+</textarea>
   </div>
   
   <div>
     <div class ="text">
     <h1 >Msg to Kitchen</h1>
+    <textarea id="freeform" name="freeform" rows="4" cols="30">
+Enter message...
+</textarea>
     </div>
   </div>
 </div>

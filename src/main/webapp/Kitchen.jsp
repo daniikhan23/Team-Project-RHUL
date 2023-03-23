@@ -1,62 +1,92 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="Order.Kitchen.KitchenOrder" %>
+<%@ page import="Order.Kitchen.Messages" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Incoming Orders</title>
   <link rel="stylesheet" href="Kitchen Style.css">
+  <link rel="stylesheet" href="Restaurant Style waiter.css">
   <meta http-equiv="refresh" content="30">
 </head>
 <body>
+<%KitchenOrder KOrder = new KitchenOrder(); %>
 <div class="header">
-  <a href="#default" class="logo">Restaurant</a>
+  <a href="#default" class="logo">Diez Libras De Suciedad</a>
   <div class="header-right">
     <a href="login.jsp">LOG OUT</a>
   </div>
 </div>
 
-<div id="order1">
-  <button class="collapsible">Order #58834</button>
-  <div class="content">
-    <ul>
-      <li>Cheeseburger</li>
-      <li>BBQ Burger</li>
-      <li>Traditional Pizza</li>
-      <li>Cold Shrimp</li>
-    </ul>
-    <button class="order-out" onclick="document.getElementById('order1').style.display = 'none';">Order Out</button>
+
+  <div id="countdown"></div>
+  <button id="pauseButton" onclick="toggleRefresh()">Pause Refresh</button>
+  
+  <script>
+    var seconds = 10;
+    var refreshInterval = setInterval(countdown, 1000);
+
+    function countdown() {
+      seconds--;
+      document.getElementById("countdown").innerHTML = "Refreshing page: " + seconds;
+      if (seconds == 0) {
+        location.reload();
+      }
+    }
+
+    function toggleRefresh() {
+      var button = document.getElementById("pauseButton");
+      if (button.innerHTML == "Pause Refresh") {
+        clearInterval(refreshInterval);
+        button.innerHTML = "Resume Refresh";
+      } else {
+        refreshInterval = setInterval(countdown, 1000);
+        button.innerHTML = "Pause Refresh";
+      }
+    }
+  </script>
+<div class="box-style">
+<div class="container">
+  <div class="text">
+    <h1>Special order notes</h1>
+    <textarea id="freeform" name="freeform" rows="4" cols="50">
+Enter text here...
+</textarea>
+<br>
+<button>Submit button</button>
+
   </div>
+</div>
 </div>
 
-<div id="order2">
-  <button class="collapsible">Order #58835</button>
-  <div class="content">
-    <ul>
-      <li>Mushroom Swiss Burger</li>
-      <li>Lobster Pie Pizza</li>
-      <li>Fried Mozzarella</li>
-      <li>Crabby Sweets</li>
-    </ul>
-    <button class="order-out" onclick="document.getElementById('order2').style.display = 'none';">Order Out</button>
+<div class="box-style-2">
+<div class="container">
+  <div class="text">
+    <h1>Msg from waiter</h1>
+    <textarea id="freeform" name="freeform" rows="4" cols="30">
+	<%out.println(Order.Kitchen.Messages.getMessage()); %>
+</textarea>
   </div>
+  
+  <div>
+    <div class ="text">
+    <form action="KMessaging" method="post">
+    <h1 >Msg to Waiter</h1>
+    
+    <textarea id="Message" name="Message" rows="4" cols="30">
+
+</textarea>
+
+<input type="submit" value="Submit" id="submit"/>
+</form>
+    </div>
+  </div>
+</div>
 </div>
 
-<div id="order3">
-  <button class="collapsible">Order #58836</button>
-  <div class="content">
-    <ul>
-      <li>Two Number 9s</li>
-      <li>Number 9 Large</li>
-      <li>Number 6 w/ Extra Dip</li>
-      <li>Number 7</li>
-      <li>Number 45</li>
-      <li>Number 45 w/ Cheese</li>
-      <li>Large Soda</li>
-    </ul>
-    <button class="order-out" onclick="document.getElementById('order3').style.display = 'none';">Order Out</button>
-  </div>
-</div>
+<%out.println(KOrder.getOrder()); %>
 
 <script>
   var coll = document.getElementsByClassName("collapsible");

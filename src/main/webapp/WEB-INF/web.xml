@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+
+
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:web="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd" id="WebApp_ID" version="5.0">
+ 
+
   <display-name>cafe</display-name>
   <welcome-file-list>
     <welcome-file>login.jsp</welcome-file>
@@ -49,5 +54,89 @@
 	  <url-pattern>/menuChange</url-pattern>
 	  
   </servlet-mapping>
+  
+ 
+        <servlet>
+	  <servlet-name>cancelorder</servlet-name>
+	  <servlet-class>Order.Waiter.cancelOrder</servlet-class>
+  </servlet>
+  
+  
+  <servlet-mapping>
+	  <servlet-name>cancelorder</servlet-name>
+	  
+	  <url-pattern>/cancelorder</url-pattern>
+	  
+  </servlet-mapping>
+  
+  
+          <servlet>
+	  <servlet-name>acceptorder</servlet-name>
+	  <servlet-class>Order.Waiter.acceptOrder</servlet-class>
+  </servlet>
+  
+  
+  <servlet-mapping>
+	  <servlet-name>acceptorder</servlet-name>
+	  
+	  <url-pattern>/acceptorder</url-pattern>
+	  
+  </servlet-mapping>
+  
+          <servlet>
+	  <servlet-name>finishedorder</servlet-name>
+	  <servlet-class>Order.Waiter.finishedOrder</servlet-class>
+  </servlet>
+  
+  
+  <servlet-mapping>
+	  <servlet-name>finishedorder</servlet-name>
+	  
+	  <url-pattern>/finishedorder</url-pattern>
+	  
+  </servlet-mapping>
+  
+  
+  
+            <servlet>
+	  <servlet-name>Messaging</servlet-name>
+	  <servlet-class>Order.Waiter.Messages</servlet-class>
+  </servlet>
+  
+  
+  <servlet-mapping>
+	  <servlet-name>Messaging</servlet-name>
+	  
+	  <url-pattern>/Messaging</url-pattern>
+	  
+  </servlet-mapping>
+  
+              <servlet>
+	  <servlet-name>KMessaging</servlet-name>
+	  <servlet-class>Order.Kitchen.Messages</servlet-class>
+  </servlet>
+  
+  
+  <servlet-mapping>
+	  <servlet-name>KMessaging</servlet-name>
+	  
+	  <url-pattern>/KMessaging</url-pattern>
+	  
+  </servlet-mapping>
+  
+  
+                <servlet>
+	  <servlet-name>sendoff</servlet-name>
+	  <servlet-class>Order.Kitchen.acceptOrder</servlet-class>
+  </servlet>
+  
+  
+  <servlet-mapping>
+	  <servlet-name>sendoff</servlet-name>
+	  
+	  <url-pattern>/sendoff</url-pattern>
+	  
+  </servlet-mapping>
+  
   
 </web-app>
