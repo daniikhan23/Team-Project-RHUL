@@ -27,9 +27,9 @@
    </table>
    <input type="submit" value="Submit" id="login-submit"/>
    
-    	
-    <div class="button" style="display:inline-block;">
-      <a href="menu.jsp">Customer</a>
+    <div class="button-group">
+      <a href="menu.jsp" class="button">Customer</a>
+      <a href="signup.jsp" class="button">Sign Up</a>
     </div>
   </form>
 

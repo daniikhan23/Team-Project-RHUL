@@ -3,10 +3,11 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color:	#C0C0C0;
 }
 
 button {
-    background-color: #4CAF50;
+    background-color: rgb(255, 128, 128);
     color: white;
     padding: 16px;
     font-size: 16px;
@@ -77,7 +78,7 @@ li {
 }
 
 input[type="submit"] {
-    background-color: #4CAF50;
+    background-color: rgb(255, 128, 128);
     color: white;
     padding: 8px 16px;
     font-size: 16px;
@@ -89,7 +90,7 @@ input[type="submit"] {
 
 /* Style the popup buttons */
 .modal button {
-    background-color: #4CAF50;
+    background-color: rgb(255, 128, 128);
     color: white;
     padding: 8px 16px;
     font-size: 16px;

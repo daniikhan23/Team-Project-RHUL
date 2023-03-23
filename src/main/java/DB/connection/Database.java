@@ -2,12 +2,16 @@ package DB.connection;
 
 
 
-import java.io.*;
-import java.sql.*;
-import java.util.*;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Scanner;
 
 public class Database {
-	
+
 	// NOTE: You will need to change some variables from START to END.
 	public static void main(String[] argv) throws SQLException, ClassNotFoundException {
 
@@ -19,7 +23,7 @@ public class Database {
 			System.exit(1);
 		}
 		// Now we're ready to use the DB. You may add your code below this line.
-		
+
 		Statement statement = connection.createStatement();
 		statement.execute("DROP TABLE IF EXISTS MenuItemIngredients;");
 		statement.execute("DROP TABLE IF EXISTS Ingredients;");
@@ -57,7 +61,7 @@ public class Database {
 					PRIMARY KEY (StaffID)
 				);
 				""";
-		
+
 		String OrderTable = """
 				CREATE TABLE OrderTable(
 					OrderID INTEGER NOT NULL,
@@ -69,7 +73,7 @@ public class Database {
 					PRIMARY KEY (OrderID)
 				);
 				""";
-		
+
 		String TNoTable = """
 				CREATE TABLE TableNO(
 					TableNo INTEGER NOT NULL,
@@ -93,7 +97,7 @@ public class Database {
 						  FOREIGN KEY (ItemCode) REFERENCES MenuTable (ItemCode),
 						  FOREIGN KEY (IngredientID) REFERENCES Ingredients (IngredientID)
 						);""";
-		
+
 		statement.executeUpdate(Ingredients);
 		statement.executeUpdate(MenuTable);
 		statement.executeUpdate(MenuItemIngredients);
@@ -108,8 +112,8 @@ public class Database {
 		initialiseTable("MenuItemIngredients", statement);
 		initialiseTable("MessagingTable", statement);
 	}
-	
-	
+
+
 	public static void initialiseTable(String tableName, Statement statement) throws SQLException {
 	    try{
 	        FileInputStream fis = new FileInputStream(tableName+".txt");
@@ -117,26 +121,26 @@ public class Database {
 	        String[] arrOfStr = sc.nextLine().split(",");
 
 	        while (sc.hasNextLine()){
-	        	
+
 	            statement.executeUpdate(Insert(arrOfStr, tableName));
 	            arrOfStr = sc.nextLine().split(",");
-	            
+
 	        }
 	        statement.executeUpdate(Insert(arrOfStr, tableName));
-	        
+
 	        sc.close();
 	    }
 	    catch(IOException e) {
 	      e.printStackTrace();
 	    }
 	}
-	
-	
+
+
 	public static String Insert(String[] arr, String tableName) {
 		String temp = "";
 		String sql = "";
 		for (String a: arr) {
-			if (IsInt(a) ==true) {
+			if (IsInt(a)) {
 				temp += a+",";
 			}
 			else {
@@ -156,8 +160,8 @@ public class Database {
 			return false;
 		}
 	}
-	
-	
+
+
 	public static Connection connectToDatabase() throws ClassNotFoundException {
 		String user = "postgres"; //for offline postres
 		String password = "ooquie";  //for offline postres

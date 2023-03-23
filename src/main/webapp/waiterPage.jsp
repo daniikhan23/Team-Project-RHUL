@@ -28,12 +28,8 @@ if (plevel != "admin" && plevel != "waiter") {
   %>
   
 <div class="header">
-	<a href="#default" class="logo">Restaurant</a>
+	<a href="#default" class="logo">Diez Libras De Suciedad</a>
 	<div class="header-right">
-		<a class="active" href="./waiterPage.jsp">Waiter Page</a> 
-		<a href="./waiterMenu.jsp">Order</a> 
-		<a href="#contact">Contact</a> 
-		<a href="#about">About</a> 
 		<a class="logout" href="./login.jsp">Log Out</a>
 	</div>
 </div>
@@ -121,23 +117,10 @@ if (plevel != "admin" && plevel != "waiter") {
 
     </div>
     <div class="table-group" style="width:100%">
-      <form action=menuChange method="post">
-        <input type="hidden" class="table" name="table" value=5>
-        <button style="width:25%; background-color: <% out.println(order.checkCustomer(5)); %>">Table 5</button>
-      </form>
-      <form action=menuChange method="post">
-        <input type="hidden" class="table" name="table" value=6>
-        <button style="width:25%; background-color: <% out.println(order.checkCustomer(6)); %>">Table 6</button>
-      </form>
-      <form action=menuChange method="post">
-        <input type="hidden" class="table" name="table" value=7>
-        <button style="width:25%; background-color: <% out.println(order.checkCustomer(7)); %>">Table 7</button>
-      </form>
-      <form action=menuChange method="post">
-        <input type="hidden" class="table" name="table" value=8>
-        <button style="width:25%; background-color: <% out.println(order.checkCustomer(8)); %>">Table 8</button>
-      </form>
-
+      <button style="width:25%; background-color: <% out.println(order.checkCustomer(5)); %>">Table 5</button>
+      <button style="width:25%; background-color: <% out.println(order.checkCustomer(6)); %>">Table 6</button>
+      <button style="width:25%; background-color: <% out.println(order.checkCustomer(7)); %>">Table 7</button>
+      <button style="width:25%; background-color: <% out.println(order.checkCustomer(8)); %>">Table 8</button>
     </div>
     <div class="table-group" style="width:100%">
       <form action=menuChange method="post">
@@ -162,9 +145,6 @@ if (plevel != "admin" && plevel != "waiter") {
     <textarea id="freeform" name="freeform" rows="4" cols="50">
 Enter text here...
 </textarea>
-<br>
-<button>Submit button</button>
-
   </div>
   
   <div class="text">
@@ -181,21 +161,16 @@ Enter text here...
   <div class="text">
     <h1>Msg from kitchen</h1>
     <textarea id="freeform" name="freeform" rows="4" cols="30">
-    <%out.println(Order.Waiter.Messages.getMessage()); %>
+    No Message...
 </textarea>
   </div>
   
   <div>
     <div class ="text">
-    <form action="Messaging" method="post">
     <h1 >Msg to Kitchen</h1>
-    
-    <textarea id="Message" name="Message" rows="4" cols="30">
-
+    <textarea id="freeform" name="freeform" rows="4" cols="30">
+Enter message...
 </textarea>
-
-<input type="submit" value="Submit" id="submit"/>
-</form>
     </div>
   </div>
 </div>

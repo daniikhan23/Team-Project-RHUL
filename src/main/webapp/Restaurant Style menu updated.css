@@ -1,9 +1,10 @@
 body { 
   margin: 0;
-  overflow-x: hidden;
   font-family: Arial, Helvetica, sans-serif;
   background-color: rgb(255, 128, 128); /* For browsers that do not support gradients */
   background-image: linear-gradient(to bottom right, rgb(255, 128, 128), yellow);
+
+  overflow-x: hidden;
 }
 
 h1 {
@@ -113,6 +114,7 @@ img {
 .button {
   overflow: hidden;
   text-align: center;
+  padding: 12px;
   text-decoration: none;
   font-size: 18px; 
   margin: 4px 2px;
@@ -123,6 +125,7 @@ img {
 	color: white;
 	font-weight: bold;
 	outline: none;
+	
 }
 
 .container {
@@ -138,14 +141,10 @@ img {
 	position:relative; left: 85%;
 }
 
-.callingsupport{
-  position:relative; left: 85%;
-}
-
 .menu {
 	font-family: gill sans, sans-serif;
 	font-style: italic;
-    font-size: 14px;
+
 }
 
 .menu-group-heading {
@@ -214,4 +213,8 @@ img {
 .column {
   flex: 33.33%;
   padding: 5px;
+}
+
+.callingsupport{
+  position:relative; left: 85%;
 }

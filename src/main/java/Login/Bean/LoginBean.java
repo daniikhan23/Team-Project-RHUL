@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class LoginBean implements Serializable {
     /**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -6050463920427421384L;
     private String username;

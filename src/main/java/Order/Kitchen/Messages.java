@@ -1,4 +1,4 @@
-package Order.Waiter;
+package Order.Kitchen;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -11,6 +11,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
 public class Messages extends HttpServlet{
 
 	private static final long serialVersionUID = 4940068322743158735L;
@@ -44,7 +45,7 @@ public class Messages extends HttpServlet{
 		Connection connection = Database.connectToDatabase();
 		Statement statement = connection.createStatement();
 
-		String SQL = "SELECT message from MessagingTable WHERE MessageNO = 2;";
+		String SQL = "SELECT message from MessagingTable WHERE MessageNO = 1;";
 		ResultSet rs = statement.executeQuery(SQL);
 		rs.next();
 		return rs.getString(1);
@@ -53,6 +54,6 @@ public class Messages extends HttpServlet{
 	public void inputMessage(String message) throws ClassNotFoundException, SQLException {
 		Connection connection = Database.connectToDatabase();
 		Statement statement = connection.createStatement();
-		statement.execute("UPDATE MessagingTable SET Message = '"+message+"' WHERE MessageNO = 1;");
+		statement.execute("UPDATE MessagingTable SET Message = '"+message+"' WHERE MessageNO = 2;");
 	}
 }

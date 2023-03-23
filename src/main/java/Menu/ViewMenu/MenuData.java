@@ -55,7 +55,7 @@ public class MenuData {
 		//<% Order.inputIntoCtable(\""+rs.getString(0)+"\", 1);
 		ResultSet rs = st.executeQuery(sql);
 		Map<String, List<String>> items = new HashMap<>();
-		
+
 		String colour = "red";
 		while (rs.next()) {//need to change for specific table
 		       String name = rs.getString(2);
@@ -69,7 +69,7 @@ public class MenuData {
 		       items.get(name).add(ingredient);
 		       items.get(name).add(allergyTypee);
 			}
-		
+
 		   String categoryMenu = "";
 		   for (String name : items.keySet()) {
 		   	List<String> ingredientList = items.get(name);
@@ -96,12 +96,12 @@ public class MenuData {
 		                    "</h3>"+ "\n"+
 		                    "<span class=\"menu-item-ingredient\" style='margin-left: 9em; margin-top:-1em;'>" + (ingredients1) + "</span>\n" +"</span>"+ 
 		                "</div>"+ "\n"+
-		                    
+
 		            "</div>" +"\n";
 			if (colour.equals("red")) {
 				colour = "#FFBF00";
 			}
-			
+
 			else if (colour.equals("#FFBF00")) {
 				colour = "#006847";
 			}
@@ -112,7 +112,7 @@ public class MenuData {
 		
 		return categoryMenu;
 	}
-	
+
 	public String fillItemList() throws SQLException, IOException, ClassNotFoundException {
 		  Connection connection = Database.connectToDatabase();
 		  Statement st = connection.createStatement();
@@ -126,7 +126,7 @@ public class MenuData {
 		  }
 		  return items;
 		  }
-		  
+
 		  public void updateStock(String item, String Stock) throws SQLException, IOException, ClassNotFoundException {
 		    Connection connection = Database.connectToDatabase();
 		    

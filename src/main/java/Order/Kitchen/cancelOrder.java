@@ -2,20 +2,21 @@ package Order.Kitchen;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import Order.AlterOrder;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import Order.AlterOrder;
 
 public class cancelOrder extends HttpServlet{
-	
+
 	private static final long serialVersionUID = 1L;
 
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 		    throws ServletException, IOException {
-		
-			
+
+
 			if (request.getParameter("OrderItem") != null) {
 				String table = request.getParameter("OrderCancel");
 				String item = request.getParameter("OrderItem");
@@ -40,8 +41,8 @@ public class cancelOrder extends HttpServlet{
 				}
 			}
 
-		
+
 		response.sendRedirect("kitchen.jsp");
 	}
-	
+
 }

@@ -3,22 +3,25 @@ package Login.Web;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import jakarta.servlet.*;
-import jakarta.servlet.http.*;
-
-import Login.Database.LoginDatabase;
 import Login.Bean.LoginBean;
+import Login.Database.LoginDatabase;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = -5947371781560086598L;
 	private LoginDatabase LoginDatabase;
 
-    public void init() {
+    @Override
+	public void init() {
     	LoginDatabase = new LoginDatabase();
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    @Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
 
         String username = request.getParameter("username");
@@ -28,7 +31,7 @@ public class LoginServlet extends HttpServlet {
         loginBean.setPassword(password);
         System.out.println(username);
         System.out.println(password);
-        
+
         try {
             if ( LoginDatabase.validate(loginBean)) {
                 HttpSession session = request.getSession();
@@ -42,7 +45,7 @@ public class LoginServlet extends HttpServlet {
             		session.setAttribute("plevel", "waiter");
             		response.sendRedirect("waiterPage.jsp");
             	}
-            	
+
             	if (LoginDatabase.plevel(loginBean).equals("kitchen")) {
             		session.setAttribute("plevel", "kitchen");
             		response.sendRedirect("Kitchen.jsp");

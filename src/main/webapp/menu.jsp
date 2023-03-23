@@ -14,7 +14,7 @@
   
       <style>
       .requestbutton {
-        background-color: green;
+        background-color: red;
         color: white;
         padding: 10px 20px;
         border: none;
@@ -22,10 +22,10 @@
         cursor: pointer;
       }
       .requestbutton:hover {
-        background-color: darkgreen;
+        background-color: green;
       }
       .requestbutton.active {
-        background-color: red;
+        background-color: yellow;
       }
     </style>
 </head>
@@ -43,7 +43,7 @@ CustomerOrder Order = new CustomerOrder();
 %>
 
 <div class="header">
-  <a href="#default" class="logo">Restaurant</a>
+  <a href="#default" class="logo">Diez Libras De Suciedad</a>
   <div class="header-right">
     <a href="./Restaurant Home Page.html">Home</a>
 	<a class="active" href="./menu.jsp">Order</a>
