@@ -202,6 +202,7 @@ else if (request.getParameter("table") != null) {
 		Statement statement = connection.createStatement();
 
 		String sql = "INSERT INTO MenuTable VALUES("+getprimarykey()+", '"+item+"', "+cost+", '"+ Category+"');";
+		System.out.println(sql);
 		statement.execute(sql);
 	}
 

@@ -25,7 +25,12 @@ public class CustomerOrder extends HttpServlet{
 		    throws ServletException, IOException {
 
 		String name = request.getParameter("MenuItem");
-
+		String table = request.getParameter("myDropdown");
+		this.tableNO = Integer.parseInt(table);
+		if (this.tableNO == 0) {
+			System.out.println("cannot do");
+		}
+		
 		if (request.getParameter("-") != null) {
 			System.out.println("removed item"+name);
 			try {
