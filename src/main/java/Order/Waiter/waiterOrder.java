@@ -2,7 +2,6 @@ package Order.Waiter;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -64,25 +63,24 @@ public class waiterOrder extends HttpServlet{
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
-		}
-		
-		else if (request.getParameter("parameter1") != null) {
-		  String help = request.getParameter("parameter1");
-		  Connection connection;
-		  Statement statement;
-		  try {
-		    connection = Database.connectToDatabase();
-		    statement = connection.createStatement();
-		    // probably sql injection if it actually worked... will fix when working code is merged
-		    String SQL = "INSERT INTO TableNO (help) VALUES (0) WHERE TableNO = "+help+";";
-		    ResultSet rs = statement.executeQuery(SQL);
-		  } catch (SQLException | ClassNotFoundException e) {
-		    // TODO Auto-generated catch block
-		    e.printStackTrace();
-		  }
+			  }
+ }
 
-		}
+else if (request.getParameter("table") != null) {
+  String help = request.getParameter("table");
+  System.out.println(help);
+  Connection connection;
+  Statement statement;
+ try {
+   connection = Database.connectToDatabase();
+   statement = connection.createStatement();
+   String SQL = "UPDATE TableNO SET help = 0 WHERE TableNo = "+help+ ";";
+   statement.executeQuery(SQL);
+ } catch (SQLException | ClassNotFoundException e) {
+   // TODO Auto-generated catch block
+   e.printStackTrace();
+   }
+ }
 
 
 		else {
@@ -104,7 +102,9 @@ public class waiterOrder extends HttpServlet{
 		ResultSet rs = statement.executeQuery(SQL);
 		return rs;
 	}
-	
+	/*
+	 * gets the order no.
+	 */
 	public ResultSet getORderNo() throws ClassNotFoundException, SQLException {
 		String SQL = "SELECT OrderNo FROM OrderTable WHERE Complete = 0;";
 		Connection connection = Database.connectToDatabase();
@@ -127,9 +127,11 @@ public class waiterOrder extends HttpServlet{
 
 		ResultSet OrderNo = statement.executeQuery(AllOrders);
 		String frontEndView = "";
-		List<Integer> Orderlist = new ArrayList<Integer>();
+		List<Integer> Orderlist = new ArrayList<>();
+
 		while (OrderNo.next()) {
 			Orderlist.add(OrderNo.getInt(1));
+			Orderlist.add(OrderNo.getInt(2));
 		}
 
 		System.out.println("full order: " +Orderlist);
@@ -137,7 +139,6 @@ public class waiterOrder extends HttpServlet{
 
 		for (int i = 0; i< Orderlist.size(); i+=2) {
 			String itemsSQL = "SELECT orderItem FROM OrderTable WHERE OrderNo = "+ Orderlist.get(i)+";";
-			System.out.println(itemsSQL);
 			ResultSet ItemOrder = statement.executeQuery(itemsSQL);
 
 			String container = "<button style = \"color:"+getcompleteness(Orderlist.get(i))+"; \"class=\"collapsible\">Order #"+Orderlist.get(i)+ "      Table:"+Orderlist.get(i+1)+"</button>"+
