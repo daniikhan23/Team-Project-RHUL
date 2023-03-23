@@ -5,7 +5,7 @@
 
 <%
 String plevel = (String)session.getAttribute("plevel");
-if (plevel != "admin" && plevel != "kitchen") {
+if (plevel != "admin" && plevel != "waiter") {
 	out.print("<h1>403 Forbidden</h1>");
 	throw new SkipPageException();
 }

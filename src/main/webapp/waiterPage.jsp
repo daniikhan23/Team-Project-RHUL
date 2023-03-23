@@ -4,6 +4,14 @@
 <%@ page import="Menu.ViewMenu.MenuData"%>
 <%@ page import="Order.Waiter.waiterOrder" %>
 
+<%
+String plevel = (String)session.getAttribute("plevel");
+if (plevel != "admin" && plevel != "waiter") {
+	out.print("<h1>403 Forbidden</h1>");
+	throw new SkipPageException();
+}
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
