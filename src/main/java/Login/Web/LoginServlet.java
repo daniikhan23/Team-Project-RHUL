@@ -46,12 +46,12 @@ public class LoginServlet extends HttpServlet {
             	}
             	if (LoginDatabase.plevel(loginBean).equals("waiter")) {
             		session.setAttribute("plevel", "waiter");
-            		response.sendRedirect("waiterMenu.jsp");
+            		response.sendRedirect("waiterPage.jsp");
             	}
             	
             	if (LoginDatabase.plevel(loginBean).equals("kitchen")) {
             		session.setAttribute("plevel", "kitchen");
-            		response.sendRedirect("kitchen.jsp");
+            		response.sendRedirect("Kitchen.jsp");
             	}
             } else {
                 response.sendRedirect("login.jsp");

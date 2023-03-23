@@ -95,9 +95,6 @@ CustomerOrder Order = new CustomerOrder();
       </div> 
     </div>
     <script src="SubmitOrder.js"></script>
-
-
-
 </div>
 
 <div class="submittingbutton">
