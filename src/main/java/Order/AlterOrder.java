@@ -61,7 +61,7 @@ public class AlterOrder { //add all order to accepted order
 		Connection connection = Database.connectToDatabase();
 		Statement statement = connection.createStatement();
 
-		String SQL = "UPDATE ordertable SET CompletePhase = 4 WHERE OrderNO = "+order+";";
+		String SQL = "UPDATE ordertable SET CompletePhase = -2 WHERE OrderNO = "+order+";";
 		statement.execute(SQL);
 
 	}
@@ -73,7 +73,7 @@ public class AlterOrder { //add all order to accepted order
 		ResultSet rs = statement.executeQuery(test);
 		
 		if (rs.getInt(1) == 3) {
-			String SQL = "UPDATE ordertable SET CompletePhase = 4 WHERE OrderNO = "+orderNO+" AND orderItem = '"+item+"';";
+			String SQL = "UPDATE ordertable SET CompletePhase = -2 WHERE OrderNO = "+orderNO+" AND orderItem = '"+item+"';";
 			statement.execute(SQL);
 		}
 

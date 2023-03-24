@@ -174,8 +174,8 @@ public class waiterOrder extends HttpServlet{
 
 			container += "</form>";
 
-
-			container += "<button onclick = \"finishedorder("+Orderlist.get(i)+")\">Finished Order</button></div>";
+			container += "<input type=\"submit\" name=\"finished Order\" value=\"finished order\" id=\"finishedorder\"/>";
+			container += "<input type= \"hidden\" name=\"finishedorder\" value=\"" + Orderlist.get(i)+ "\">";
 			frontEndView += container;
 		}
 

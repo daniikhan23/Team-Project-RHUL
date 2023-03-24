@@ -1,13 +1,8 @@
 package DB.connection;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.sql.Connection;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import Database;
 
 class DatabaseTest {
 
@@ -21,7 +16,7 @@ class DatabaseTest {
 
 
 	@Test
-	void testInsert() {
+	void testInsert() throws ClassNotFoundException {
 		String[] testString = {"TestValue1", "Test2"};
 		Database.Insert(testString, "TestDB");
 		Database.connectToDatabase();
