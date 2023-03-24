@@ -72,8 +72,8 @@ public class AlterOrder { //add all order to accepted order
 		String test = "SELECT completephase from ordertable WHERE OrderNO = "+orderNO+" AND orderItem = '"+item+"';";
 		ResultSet rs = statement.executeQuery(test);
 		
-		if (rs.getInt(1) == 2) {
-			String SQL = "UPDATE ordertable SET CompletePhase = 3 WHERE OrderNO = "+orderNO+" AND orderItem = '"+item+"';";
+		if (rs.getInt(1) == 3) {
+			String SQL = "UPDATE ordertable SET CompletePhase = 4 WHERE OrderNO = "+orderNO+" AND orderItem = '"+item+"';";
 			statement.execute(SQL);
 		}
 
