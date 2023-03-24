@@ -173,9 +173,10 @@ public class waiterOrder extends HttpServlet{
 			container += "<input type= \"hidden\" name=\"Acceptorder\" value=\"" + Orderlist.get(i)+ "\">";
 
 			container += "</form>";
-
 			container += "<input type=\"submit\" name=\"finished Order\" value=\"finished order\" id=\"finishedorder\"/>";
 			container += "<input type= \"hidden\" name=\"finishedorder\" value=\"" + Orderlist.get(i)+ "\">";
+
+			container += "</div>";
 			frontEndView += container;
 		}
 
